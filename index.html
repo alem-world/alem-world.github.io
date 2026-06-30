@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alem — Benchmarking Open-Ended Multi-Agent Coordination in Language Agents</title>
+  <meta name="description" content="Alem is a JAX benchmark for open-ended, long-horizon multi-agent coordination, with paired RL/symbolic and LLM/text interfaces. Leaderboard of 13 LLMs and 4 MARL baselines." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Alem — Open-Ended Multi-Agent Coordination" />
+  <meta property="og:description" content="A benchmark and leaderboard for coordination in language agents and MARL systems." />
+  <meta property="og:image" content="assets/video/alem_hero_poster.jpg" />
+  <link rel="icon" href="assets/img/alem-mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-nav" id="top">
+    <a class="brand" href="#top" aria-label="Alem home">
+      <img src="assets/img/alem-mark.svg" alt="" />
+      <span>Alem</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#cognition">Models</a>
+      <a href="#showcase">Gallery</a>
+      <a href="#environment">Environment</a>
+      <a href="#findings">Results</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="button button-light" href="https://arxiv.org/abs/2606.08340" target="_blank" rel="noopener">Paper</a>
+      <a class="button button-light" href="https://github.com/alem-world/alem-env" target="_blank" rel="noopener">GitHub</a>
+      <a class="button button-dark" href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span> Open-ended multi-agent coordination benchmark</div>
+        <h1>Alem</h1>
+        <p class="hero-subtitle">Benchmarking Open-Ended Multi-Agent Coordination in Language Agents</p>
+        <p class="hero-thesis">Modern agents can survive, explore and complete long-horizon tasks -- yet still struggle to <strong>coordinate</strong>.</p>
+        <!-- <p class="hero-lede">A JAX benchmark for long-horizon language agents and MARL systems in a bounded-open-ended world. Three agents must communicate, specialize, hand over resources, and synchronize actions under increasing coordination pressure.</p> -->
+        <p class="hero-lede">A JAX benchmark for long-horizon, open-ended <strong>multi-agent coordination</strong>. Building on Craftax and Multi-Agent Craftax / Craftax-Coop, Alem adds procedural coordination tasks, soft specialisation, communication and controllable difficulty. All through paired symbolic, pixel and text interfaces.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="https://arxiv.org/abs/2606.08340" target="_blank" rel="noopener">Read paper</a>
+          <a class="button button-light" href="https://github.com/alem-world/alem-env" target="_blank" rel="noopener">Code</a>
+          <a class="button button-light" href="https://huggingface.co/alem-world/alem-rl-baselines" target="_blank" rel="noopener">Models</a>
+          <a class="button button-light" href="#leaderboard">Leaderboard</a>
+          <a class="button button-light" href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit</a>
+          <a class="button button-light" href="assets/video/alem_hero.mp4" target="_blank" rel="noopener">▶ Watch reel</a>
+        </div>
+        <p class="authors">Kale-ab Abebe Tessera · Andras Szecsenyi · Cameron Barker · Alexander Rutherford · Davide Paglieri · Aidan Scannell · Henry Gouk · Elliot J. Crowley · Tim Rocktäschel · Amos Storkey</p>
+      </div>
+
+      <aside class="hero-card" aria-label="Alem preview">
+        <div class="hero-media">
+          <video src="assets/video/worlds_expansive.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Zooming out across many procedurally generated Alem worlds"></video>
+        </div>
+        <div class="hero-metrics">
+          <div><span>93</span><small>achievements</small></div>
+          <div><span>27</span><small>coordination goals</small></div>
+          <div><span>3</span><small>difficulty tiers</small></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="strip" aria-label="Core result summary">
+      <div class="strip-item"><span>On Alem · finding 01</span><strong>Coordination is a distinct axis of difficulty, separate from base-task skill.</strong></div>
+      <div class="strip-item"><span>On Alem · finding 02</span><strong>On Hard, a frontier LLM approaches a 1B-step MARL baseline on coordination.</strong></div>
+      <div class="strip-item"><span>On Alem · finding 03</span><strong>Communication is the largest driver in our harness ablations.</strong></div>
+    </section>
+
+    <section class="section board" id="leaderboard">
+      <div class="section-head split-head">
+        <div>
+          <div class="eyebrow">01 · Leaderboard</div>
+          <h2>Model leaderboard</h2>
+        </div>
+        <p>The table is the front door for researchers comparing agents. It separates base-task competence from explicit coordination. <a href="leaderboard.html">Open the standalone leaderboard page ↗</a></p>
+      </div>
+
+      <div class="leaderboard-summary">
+        <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Homogeneous LLM teams are evaluated against trained MARL reference systems.</p></article>
+        <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
+        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard, matching the 1B-step MARL reference within confidence intervals.</p></article>
+      </div>
+
+      <div class="board-shell">
+        <div class="board-controls">
+          <div class="seg" role="tablist" aria-label="Difficulty">
+            <button class="seg-btn" data-diff="easy">Easy</button>
+            <button class="seg-btn" data-diff="medium">Medium</button>
+            <button class="seg-btn is-active" data-diff="hard">Hard</button>
+          </div>
+          <div class="seg seg-view" role="tablist" aria-label="Agent type">
+            <button class="seg-btn is-active" data-view="all">All</button>
+            <button class="seg-btn" data-view="llm">LLM agents</button>
+            <button class="seg-btn" data-view="marl">MARL baselines</button>
+          </div>
+          <div class="board-meta" id="board-meta"></div>
+        </div>
+        <div class="table-scroll">
+          <table class="board-table" id="board-table">
+            <thead>
+              <tr>
+                <th class="col-rank">#</th>
+                <th class="col-model sortable" data-sort="name">Model</th>
+                <th class="col-type sortable" data-sort="type">Type / date</th>
+                <th class="col-harness sortable" data-sort="harness">Harness</th>
+                <th class="col-num sortable" data-sort="base">Base%</th>
+                <th class="col-num sortable" data-sort="coord">Coord.%</th>
+                <th class="col-num sortable is-sorted" data-sort="total">Total%</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+    </section>
+
+    <section class="section board secondary-board" id="rl-leaderboard">
+      <div class="marl-head">
+        <div class="eyebrow">Reference point · MARL baselines</div>
+        <p>Trained multi-agent RL is the reference for the LLM table above. It improves with compute and <strong>degrades as coordination difficulty rises</strong> — whereas most LLMs fail before difficulty even matters. IPPO, HyperMARL-IPPO, MAPPO and PQN-VDN, each at its training difficulty; the best 1B run is the reference row in the main table.</p>
+      </div>
+      <details class="rl-toggle">
+        <summary>Show the MARL baseline table</summary>
+        <div class="board-shell">
+          <div class="board-controls">
+            <div class="seg" role="tablist" aria-label="Difficulty">
+              <button class="seg-btn" data-rl-diff="easy">Easy</button>
+              <button class="seg-btn" data-rl-diff="medium">Medium</button>
+              <button class="seg-btn is-active" data-rl-diff="hard">Hard</button>
+            </div>
+            <div class="seg seg-view" role="tablist" aria-label="Training budget">
+              <button class="seg-btn" data-rl-budget="100M">100M steps</button>
+              <button class="seg-btn is-active" data-rl-budget="1B">1B steps</button>
+            </div>
+            <div class="board-meta" id="rl-board-meta"></div>
+          </div>
+          <div class="table-scroll">
+            <table class="board-table" id="rl-table">
+              <thead>
+                <tr>
+                  <th class="col-rank">#</th>
+                  <th class="col-model">Algorithm</th>
+                  <th class="col-num">Base%</th>
+                  <th class="col-num">Coord.%</th>
+                  <th class="col-num">Total%</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <p class="note">Environment training steps, not model parameters (~25M-parameter recurrent policies). Means with 95% bootstrap CIs across 5 seeds. The primary leaderboard above includes the best MARL budget as a reference row.</p>
+      </details>
+    </section>
+
+    <section class="section cognition" id="cognition">
+      <div class="section-head centered">
+        <div class="eyebrow">02 · Gameplay</div>
+        <h2>Watch each model play — and read what it says</h2>
+        <p>The same world (Easy, seed 0) for all 13 language agents, sped up 8×, paired with the most interesting broadcast that agent sent to its teammates. The messages are verbatim from the logs — coordination emerges (and breaks down) in the models' own words.</p>
+      </div>
+      <div class="trace-cta-wrap">
+        <button class="trace-cta" data-trace-open="gemini" data-trace-name="Gemini 3.1 Pro">▶&nbsp; Open an interactive reasoning trace</button>
+        <span class="trace-cta-hint">or click any model below · scroll for all 13 →</span>
+      </div>
+      <div class="model-gallery">
+
+        <article class="model-card">
+          <video src="assets/video/play/gemini.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Gemini 3.1 Pro</span><span class="type-pill type-proprietary">Closed (API)</span></div>
+            <p class="model-quote">“A1, let me know when your health is full and you're no longer stuck resting. Once you're ready, Give me food, then I will revive A0.”</p>
+            <div class="model-quote-meta">Theory of mind · Easy · step 680</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/gpt.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">GPT-5.4</span><span class="type-pill type-proprietary">Closed (API)</span></div>
+            <p class="model-quote">“I'm moving east of the 3-agent tree at (27,23). A2 move N to (27,24); A0 if you stay at (27,22) and face south, we can sync Do after setup.”</p>
+            <div class="model-quote-meta">Shared intent · Easy · step 5</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/gemma-31b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Gemma 4 31B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A2, I'm dead at (24,24). BE CAREFUL: the Orc Soldier was at (24,25). If you come North from (24,29) you'll run straight into it — clear it or find a safe path first.”</p>
+            <div class="model-quote-meta">Warning from the dead · Easy · step 148</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/gemma-26b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Gemma 4 26B-A4B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Sync tree at 27,23. I am at 27,24 facing North. Agent 0: go to 26,23 and face East. Agent 2: go to 27,22 and face South. Let's Do together when everyone is ready!”</p>
+            <div class="model-quote-meta">Sync setup · Easy · step 5</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/qwen36-27b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.6 27B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Thanks A2! After clearing the snail, please come revive me at (21,32). Agent 1 is also dead — revive me first so I can help revive them after.”</p>
+            <div class="model-quote-meta">Prioritising revives · Easy · step 115</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/qwen36-35b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.6 35B-A3B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A1: move East to (28,21), then North to (28,20), face East. I'm at (29,21) facing North. We sync-mine the stone at (29,20) next turn, and I'll give you the stone after.”</p>
+            <div class="model-quote-meta">Sync + handover · Easy · step 31</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/qwen35-122b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.5 122B-A10B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A1 URGENT: you're blocking my path to the sync position! Move East to (25,32) to clear (24,32). I'm at (23,32) and can't pass through you — we need all 3 in position.”</p>
+            <div class="model-quote-meta">Spatial theory of mind · Easy · step 124</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/qwen35-27b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.5 27B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Heading to the tree at (27,23) — we need 3 agents to Do simultaneously. I'll take the west side. Agent 1 (forager), you're closest, take north or east; Agent 2 (miner), take south.”</p>
+            <div class="model-quote-meta">Role-aware allocation · Easy · step 1</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/qwen35-35b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.5 35B-A3B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A1: handover at (33,28) — complete it now! A0: move E to (32,29) (blocked, turns you East), then E to (32,28), then E to (33,28) facing South.”</p>
+            <div class="model-quote-meta">Handover + blocked-move trick · Easy · step 116</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/qwen35-9b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.5 9B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Agent 0, move to (30,26) exactly — one step east, then one south. I need you adjacent to the furnace site from the east. Once there, we sync Do.”</p>
+            <div class="model-quote-meta">Precise positioning · Easy · step 37</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/gemma-e4b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Gemma 4 E4B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Agent 0, I confirm I'll sync with you on the cow at (28,22) as soon as I'm revived. Securing that cow and drink is critical for our survival.”</p>
+            <div class="model-quote-meta">Commitment while downed · Easy · step 268</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/llama-70b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Llama 3.3 70B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Agent 2, be careful and try to find a way to revive us — we need to work together to survive. Prioritize your health and safety above all else.”</p>
+            <div class="model-quote-meta">Cooperative, but vague · Easy · step 237</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video src="assets/video/play/llama-8b.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Llama 3.1 8B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Agent 2, I'll meet you at the construction site and we can Do wood together. Let's make sure we have enough wood for the stone and iron tools.”</p>
+            <div class="model-quote-meta">Cooperative, but vague · Easy · step 81</div>
+          </div>
+        </article>
+
+      </div>
+      <p class="note">Clips are the world view of each model's Easy seed-0 episode, sped up 8×. Messages are unedited agent broadcasts from the same runs (lightly trimmed). Click a card for the synced replay, or browse the <a href="traces.html">full per-step debug traces ↗</a>.</p>
+    </section>
+
+    <section class="section showcase" id="showcase">
+      <div class="section-head split-head">
+        <div>
+          <div class="eyebrow">02 · In action</div>
+          <h2>One world, three agents, three interfaces.</h2>
+        </div>
+        <p>The same open-ended world drives trained MARL teams and zero-shot language agents. Watch agents split work, broadcast intent, and synchronize their actions — or <a href="assets/video/alem_hero.mp4" target="_blank" rel="noopener">play the full reel</a>.</p>
+      </div>
+      <div class="showcase-stack">
+        <figure class="showcase-figure">
+          <video src="assets/video/agents_playing.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Three Alem agents coordinating in a survival world"></video>
+          <figcaption><span class="show-tag tag-rl">RL · symbolic</span> A team of three — forager, miner, warrior — each acting from its own egocentric view, trained end-to-end in JAX.</figcaption>
+        </figure>
+        <figure class="showcase-figure">
+          <img src="assets/img/llm_communication.gif" alt="LLM agents coordinating via broadcast messages in Alem" loading="lazy" />
+          <figcaption><span class="show-tag tag-llm">LLM · text</span> Through the text interface, each agent broadcasts intent to teammates and keeps a private scratchpad every step.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section environment" id="environment">
+      <div class="section-head centered">
+        <div class="eyebrow">03 · Environment</div>
+        <h2>One world, three interfaces, diverse coordination demands.</h2>
+        <p>Alem isolates coordination by pairing a rich open-ended Craftax-style world with explicit synchronization, handover, specialization, and construction tasks.</p>
+      </div>
+
+      <figure class="diff-figure">
+        <video src="assets/video/alem_difficulty.mp4" poster="assets/video/alem_difficulty_poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <figcaption><span class="show-tag tag-world">Controllable difficulty</span> The same world under increasing coordination pressure — a single parameter α sweeps from Easy (0.30) through Medium (0.60) to Hard (0.90), adding agents per task, tightening timing windows, and reducing slack.</figcaption>
+      </figure>
+
+      <h3 class="block-title center-title">What makes Alem different</h3>
+      <div class="feature-grid four">
+        <article class="feature-card"><span>01</span><h3>Long horizon</h3><p>Episodes last up to 10,000 steps across nine procedurally generated levels.</p></article>
+        <article class="feature-card"><span>02</span><h3>Open ended</h3><p>Agents pursue a web of goals: collect, craft, explore, trade, fight, descend, and build.</p></article>
+        <article class="feature-card"><span>03</span><h3>Explicit coordination</h3><p>Tasks require shared timing, resource transfer, role division, and multi-stage convergence.</p></article>
+        <article class="feature-card"><span>04</span><h3>Controllable difficulty</h3><p>A single α parameter scales incentive misalignment and coordination pressure.</p></article>
+      </div>
+
+      <h3 class="block-title center-title">Three interfaces onto one world</h3>
+      <div class="interface-grid three">
+        <article class="interface-card">
+          <div class="pill pill-blue">Symbolic</div>
+          <h3>For MARL agents</h3>
+          <ul>
+            <li>9,730-dimensional observation vector: local maps, inventory, teammate directions.</li>
+            <li>60 discrete actions with legal-action masks (~20 valid per step).</li>
+            <li>IPPO, HyperMARL-IPPO, MAPPO and PQN-VDN baselines, trained end-to-end in JAX.</li>
+          </ul>
+        </article>
+        <article class="interface-card">
+          <div class="pill pill-amber">Pixel</div>
+          <h3>For humans &amp; vision agents</h3>
+          <figure class="iface-shot"><img src="assets/img/paper/agent_view.png" alt="Pixel render of an agent's egocentric view" loading="lazy" /></figure>
+          <ul>
+            <li>An egocentric rendered view of the same world state — map, HUD, inventory and teammates.</li>
+          </ul>
+        </article>
+        <article class="interface-card">
+          <div class="pill pill-green">Text</div>
+          <h3>For language agents</h3>
+          <pre class="iface-text"><code>Step: 0/10000    Role: forager
+Position: (x=25, y=24)
+You see:
+- tree 3 steps north (x=25, y=21)
+- construction_site 1 step north
+- water 5 steps east (x=30, y=24)
+
+Available: Move North · Do · Rest ·
+  Request Wood · Request Stone · ...
+
+&gt; &lt;action&gt;Move North&lt;/action&gt;
+&gt; &lt;communication&gt;A1: I'll grab wood,
+  you mine the stone&lt;/communication&gt;</code></pre>
+          <ul>
+            <li>Reason-then-act harness with scratchpad memory and broadcast messages.</li>
+          </ul>
+          <details class="prompt-details">
+            <summary>View the full system prompt</summary>
+            <pre class="prompt-full"><code id="full-prompt">Loading…</code></pre>
+          </details>
+        </article>
+      </div>
+
+      <h3 class="block-title center-title">Diverse coordination demands</h3>
+      <figure class="coord-hero">
+        <img src="assets/img/paper/coord_soft_sync_crop.png" alt="Three agents converging on a shared tree to coordinate" loading="lazy" />
+        <figcaption>Three agents converge on a shared target (boxed) to satisfy a coordination demand — divide roles, meet, and act together.</figcaption>
+      </figure>
+      <div class="coord-grid">
+        <div class="coord-card"><h4>Soft specialization</h4><p>Role penalties reward dividing labour across forager, miner and warrior.</p></div>
+        <div class="coord-card"><h4>Handover</h4><p>One agent begins, another completes within a time window; temporal slack makes it the most accessible.</p></div>
+        <div class="coord-card"><h4>Synchronous</h4><p>Agents converge on a shared target and act on the same timestep; the hardest demand.</p></div>
+        <div class="coord-card"><h4>Construction</h4><p>Gather resources, climb a tech chain, converge, and execute a multi-step build.</p></div>
+      </div>
+
+      <div class="gallery-row">
+        <figure><img src="assets/img/paper/zoom_mining.png" alt="Agents mining"><figcaption>Mining</figcaption></figure>
+        <figure><img src="assets/img/paper/zoom_crafting.png" alt="Agents crafting"><figcaption>Crafting</figcaption></figure>
+        <figure><img src="assets/img/paper/zoom_combat.png" alt="Agents in combat"><figcaption>Combat</figcaption></figure>
+        <figure><img src="assets/img/paper/zoom_construction.png" alt="Agents building"><figcaption>Construction</figcaption></figure>
+      </div>
+
+      <div class="scoring">
+        <h3>Scoring structure</h3>
+        <div class="scoring-cols">
+          <div><span>Base</span><strong>66</strong><small>individual progress achievements</small></div>
+          <div><span>Coordination</span><strong>27</strong><small>explicit multi-agent achievements</small></div>
+          <div><span>Total</span><strong>93</strong><small>normalised episode return, scored per category</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section findings" id="findings">
+      <div class="section-head centered">
+        <div class="eyebrow">04 · Paper results</div>
+        <h2>What the benchmark reveals</h2>
+        <p>13 LLMs in zero-shot three-agent teams, compared against trained MARL references. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
+      </div>
+
+      <p class="result-hint">Click any result to read the detail.</p>
+      <div class="result-grid six">
+        <details class="finding-card" open><summary><span>Q1 · zero-shot</span><h3>Alem is unsolved, but separates models</h3></summary><p>Alem remains far from saturated by both zero-shot LLMs and trained MARL, while separating models across a broad range. On Easy, Total% spans 0.8% (Llama-3.1-8B) to 18.1% (Gemini 3.1 Pro); on Hard, LLMs average only 6.2% Total%. The top model reaches 17.5% Coord.% on Hard — comparable to the 17.6% of MARL trained for one billion environment steps.</p></details>
+        <details class="finding-card"><summary><span>Q1 · decomposition</span><h3>Base competence does not guarantee coordination</h3></summary><p>Decomposing performance reveals failures hidden by aggregate scores. GPT-5.4 achieves the second-highest Base% across difficulties, yet its Coord.% lags behind smaller models such as Gemma-4-26B-A4B on Hard, with non-overlapping 95% CIs. General environment competence does not guarantee coordinated multi-agent behaviour.</p></details>
+        <details class="finding-card"><summary><span>Q1 · difficulty</span><h3>Most LLM agents do not exploit the difficulty axis</h3></summary><p>Trained MARL degrades as coordination difficulty increases, but aggregate LLM Total% remains nearly flat at ≈6% across Easy, Medium, and Hard. Most LLM agents do not coordinate reliably enough for the difficulty parameter to strongly affect aggregate performance.</p></details>
+        <details class="finding-card"><summary><span>Q1 · task structure</span><h3>Coordination failures differ across task structure</h3></summary><p>Coordination is not a single axis. Handover tasks are comparatively more accessible because they allow temporal slack. Synchronous-Hard tasks require agents to identify a shared target, navigate to compatible positions, communicate intent, and act in the same timestep — Gemini 3.1 Pro leads LLMs here with only 18% coverage.</p></details>
+        <details class="finding-card"><summary><span>Q2 · ablations</span><h3>Communication is critical for coordination</h3></summary><p>Removing communication produces the largest drop in coordination for both models tested: Gemini 3.1 Pro falls from 17.5 to 5.3 Coord.%, and Gemma-4-31B from 8.8 to 3.8. Reasoning supports both base and coordination reward; scratchpad memory helps mainly when used to plan ahead.</p></details>
+        <details class="finding-card"><summary><span>Q3 · composition</span><h3>Heterogeneous teams perform near the homogeneous-team average</h3></summary><p>Mixed teams land close to the average of their corresponding homogeneous teams: the same-family Gemma team is slightly above (+0.1 Total%), the cross-family team slightly below (−0.1 Total%). Adding a stronger model is not sufficient to lift team performance.</p></details>
+      </div>
+
+      <h3 class="block-title center-title">Diagnostics</h3>
+      <p class="result-hint">Click any plot to read the detail.</p>
+      <div class="figures-row">
+        <details class="fig-card">
+          <summary><img src="assets/img/paper/diag_coord.png" alt="Coordination coverage by type"><span class="fig-cap">Coordination coverage by type. <span class="fig-more"></span></span></summary>
+          <p>Coordination is not a single axis. Handover tasks are comparatively more accessible because they allow temporal slack — one agent can initiate an opportunity and another complete it within a bounded time window. By contrast, Synchronous-Hard tasks require agents to identify a shared target, navigate to compatible positions, communicate intent, and act in the same timestep. Gemini 3.1 Pro leads LLMs on synchronous-hard coordination with only 18% coverage, while the next-best reach 9%.</p>
+        </details>
+        <details class="fig-card">
+          <summary><img src="assets/img/paper/diag_scatter.png" alt="Survival vs reward"><span class="fig-cap">Survival vs reward. <span class="fig-more"></span></span></summary>
+          <p>Many models survive for long episodes despite low returns. Mean episode length versus Total% reward shows that longer survival does not necessarily translate into progression or coordinated achievements. This suggests the main bottleneck is not basic survival or interface parsing, but converting interaction time into coordinated progress.</p>
+        </details>
+        <details class="fig-card">
+          <summary><img src="assets/img/paper/diag_size.png" alt="Model size vs performance"><span class="fig-cap">Scale vs performance. <span class="fig-more"></span></span></summary>
+          <p>Across open-weight models, performance is not monotonic in parameter count. Even within model families such as Gemma-4 and Qwen-3.5/3.6, coordination performance does not scale linearly across dense and mixture-of-experts variants. This suggests coordination depends on factors beyond raw scale, including post-training, reasoning, and how effectively agents use communication.</p>
+        </details>
+      </div>
+
+      <h3 class="block-title center-title">Harness ablations</h3>
+      <p class="result-hint">Click either plot to read the detail.</p>
+      <figure class="ablation-legend"><img src="assets/img/paper/abl_legend.png" alt="Legend: coordination and base reward"></figure>
+      <div class="figures-row two">
+        <details class="fig-card">
+          <summary><img src="assets/img/paper/abl_gemini.png" alt="Gemini ablation"><span class="fig-cap">Gemini 3.1 Pro ablations. <span class="fig-more"></span></span></summary>
+          <p>For coordination, communication matters most, then reasoning, then memory. Removing communication produces the largest drop, from 17.5 to 5.3 Coord.%. Reasoning is the only ablation that lowers both Base% and Coord.%. Scratchpad memory helps mainly when used as a forward-looking planner.</p>
+        </details>
+        <details class="fig-card">
+          <summary><img src="assets/img/paper/abl_gemma.png" alt="Gemma ablation"><span class="fig-cap">Gemma 4 31B ablations. <span class="fig-more"></span></span></summary>
+          <p>Gemma-4-31B shows the same ordering: removing communication is the largest drop, from 8.8 to 3.8 Coord.%. Without reasoning, Gemma writes longer scratchpads that partly substitute for it, but the compensation is incomplete — both Base% and Coord.% still fall.</p>
+        </details>
+      </div>
+
+      <h3 class="block-title center-title">Heterogeneous teams <span class="muted-label">(Hard)</span></h3>
+      <p class="result-hint">Paper figure: mixed teams land close to the average of their homogeneous members.</p>
+      <figure class="hetero-legend"><img src="assets/img/paper/hetero_teams_legend_new.png" alt="Legend for heterogeneous team plots"></figure>
+      <div class="figures-row two hetero-figures">
+        <figure class="fig-card static-fig">
+          <img src="assets/img/paper/hetero_teams_g1_new.png" alt="Gemma-family heterogeneous team results">
+          <figcaption>Gemma-family team — heterogeneous performance is near the homogeneous-team average.</figcaption>
+        </figure>
+        <figure class="fig-card static-fig">
+          <img src="assets/img/paper/hetero_teams_g2_new.png" alt="Cross-family heterogeneous team results">
+          <figcaption>Cross-family team — adding a stronger model does not directly transfer its performance to the whole team.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section cite" id="cite">
+      <div class="section-head split-head"><div><div class="eyebrow">Reference</div><h2>Citation</h2></div></div>
+      <div class="cite-box">
+        <button class="copy-btn" id="copy-bib" aria-label="Copy BibTeX">Copy</button>
+        <pre><code id="bibtex">@article{tessera2026alem,
+  title   = {Benchmarking Open-Ended Multi-Agent Coordination in Language Agents},
+  author  = {Tessera, Kale-ab Abebe and Szecsenyi, Andras and Barker, Cameron and
+             Rutherford, Alexander and Paglieri, Davide and Scannell, Aidan and
+             Gouk, Henry and Crowley, Elliot J. and Rockt\"{a}schel, Tim and
+             Storkey, Amos},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2606.08340}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><img src="assets/img/alem-mark.svg" alt="" /><strong>Alem</strong><span>“world” in Amharic</span></div>
+    <nav><a href="https://arxiv.org/abs/2606.08340" target="_blank" rel="noopener">Paper</a><a href="https://github.com/alem-world/alem-env" target="_blank" rel="noopener">GitHub</a><a href="mailto:k.tessera@ed.ac.uk">Contact</a></nav>
+  </footer>
+
+  <!-- synced reasoning-replay viewer -->
+  <div class="trace-modal" id="trace-modal" hidden>
+    <div class="trace-backdrop" data-trace-close></div>
+    <div class="trace-dialog" role="dialog" aria-modal="true" aria-label="Synced reasoning replay">
+      <div class="trace-head">
+        <div><span class="trace-model" id="trace-model"></span><span class="trace-sub">Easy · seed 0 · step through each agent's reasoning</span></div>
+        <div class="trace-head-actions">
+          <a class="trace-fulllog" id="trace-fulllog" href="#" target="_blank" rel="noopener">Open full interactive log ↗</a>
+          <button class="trace-close" data-trace-close aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="trace-controls">
+        <button id="trace-prev">‹ Prev</button>
+        <input type="range" id="trace-slider" min="0" max="0" value="0" aria-label="Step" />
+        <button id="trace-next">Next ›</button>
+        <span class="trace-step" id="trace-step"></span>
+        <label class="trace-onlymsg"><input type="checkbox" id="trace-onlymsg" checked> messages only</label>
+      </div>
+      <div class="trace-agents" id="trace-agents"></div>
+    </div>
+  </div>
+
+  <!-- figure lightbox -->
+  <div class="img-lightbox" id="img-lightbox" hidden>
+    <button class="lightbox-close" data-lightbox-close aria-label="Close">✕</button>
+    <img id="lightbox-img" alt="Enlarged figure" />
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

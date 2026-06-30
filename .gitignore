@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# local servers / logs
+*.log
+.cache/
+
+# off-site hosted full log viewers (HF dataset)
+assets/traces/

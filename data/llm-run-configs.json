@@ -1,0 +1,5517 @@
+{
+  "models": {
+    "gemini-3.1-pro-high": {
+      "easy": {
+        "alg_name": "llm_robust_all_gemini-3.1-pro-preview",
+        "config": {
+          "ALG_NAME": "llm_robust_all_gemini-3.1-pro-preview",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": false,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 10
+            },
+            "num_workers": 10,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": "/home/ktes/code/alem-env/outputs/alem_eval/gemini-pro-test-thinking_easy",
+            "run_name": "gemini-pro-test-thinking",
+            "save_images": true,
+            "save_images_every_episode": true,
+            "upload_only": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "gemini-3.1-pro-high",
+        "run_name": "llm_robust_all_gemini-3.1-pro-preview_gemini-pro-test-thinking_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_gemini-3.1-pro-preview",
+        "config": {
+          "ALG_NAME": "llm_robust_all_gemini-3.1-pro-preview",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": false,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 10
+            },
+            "num_workers": 10,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": "gemini-pro-test-thinking-hard",
+            "save_images": true,
+            "save_images_every_episode": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "gemini-3.1-pro-high",
+        "run_name": "llm_robust_all_gemini-3.1-pro-preview_gemini-pro-test-thinking-hard_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_gemini-3.1-pro-preview",
+        "config": {
+          "ALG_NAME": "llm_robust_all_gemini-3.1-pro-preview",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8000/v1",
+              "client_name": "gemini",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": "high"
+              },
+              "max_retries": 5,
+              "model_id": "gemini-3.1-pro-preview",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": false,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 10
+            },
+            "num_workers": 10,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": "gemini-pro-test-thinking-medium",
+            "save_images": true,
+            "save_images_every_episode": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "gemini-3.1-pro-high",
+        "run_name": "llm_robust_all_gemini-3.1-pro-preview_gemini-pro-test-thinking-medium_medium"
+      }
+    },
+    "gemma-4-26b-a4b-it": {
+      "easy": {
+        "alg_name": "llm_robust_all_google_gemma-4-26B-A4B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-26B-A4B-it",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "gemma-4-26b-a4b-it",
+        "run_name": "llm_robust_all_google_gemma-4-26B-A4B-it_2026-04-21_17-26-40_robust_all_google_gemma-4-26B-A4B-it_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_google_gemma-4-26B-A4B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-26B-A4B-it",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false,
+            "upload_only": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "gemma-4-26b-a4b-it",
+        "run_name": "llm_robust_all_google_gemma-4-26B-A4B-it_2026-04-24_14-48-38_robust_all_google_gemma-4-26B-A4B-it_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_google_gemma-4-26B-A4B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-26B-A4B-it",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "google/gemma-4-26B-A4B-it",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "gemma-4-26b-a4b-it",
+        "run_name": "llm_robust_all_google_gemma-4-26B-A4B-it_2026-04-22_20-00-02_robust_all_google_gemma-4-26B-A4B-it_medium"
+      }
+    },
+    "gemma-4-31b-it": {
+      "easy": {
+        "alg_name": "llm_robust_all_google_gemma-4-31B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-31B-it",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "google/gemma-4-31B-it",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results",
+              "true-exact-location"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "gemma-4-31b-it",
+        "run_name": "llm_robust_all_google_gemma-4-31B-it_2026-04-18_18-35-14_robust_all_google_gemma-4-31B-it_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_google_gemma-4-31B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-31B-it",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "google/gemma-4-31B-it",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results",
+              "true-exact-location"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "gemma-4-31b-it",
+        "run_name": "llm_robust_all_google_gemma-4-31B-it_2026-04-21_08-59-43_robust_all_google_gemma-4-31B-it_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_google_gemma-4-31B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-31B-it",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "google/gemma-4-31B-it",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results",
+              "true-exact-location"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "gemma-4-31b-it",
+        "run_name": "llm_robust_all_google_gemma-4-31B-it_2026-04-20_14-10-55_robust_all_google_gemma-4-31B-it_medium"
+      }
+    },
+    "gemma-4-e4b-it": {
+      "easy": {
+        "alg_name": "llm_robust_all_google_gemma-4-E4B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-E4B-it",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "google/gemma-4-E4B-it",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "gemma-4-e4b-it",
+        "run_name": "llm_robust_all_google_gemma-4-E4B-it_2026-04-18_18-38-17_robust_all_google_gemma-4-E4B-it_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_google_gemma-4-E4B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-E4B-it",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "google/gemma-4-E4B-it",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "gemma-4-e4b-it",
+        "run_name": "llm_robust_all_google_gemma-4-E4B-it_2026-04-19_00-46-05_robust_all_google_gemma-4-E4B-it_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_google_gemma-4-E4B-it",
+        "config": {
+          "ALG_NAME": "llm_robust_all_google_gemma-4-E4B-it",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "google/gemma-4-E4B-it",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "test-gemma",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "gemma-4-e4b-it",
+        "run_name": "llm_robust_all_google_gemma-4-E4B-it_2026-04-18_21-41-48_robust_all_google_gemma-4-E4B-it_medium"
+      }
+    },
+    "gpt-5.4-high": {
+      "easy": {
+        "alg_name": "llm_robust_all_gpt-5.4-2026-03-05",
+        "config": {
+          "ALG_NAME": "llm_robust_all_gpt-5.4-2026-03-05",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8000/v1",
+            "client_name": "openai",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": "high",
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "gpt-5.4-2026-03-05",
+            "timeout": 420
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": false,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 10
+            },
+            "num_workers": 2,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": "gpt54-final-easy",
+            "save_images": true,
+            "save_images_every_episode": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "gpt-5.4-high",
+        "run_name": "llm_robust_all_gpt-5.4-2026-03-05_gpt54-final-easy_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_gpt-5.4-2026-03-05",
+        "config": {
+          "ALG_NAME": "llm_robust_all_gpt-5.4-2026-03-05",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8000/v1",
+            "client_name": "openai",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": "high",
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "gpt-5.4-2026-03-05",
+            "timeout": 420
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": false,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 10
+            },
+            "num_workers": 5,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": "gpt54-final-hard",
+            "save_images": true,
+            "save_images_every_episode": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "gpt-5.4-high",
+        "run_name": "llm_robust_all_gpt-5.4-2026-03-05_gpt54-final-hard_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_gpt-5.4-2026-03-05",
+        "config": {
+          "ALG_NAME": "llm_robust_all_gpt-5.4-2026-03-05",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8000/v1",
+            "client_name": "openai",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": "high",
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "gpt-5.4-2026-03-05",
+            "timeout": 420
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": false,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 10
+            },
+            "num_workers": 5,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": "gpt54-final-medium",
+            "save_images": true,
+            "save_images_every_episode": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "gpt-5.4-high",
+        "run_name": "llm_robust_all_gpt-5.4-2026-03-05_gpt54-final-medium_medium"
+      }
+    },
+    "llama-3.1-8b-instruct": {
+      "easy": {
+        "alg_name": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct",
+        "config": {
+          "ALG_NAME": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": false,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": false,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8050/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "llama-family",
+              "plot1"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "llama-3.1-8b-instruct",
+        "run_name": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct_2026-04-18_20-08-14_robust_all_meta-llama_Llama-3.1-8B-Instruct_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct",
+        "config": {
+          "ALG_NAME": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": false,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": false,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8050/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "llama-family",
+              "plot1"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "llama-3.1-8b-instruct",
+        "run_name": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct_2026-04-19_01-01-31_robust_all_meta-llama_Llama-3.1-8B-Instruct_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct",
+        "config": {
+          "ALG_NAME": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": false,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": false,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8050/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "llama-family",
+              "plot1"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "llama-3.1-8b-instruct",
+        "run_name": "llm_robust_all_meta-llama_Llama-3.1-8B-Instruct_2026-04-18_22-32-42_robust_all_meta-llama_Llama-3.1-8B-Instruct_medium"
+      }
+    },
+    "llama-3.3-70b-instruct": {
+      "easy": {
+        "alg_name": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct",
+        "config": {
+          "ALG_NAME": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": false,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": false,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8040/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "llama-family",
+              "plot1"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "llama-3.3-70b-instruct",
+        "run_name": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct_2026-04-19_01-27-56_robust_all_meta-llama_Llama-3.3-70B-Instruct_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct",
+        "config": {
+          "ALG_NAME": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": false,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": false,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8040/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "llama-family",
+              "plot1"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "llama-3.3-70b-instruct",
+        "run_name": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct_2026-04-19_17-49-06_robust_all_meta-llama_Llama-3.3-70B-Instruct_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct",
+        "config": {
+          "ALG_NAME": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": false,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": false,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8040/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "llama-family",
+              "plot1"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "llama-3.3-70b-instruct",
+        "run_name": "llm_robust_all_meta-llama_Llama-3.3-70B-Instruct_2026-04-19_10-08-42_robust_all_meta-llama_Llama-3.3-70B-Instruct_medium"
+      }
+    },
+    "qwen3.5-122b-a10b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-122B-A10B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-122B-A10B",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-122B-A10B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.5-122b-a10b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-122B-A10B_2026-04-19_16-51-12_robust_all_Qwen_Qwen3.5-122B-A10B_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-122B-A10B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-122B-A10B",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-122B-A10B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.5-122b-a10b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-122B-A10B_2026-04-20_19-37-07_robust_all_Qwen_Qwen3.5-122B-A10B_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-122B-A10B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-122B-A10B",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-122B-A10B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "qwen3.5-122b-a10b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-122B-A10B_2026-04-20_06-21-39_robust_all_Qwen_Qwen3.5-122B-A10B_medium"
+      }
+    },
+    "qwen3.5-27b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-27B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-27B",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.5-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.5-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.5-27B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.5-27b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-27B_2026-04-22_10-35-13_robust_all_Qwen_Qwen3.5-27B_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-27B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-27B",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.5-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.5-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.5-27B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 12,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false,
+            "upload_only": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "id": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "resume": null,
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.5-27b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-27B_2026-04-27_20-37-32_robust_all_Qwen_Qwen3.5-27B_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-27B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-27B",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-27B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "qwen3.5-27b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-27B_2026-04-19_10-30-04_robust_all_Qwen_Qwen3.5-27B_medium"
+      }
+    },
+    "qwen3.5-35b-a3b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-35B-A3B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-35B-A3B",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-35B-A3B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.5-35b-a3b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-35B-A3B_2026-04-18_18-40-45_robust_all_Qwen_Qwen3.5-35B-A3B_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-35B-A3B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-35B-A3B",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-35B-A3B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.5-35b-a3b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-35B-A3B_2026-04-19_10-48-20_robust_all_Qwen_Qwen3.5-35B-A3B_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-35B-A3B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-35B-A3B",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-35B-A3B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "qwen3.5-35b-a3b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-35B-A3B_2026-04-19_02-50-20_robust_all_Qwen_Qwen3.5-35B-A3B_medium"
+      }
+    },
+    "qwen3.5-9b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-9B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-9B",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-9B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.5-9b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-9B_2026-04-18_18-33-31_robust_all_Qwen_Qwen3.5-9B_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-9B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-9B",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-9B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.5-9b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-9B_2026-04-19_03-38-56_robust_all_Qwen_Qwen3.5-9B_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.5-9B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.5-9B",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "client": {
+            "alternate_roles": false,
+            "base_url": "http://localhost:8080/v1",
+            "client_name": "vllm",
+            "delay": 2,
+            "generate_kwargs": {
+              "max_tokens": 8192,
+              "reasoning_effort": null,
+              "seed": 42,
+              "temperature": 1
+            },
+            "max_retries": 5,
+            "model_id": "Qwen/Qwen3.5-9B",
+            "timeout": 360
+          },
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.5",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "qwen3.5-9b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.5-9B_2026-04-18_23-17-12_robust_all_Qwen_Qwen3.5-9B_medium"
+      }
+    },
+    "qwen3.6-27b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.6-27B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.6-27B",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.6",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.6-27b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.6-27B_2026-04-23_07-59-23_robust_all_Qwen_Qwen3.6-27B_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.6-27B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.6-27B",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false,
+            "upload_only": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "id": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "resume": null,
+            "tags": [
+              "llm-eval",
+              "Qwen3.6",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.6-27b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.6-27B_2026-04-25_01-48-07_robust_all_Qwen_Qwen3.6-27B_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.6-27B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.6-27B",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-27B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.6",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "qwen3.6-27b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.6-27B_2026-04-23_18-12-31_robust_all_Qwen_Qwen3.6-27B_medium"
+      }
+    },
+    "qwen3.6-35b-a3b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.6-35B-A3B",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "easy",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": false,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": false,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": false,
+                "seed": 42,
+                "temperature": 1
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.6",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.6-35b-a3b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B_2026-04-21_17-40-37_robust_all_Qwen_Qwen3.6-35B-A3B_easy"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.6-35B-A3B",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "hard",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": false,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": false,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": false,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false,
+            "upload_only": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.6",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.6-35b-a3b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B_2026-04-24_15-26-40_robust_all_Qwen_Qwen3.6-35B-A3B_hard"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B",
+        "config": {
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.6-35B-A3B",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "cache_icl": false,
+            "include_all_actions": false,
+            "instructions_in_system_prompt": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "max_text_history": 8,
+            "progressively_display_game_info": true,
+            "prompt_mode": "specific_collaborative",
+            "reasoning": true,
+            "remember_cot": true,
+            "show_affordances": true,
+            "structured_communication": false,
+            "structured_scratchpad": false,
+            "type": "robust_all",
+            "use_communication": true,
+            "use_cot": true,
+            "use_scratchpad": true
+          },
+          "alem": {
+            "coordination_difficulty": "medium",
+            "god_mode": false,
+            "max_timesteps": 10000,
+            "non_specialist_efficiency": 0.2,
+            "num_agents": 3,
+            "randomize_alpha": false,
+            "shared_reward": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "wrapper": {
+              "edge_only_items": [
+                "water"
+              ],
+              "egocentric": false,
+              "exact_coordinates": true,
+              "llm_mode": "easy",
+              "precise_location": true,
+              "render_downscale": 2,
+              "render_pixel_size": 64,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "use_ascii": false,
+              "version": "v0.125-fix-trading"
+            }
+          },
+          "clients": [
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": true,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": true,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            },
+            {
+              "alternate_roles": false,
+              "base_url": "http://localhost:8080/v1",
+              "client_name": "vllm",
+              "delay": 2,
+              "generate_kwargs": {
+                "max_tokens": 8192,
+                "preserve_thinking": true,
+                "seed": 42,
+                "temperature": 1,
+                "thinking_level": null
+              },
+              "max_retries": 5,
+              "model_id": "Qwen/Qwen3.6-35B-A3B",
+              "timeout": 420
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "env_kwargs": {
+              "seed": null
+            },
+            "names": "alem"
+          },
+          "eval": {
+            "debug": true,
+            "feedback_on_invalid_action": true,
+            "generate_debriefs": true,
+            "icl_episodes": 0,
+            "max_steps_per_episode": 10000,
+            "num_episodes": {
+              "alem": 20
+            },
+            "num_workers": 20,
+            "output_dir": "outputs/alem_eval",
+            "resume_from": null,
+            "run_name": null,
+            "save_images": true,
+            "save_images_every_episode": false
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "entity": "alem-world",
+            "group": null,
+            "name": null,
+            "notes": null,
+            "project": "alem",
+            "tags": [
+              "llm-eval",
+              "Qwen3.6",
+              "base-results"
+            ]
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "qwen3.6-35b-a3b",
+        "run_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B_2026-04-23_12-36-34_robust_all_Qwen_Qwen3.6-35B-A3B_medium"
+      }
+    }
+  },
+  "schema": "alem_llm_run_configs_v1",
+  "source": "wandb_export/combined_data/final-llm/unknown"
+}

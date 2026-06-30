@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alem Leaderboard — Open-Ended Multi-Agent Coordination</title>
+  <meta name="description" content="The Alem leaderboard: 13 LLMs in zero-shot 3-agent teams plus trained MARL baselines, scored on Base%, Coord.% and Total% across Easy / Medium / Hard." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Alem Leaderboard" />
+  <meta property="og:description" content="LLM and MARL coordination leaderboard for the Alem benchmark." />
+  <meta property="og:image" content="assets/video/alem_hero_poster.jpg" />
+  <link rel="icon" href="assets/img/alem-mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-nav" id="top">
+    <a class="brand" href="index.html" aria-label="Alem home">
+      <img src="assets/img/alem-mark.svg" alt="" />
+      <span>Alem</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="index.html">Overview</a>
+      <a href="index.html#cognition">Models</a>
+      <a href="index.html#environment">Environment</a>
+      <a href="index.html#findings">Results</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="button button-light" href="https://arxiv.org/abs/2606.08340" target="_blank" rel="noopener">Paper</a>
+      <a class="button button-light" href="https://github.com/alem-world/alem-env" target="_blank" rel="noopener">GitHub</a>
+      <a class="button button-dark" href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section board" id="leaderboard" style="padding-top: clamp(40px, 6vw, 72px)">
+      <div class="section-head split-head">
+        <div>
+          <div class="eyebrow">Alem leaderboard</div>
+          <h2>Model leaderboard</h2>
+        </div>
+        <p>Zero-shot 3-agent LLM teams and trained MARL baselines on the Alem benchmark, separating base-task competence from explicit coordination. <a href="index.html">← Back to the full overview</a></p>
+      </div>
+
+      <div class="leaderboard-summary">
+        <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Homogeneous LLM teams are evaluated against trained MARL reference systems.</p></article>
+        <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
+        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard, matching the 1B-step MARL reference within confidence intervals.</p></article>
+      </div>
+
+      <div class="board-shell">
+        <div class="board-controls">
+          <div class="seg" role="tablist" aria-label="Difficulty">
+            <button class="seg-btn" data-diff="easy">Easy</button>
+            <button class="seg-btn" data-diff="medium">Medium</button>
+            <button class="seg-btn is-active" data-diff="hard">Hard</button>
+          </div>
+          <div class="seg seg-view" role="tablist" aria-label="Agent type">
+            <button class="seg-btn is-active" data-view="all">All</button>
+            <button class="seg-btn" data-view="llm">LLM agents</button>
+            <button class="seg-btn" data-view="marl">MARL baselines</button>
+          </div>
+          <div class="board-meta" id="board-meta"></div>
+        </div>
+        <div class="table-scroll">
+          <table class="board-table" id="board-table">
+            <thead>
+              <tr>
+                <th class="col-rank">#</th>
+                <th class="col-model sortable" data-sort="name">Model</th>
+                <th class="col-type sortable" data-sort="type">Type / date</th>
+                <th class="col-harness sortable" data-sort="harness">Harness</th>
+                <th class="col-num sortable" data-sort="base">Base%</th>
+                <th class="col-num sortable" data-sort="coord">Coord.%</th>
+                <th class="col-num sortable is-sorted" data-sort="total">Total%</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Base%, Coord.% and Total% are normalised independently, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+
+      <details class="rl-toggle" open>
+        <summary>Show the MARL baseline table</summary>
+        <div class="board-shell">
+          <div class="board-controls">
+            <div class="seg" role="tablist" aria-label="Difficulty">
+              <button class="seg-btn" data-rl-diff="easy">Easy</button>
+              <button class="seg-btn" data-rl-diff="medium">Medium</button>
+              <button class="seg-btn is-active" data-rl-diff="hard">Hard</button>
+            </div>
+            <div class="seg seg-view" role="tablist" aria-label="Training budget">
+              <button class="seg-btn" data-rl-budget="100M">100M steps</button>
+              <button class="seg-btn is-active" data-rl-budget="1B">1B steps</button>
+            </div>
+            <div class="board-meta" id="rl-board-meta"></div>
+          </div>
+          <div class="table-scroll">
+            <table class="board-table" id="rl-table">
+              <thead>
+                <tr>
+                  <th class="col-rank">#</th>
+                  <th class="col-model">Algorithm</th>
+                  <th class="col-num">Base%</th>
+                  <th class="col-num">Coord.%</th>
+                  <th class="col-num">Total%</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <p class="note">Trained MARL baselines (IPPO, HyperMARL-IPPO, MAPPO, PQN-VDN), ~25M-parameter recurrent policies. Means with 95% bootstrap CIs across 5 seeds.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><img src="assets/img/alem-mark.svg" alt="" /><strong>Alem</strong><span>“world” in Amharic</span></div>
+    <nav><a href="index.html">Overview</a><a href="https://arxiv.org/abs/2606.08340" target="_blank" rel="noopener">Paper</a><a href="https://github.com/alem-world/alem-env" target="_blank" rel="noopener">GitHub</a></nav>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
