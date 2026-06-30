@@ -409,7 +409,7 @@ button { font: inherit; }
    v3 refinements — difficulty clip, interfaces, coordination, findings
    ============================================================ */
 .diff-figure { margin: 18px 0 0; background: var(--paper); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); }
-.diff-figure video { width: 100%; display: block; background: #101311; }
+.diff-figure video { width: 100%; display: block; background: #101311; aspect-ratio: 16 / 9; }
 .diff-figure figcaption { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; padding: 14px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 
 .center-title { text-align: center; margin: 50px 0 22px; }
@@ -530,7 +530,7 @@ button { font: inherit; }
 .model-gallery::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
 .model-card { flex: 0 0 min(90vw, 500px); scroll-snap-align: start; background: var(--paper); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; cursor: pointer; transition: transform .18s, box-shadow .18s; }
 .model-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.model-card video { width: 100%; display: block; background: #101311; }
+.model-card video { width: 100%; display: block; background: #101311; aspect-ratio: 640 / 286; }
 .model-card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
 .model-card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .model-card-name { font-weight: 640; font-size: 17px; letter-spacing: -.02em; }
@@ -626,7 +626,7 @@ button { font: inherit; }
 .hero-thesis strong { color: var(--ink); font-weight: 650; }
 
 /* showcase video (replaces heavy gif) */
-.showcase-figure video { width: 100%; display: block; background: #101311; }
+.showcase-figure video { width: 100%; display: block; background: #101311; aspect-ratio: 1076 / 480; }
 
 /* compact MARL reference head */
 .marl-head { max-width: 820px; margin-bottom: 18px; }

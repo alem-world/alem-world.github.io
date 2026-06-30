@@ -578,7 +578,7 @@
   function bindTraces() {
     document.querySelectorAll(".model-card").forEach(function (card) {
       var v = card.querySelector("video"); if (!v) return;
-      var m = (v.getAttribute("src") || "").match(/play\/([^./]+)\.mp4/); if (!m) return;
+      var m = (v.getAttribute("src") || v.getAttribute("data-src") || "").match(/play\/([^./]+)\.mp4/); if (!m) return;
       var key = m[1];
       var nameEl = card.querySelector(".model-card-name");
       var name = nameEl ? nameEl.textContent : key;
@@ -653,6 +653,25 @@
       .then(function (t) { promptEl.textContent = t; })
       .catch(function () { promptEl.textContent = "See the system prompt in the repository."; });
   }
+
+  // Lazy-load below-the-fold videos: fetch only when scrolled near the viewport.
+  (function () {
+    var vids = document.querySelectorAll("video[data-src]");
+    if (!vids.length) return;
+    function loadVid(v) {
+      if (!v.dataset.src) return;
+      v.src = v.dataset.src;
+      v.removeAttribute("data-src");
+      v.load();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    if (!("IntersectionObserver" in window)) { Array.prototype.forEach.call(vids, loadVid); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { loadVid(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: "300px 0px" });
+    Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
+  })();
 
   fetch("data/leaderboard.json")
     .then(function (r) { return r.json(); })
