@@ -354,17 +354,19 @@ button { font: inherit; }
   .hero, .split-head, .visual-grid, .comparison-block, .result-chapter, .result-chapter.reverse, .detailed-hetero { grid-template-columns: 1fr; }
   .hero-card { transform: none; }
   .strip, .feature-grid.four, .gallery-row, .figures-row, .cog-grid, .leaderboard-summary, .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-grid.six { grid-template-columns: repeat(2, 1fr); }
   .finding-layout { grid-template-columns: 1fr 1fr; }
   .finding-card.keynote { grid-row: auto; min-height: 300px; grid-column: 1 / -1; }
   .interface-grid, .hetero-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
   .site-nav { height: auto; min-height: 62px; padding: 10px 16px; }
-  .nav-actions .button-light { display: none; }
+  .nav-actions a:nth-child(2) { display: none; }
   .hero { padding: 52px 16px 36px; }
   .hero h1 { font-size: clamp(46px, 16vw, 72px); }
   .section { padding: 56px 16px; }
   .strip, .feature-grid.four, .gallery-row, .figures-row, .ablation-grid, .cog-grid, .finding-layout, .leaderboard-summary, .result-grid { grid-template-columns: 1fr; }
+  .result-grid.six, .figures-row.two, .figures-row.two.hetero-figures { grid-template-columns: 1fr; }
   .board-meta { display: none; }
   .diff-card { grid-template-columns: 120px 1fr; }
   .diff-card img { width: 120px; height: 110px; }
