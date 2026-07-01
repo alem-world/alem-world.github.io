@@ -208,9 +208,18 @@ button { font: inherit; }
 .board-table tbody tr.is-marl { background: rgba(10,114,239,.035); }
 .col-rank { color: var(--faint); font-family: var(--mono); font-size: 12px; width: 42px; }
 .rank-1 .col-rank, .rank-2 .col-rank, .rank-3 .col-rank { color: var(--orange); font-weight: 600; }
-.model-cell { display: flex; flex-direction: column; gap: 2px; }
+.model-id { display: flex; align-items: center; gap: 11px; }
+.model-cell { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .model-name { font-weight: 620; letter-spacing: -.018em; }
 .model-config { color: var(--faint); font-size: 12px; }
+/* Provider brand marks: single-path SVGs masked so one brand colour applies. */
+.model-logo { flex: 0 0 auto; width: 19px; height: 19px; display: inline-block; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; }
+.model-logo-none { background: none; }
+.model-logo-img { object-fit: contain; }  /* official multicolour logos (Google) */
+.logo-openai { background: #0d0d0d; -webkit-mask-image: url(../img/logos/openai.svg); mask-image: url(../img/logos/openai.svg); }
+.logo-qwen   { background: #6236ff; -webkit-mask-image: url(../img/logos/qwen.svg);   mask-image: url(../img/logos/qwen.svg); }
+.logo-meta   { background: #0866ff; -webkit-mask-image: url(../img/logos/meta.svg);   mask-image: url(../img/logos/meta.svg); }
+.logo-marl   { background: var(--faint); -webkit-mask-image: url(../img/logos/marl.svg); mask-image: url(../img/logos/marl.svg); }
 .type-pill { display: inline-flex; border-radius: 999px; padding: 3px 8px; font-size: 11px; font-weight: 600; }
 .type-proprietary { color: #8a5108; background: rgba(232,137,40,.14); }
 .type-open-weight { color: #126b38; background: rgba(31,157,85,.12); }
@@ -292,6 +301,9 @@ button { font: inherit; }
 .chapter-copy ul { margin: 18px 0 0; padding-left: 18px; color: var(--muted); }
 .chapter-copy li + li { margin-top: 8px; }
 .chapter-copy.compact h3 { font-size: clamp(24px, 2.5vw, 32px); }
+.findings-headline { max-width: 880px; margin: 26px auto 6px; text-align: center; font-size: clamp(21px, 2.7vw, 30px); line-height: 1.26; letter-spacing: -.028em; font-weight: 500; color: var(--ink); text-wrap: balance; }
+.findings-headline .fh-num { font-weight: 700; color: var(--red); white-space: nowrap; }
+.findings-headline .fh-emph { font-weight: 700; color: var(--ink); box-shadow: inset 0 -0.32em 0 rgba(232,137,40,.22); }
 .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 18px 0; align-items: start; }
 .finding-layout { display: grid; grid-template-columns: 1.1fr .8fr .8fr; gap: 16px; }
 .finding-card { min-height: 210px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; }

@@ -413,6 +413,8 @@ Available: Move North · Do · Rest ·
         <p>13 LLMs in zero-shot three-agent teams, compared against trained MARL references. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
       </div>
 
+      <p class="findings-headline">Current LLM agents remain far from solving Alem, averaging only <span class="fh-num">~6% normalised total return</span>, yet their failures are <span class="fh-emph">not uniform</span>.</p>
+
       <p class="result-hint">Click any result to read the detail.</p>
       <div class="result-grid six">
         <details class="finding-card" open><summary><span>Q1 · zero-shot</span><h3>Alem is unsolved, but separates models</h3></summary><p>Alem remains far from saturated by both zero-shot LLMs and trained MARL, while separating models across a broad range. On Easy, Total% spans 0.8% (Llama-3.1-8B) to 18.1% (Gemini 3.1 Pro); on Hard, LLMs average only 6.2% Total%. The top LLM reaches 17.5% Coord.% on Hard, close to the 17.6% reference point from MARL trained for one billion environment steps. This comparison is metric-specific, since LLMs and MARL use different interfaces onto the same underlying environment.</p></details>

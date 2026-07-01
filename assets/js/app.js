@@ -100,16 +100,35 @@
     );
   }
 
+  /* provider marks (family -> brand logo). Single-colour brands are drawn as
+     CSS-masked spans (see .logo-* in style.css); multicolour official logos
+     (Google) render as a real image via COLOR_LOGO. */
+  var PROVIDER_LOGO = {
+    "Gemini": "google", "GPT": "openai", "Gemma": "google",
+    "Qwen": "qwen", "Llama": "meta", "MARL": "marl"
+  };
+  var COLOR_LOGO = { "google": "google-color.svg" };
+  function logoHTML(m) {
+    var slug = m && PROVIDER_LOGO[m.family];
+    if (!slug) return '<span class="model-logo model-logo-none" aria-hidden="true"></span>';
+    if (COLOR_LOGO[slug]) {
+      return '<img class="model-logo model-logo-img" src="assets/img/logos/' + COLOR_LOGO[slug] +
+             '" alt="' + esc(m.family) + '" width="19" height="19" loading="lazy">';
+    }
+    return '<span class="model-logo logo-' + slug + '" role="img" aria-label="' + esc(m.family) + '"></span>';
+  }
+
   function rowHTML(m, rank, isMarl) {
     var s = m.scores[state.diff];
     var rankLabel = rank === null ? '<span style="color:var(--faint)">ref</span>' : rank;
     return (
       '<tr class="' + (isMarl ? "is-marl" : "rank-" + rank) + ' is-clickable" data-mid="' + m.id + '" data-marl="' + (isMarl ? 1 : 0) + '" tabindex="0">' +
       '<td class="col-rank" data-label="Rank">' + rankLabel + "</td>" +
-      "<td data-label='Model'><div class='model-cell'>" +
+      "<td data-label='Model'><div class='model-id'>" + logoHTML(m) +
+      "<div class='model-cell'>" +
       "<span class='model-name'>" + m.name + "</span>" +
       "<span class='model-config'>" + (m.params && m.params !== "—" ? m.params + " · " : "") + m.config + "</span>" +
-      "</div></td>" +
+      "</div></div></td>" +
       typeRunCell(m) +
       harnessCell(m) +
       '<td class="score-cell" data-label="Base%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-base", s.base) + "</td>" +
@@ -126,7 +145,7 @@
     return (
       "<tr style='background:var(--bg-2)'>" +
       "<td class='col-rank' data-label='Rank'></td>" +
-      "<td data-label='Model'><span class='model-name' style='color:var(--muted);font-style:italic'>Across LLM agents</span></td>" +
+      "<td data-label='Model'><div class='model-id'><span class='model-logo model-logo-none' aria-hidden='true'></span><span class='model-name' style='color:var(--muted);font-style:italic'>Across LLM agents</span></div></td>" +
       "<td data-label='Type / date'></td>" + harnessPad + cell(a.base, "m-base", "Base%") + cell(a.coord, "m-coord", "Coord.%") + cell(a.total, "m-total", "Total%") +
       "</tr>"
     );
