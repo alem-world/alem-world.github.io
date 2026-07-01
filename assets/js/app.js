@@ -88,12 +88,12 @@
     var content = href
       ? '<a class="harness-link" href="' + href + '" target="_blank" rel="noopener">' + hv + '</a>'
       : '<span class="harness-link is-static">' + hv + '</span>';
-    return '<td class="col-harness">' + content + '</td>';
+    return '<td class="col-harness" data-label="Harness">' + content + '</td>';
   }
 
   function typeRunCell(m) {
     return (
-      '<td class="col-type"><div class="type-run">' +
+      '<td class="col-type" data-label="Type / date"><div class="type-run">' +
       typePill(m.type) +
       '<span class="run-meta"><span>' + rowDate(m) + '</span></span>' +
       '</div></td>'
@@ -105,29 +105,29 @@
     var rankLabel = rank === null ? '<span style="color:var(--faint)">ref</span>' : rank;
     return (
       '<tr class="' + (isMarl ? "is-marl" : "rank-" + rank) + ' is-clickable" data-mid="' + m.id + '" data-marl="' + (isMarl ? 1 : 0) + '" tabindex="0">' +
-      '<td class="col-rank">' + rankLabel + "</td>" +
-      "<td><div class='model-cell'>" +
+      '<td class="col-rank" data-label="Rank">' + rankLabel + "</td>" +
+      "<td data-label='Model'><div class='model-cell'>" +
       "<span class='model-name'>" + m.name + "</span>" +
       "<span class='model-config'>" + (m.params && m.params !== "—" ? m.params + " · " : "") + m.config + "</span>" +
       "</div></td>" +
       typeRunCell(m) +
       harnessCell(m) +
-      '<td class="score-cell" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-base", s.base) + "</td>" +
-      '<td class="score-cell" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-coord", s.coord) + "</td>" +
-      '<td class="score-cell" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-total", s.total) + "</td>" +
+      '<td class="score-cell" data-label="Base%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-base", s.base) + "</td>" +
+      '<td class="score-cell" data-label="Coord.%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-coord", s.coord) + "</td>" +
+      '<td class="score-cell" data-label="Total%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-total", s.total) + "</td>" +
       "</tr>"
     );
   }
 
   function avgRowHTML() {
     var a = DATA.averages[state.diff];
-    function cell(v, cls) { return "<td><div class='num-cell " + cls + "'><div class='num-val'>" + num(v) + "</div></div></td>"; }
-    var harnessPad = hasHarnessColumn() ? "<td></td>" : "";
+    function cell(v, cls, label) { return "<td data-label='" + label + "'><div class='num-cell " + cls + "'><div class='num-val'>" + num(v) + "</div></div></td>"; }
+    var harnessPad = hasHarnessColumn() ? "<td data-label='Harness'></td>" : "";
     return (
       "<tr style='background:var(--bg-2)'>" +
-      "<td class='col-rank'></td>" +
-      "<td><span class='model-name' style='color:var(--muted);font-style:italic'>Across LLM agents</span></td>" +
-      "<td></td>" + harnessPad + cell(a.base, "m-base") + cell(a.coord, "m-coord") + cell(a.total, "m-total") +
+      "<td class='col-rank' data-label='Rank'></td>" +
+      "<td data-label='Model'><span class='model-name' style='color:var(--muted);font-style:italic'>Across LLM agents</span></td>" +
+      "<td data-label='Type / date'></td>" + harnessPad + cell(a.base, "m-base", "Base%") + cell(a.coord, "m-coord", "Coord.%") + cell(a.total, "m-total", "Total%") +
       "</tr>"
     );
   }
@@ -453,11 +453,11 @@
       if (!cell) return;
       rank++;
       html += '<tr class="rank-' + rank + ' is-clickable" data-rl-algo="' + a.id + '" tabindex="0">' +
-        '<td class="col-rank">' + rank + "</td>" +
-        "<td><div class='model-cell'><span class='model-name'>" + a.name + "</span><span class='model-config'>Click for run command</span></div></td>" +
-        "<td>" + barHTML("m-base", cell.base) + "</td>" +
-        "<td>" + barHTML("m-coord", cell.coord) + "</td>" +
-        "<td>" + barHTML("m-total", cell.total) + "</td>" +
+        '<td class="col-rank" data-label="Rank">' + rank + "</td>" +
+        "<td data-label='Algorithm'><div class='model-cell'><span class='model-name'>" + a.name + "</span><span class='model-config'>Click for run command</span></div></td>" +
+        "<td data-label='Base%'>" + barHTML("m-base", cell.base) + "</td>" +
+        "<td data-label='Coord.%'>" + barHTML("m-coord", cell.coord) + "</td>" +
+        "<td data-label='Total%'>" + barHTML("m-total", cell.total) + "</td>" +
         "</tr>";
     });
     tb.innerHTML = html;
