@@ -566,7 +566,6 @@ button { font: inherit; }
 .trace-controls button:hover { background: #f3f3ef; }
 .trace-controls input[type=range] { flex: 1 1 220px; min-width: 0; accent-color: var(--green); }
 .trace-step { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 120px; }
-.trace-onlymsg { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; cursor: pointer; }
 .trace-agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; padding: 14px 16px 18px; overflow-y: auto; overflow-x: hidden; }
 .trace-agent { min-width: 0; background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px; padding: 13px; overflow: hidden; }
 .trace-agent-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-weight: 650; font-size: 13px; margin-bottom: 8px; }
@@ -1020,8 +1019,7 @@ button { font: inherit; }
   }
 
   .trace-controls input[type=range],
-  .trace-step,
-  .trace-onlymsg {
+  .trace-step {
     grid-column: 1 / -1;
     width: 100%;
     min-width: 0;

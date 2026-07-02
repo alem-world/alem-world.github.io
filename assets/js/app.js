@@ -519,19 +519,13 @@
   var FULLLOG_BASE = "https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1";
   var TRACE_META = {};  // key -> {file, mb, name, type}
   var TRACE = {};
-  var tv = { data: null, list: [], pos: 0, onlyMsg: true };
+  var tv = { data: null, list: [], pos: 0 };
   function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
   function tvEl(id) { return document.getElementById(id); }
 
   function tvBuildList() {
     var steps = tv.data.steps;
-    if (tv.onlyMsg) {
-      tv.list = [];
-      steps.forEach(function (st, i) { if (st.ag.some(function (a) { return a.msg; })) tv.list.push(i); });
-      if (!tv.list.length) tv.list = steps.map(function (_, i) { return i; });
-    } else {
-      tv.list = steps.map(function (_, i) { return i; });
-    }
+    tv.list = steps.map(function (_, i) { return i; });
     if (tv.pos >= tv.list.length) tv.pos = tv.list.length - 1;
     if (tv.pos < 0) tv.pos = 0;
     var sl = tvEl("trace-slider");
@@ -583,7 +577,7 @@
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     function show(d) {
-      tv.data = d; tv.pos = 0; tv.onlyMsg = tvEl("trace-onlymsg").checked;
+      tv.data = d; tv.pos = 0;
       tvBuildList(); tvRender();
     }
     if (TRACE[key]) { show(TRACE[key]); return; }
@@ -612,18 +606,6 @@
     if (nx) nx.addEventListener("click", function () { tvStep(1); });
     var sl = tvEl("trace-slider");
     if (sl) sl.addEventListener("input", function () { tv.pos = parseInt(sl.value, 10) || 0; tvRender(); });
-    var om = tvEl("trace-onlymsg");
-    if (om) om.addEventListener("change", function () {
-      if (!tv.data) return;
-      var cur = tv.list[tv.pos];
-      tv.onlyMsg = om.checked;
-      tvBuildList();
-      var ni = tv.list.indexOf(cur);
-      if (ni < 0) { for (var j = 0; j < tv.list.length; j++) { if (tv.list[j] >= cur) { ni = j; break; } } }
-      tv.pos = ni >= 0 ? ni : 0;
-      var s2 = tvEl("trace-slider"); if (s2) s2.value = tv.pos;
-      tvRender();
-    });
     document.addEventListener("keydown", function (e) {
       var modal = tvEl("trace-modal");
       if (!modal || modal.hidden) return;
