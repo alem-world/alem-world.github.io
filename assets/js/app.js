@@ -516,7 +516,7 @@
   /* ---------- trajectory viewer (text step-through) ---------- */
   // Full interactive debug viewers (~1 GB total) are hosted off-site.
   // To switch host (HF dataset → Cloudflare R2 custom domain), change ONLY this line.
-  var FULLLOG_BASE = "https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1";
+  var FULLLOG_BASE = "https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces_gz";
   var TRACE_META = {};  // key -> {file, mb, name, type}
   var TRACE = {};
   var tv = { data: null, list: [], pos: 0 };

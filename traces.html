@@ -61,7 +61,7 @@
   </footer>
 
   <script>
-    var FULLLOG_BASE = "https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1";
+    var FULLLOG_BASE = "https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces_gz";
     fetch("data/trace_sizes.json").then(function (r) { return r.json(); }).then(function (rows) {
       document.querySelector("#trace-index tbody").innerHTML = rows.map(function (o) {
         return "<tr><td>" + o.name + "</td><td>" + o.type + "</td><td>Easy · seed 0</td>" +
