@@ -24,6 +24,7 @@
     <nav aria-label="Primary navigation">
       <a href="#leaderboard">Leaderboard</a>
       <a href="#cognition">Models</a>
+      <a href="traces.html">Traces</a>
       <a href="#showcase">Gallery</a>
       <a href="#environment">Environment</a>
       <a href="#findings">Results</a>
@@ -289,7 +290,19 @@
         </article>
 
       </div>
-      <p class="note">Clips are the world view of each model's Easy seed-0 episode, sped up 8×. Messages are unedited agent broadcasts from the same runs (lightly trimmed). Click a card for the synced replay, or browse the <a href="traces.html">full per-step debug traces ↗</a>.</p>
+      <p class="note">Clips are the world view of each model's Easy seed-0 episode, sped up 8×. Messages are unedited agent broadcasts from the same runs (lightly trimmed). Click a card for the synced replay.</p>
+
+      <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 13 →</a></p>
+
+      <div class="trace-sample" id="trace-sample" data-sample-src="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1/qwen36-27b.html">
+        <div class="trace-sample-head">
+          <div class="trace-sample-label"><span class="trace-sample-title">Live sample</span><span class="trace-sample-meta">Qwen 3.6 27B · Open-weight · Easy · seed 0</span></div>
+          <a class="trace-sample-open" href="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1/qwen36-27b.html" target="_blank" rel="noopener">Open in new tab ↗</a>
+        </div>
+        <div class="trace-sample-frame">
+          <div class="trace-sample-loading">Loading a live debug page…</div>
+        </div>
+      </div>
     </section>
 
     <section class="section showcase" id="showcase">
@@ -500,7 +513,7 @@ Available: Move North · Do · Rest ·
       <div class="trace-head">
         <div><span class="trace-model" id="trace-model"></span><span class="trace-sub">Easy · seed 0 · step through each agent's reasoning</span></div>
         <div class="trace-head-actions">
-          <a class="trace-fulllog" id="trace-fulllog" href="#" target="_blank" rel="noopener">Open full interactive log ↗</a>
+          <a class="trace-fulllog" id="trace-fulllog" href="#" target="_blank" rel="noopener">Open full debug log ↗</a>
           <button class="trace-close" data-trace-close aria-label="Close">✕</button>
         </div>
       </div>

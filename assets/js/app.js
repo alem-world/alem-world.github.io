@@ -572,7 +572,7 @@
       var meta = TRACE_META[key];
       var file = (meta && meta.file) || key;
       full.href = FULLLOG_BASE + "/" + file + ".html";
-      full.innerHTML = "Full debug log ↗" + (meta && meta.mb ? ' <span class="trace-fulllog-size">' + meta.mb + " MB</span>" : "");
+      full.innerHTML = "Open full debug log ↗" + (meta && meta.mb ? ' <span class="trace-fulllog-size">' + meta.mb + " MB</span>" : "");
     }
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -636,10 +636,39 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) close(); });
   }
 
+  function bindSampleTrace() {
+    var el = document.getElementById("trace-sample");
+    if (!el) return;
+    var src = el.getAttribute("data-sample-src");
+    var frame = el.querySelector(".trace-sample-frame");
+    var loaded = false;
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      var ifr = document.createElement("iframe");
+      ifr.className = "trace-sample-iframe";
+      ifr.title = "Full interactive debug log";
+      ifr.setAttribute("loading", "lazy");
+      ifr.onload = function () { var l = frame.querySelector(".trace-sample-loading"); if (l) l.remove(); };
+      ifr.src = src;
+      frame.appendChild(ifr);
+    }
+    // Auto-load as it nears the viewport (keeps the initial page light).
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { io.disconnect(); load(); }
+      }, { rootMargin: "400px" });
+      io.observe(el);
+    } else {
+      load();
+    }
+  }
+
   /* ---------- boot ---------- */
   renderCmp();
   bindCopy();
   bindTraces();
+  bindSampleTrace();
   bindLightbox();
 
   fetch("data/trace_sizes.json")
