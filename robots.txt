@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alem-world.github.io/sitemap.xml

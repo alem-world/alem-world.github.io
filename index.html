@@ -3,12 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
   <title>Alem: Benchmarking Open-Ended Multi-Agent Coordination in Language Agents</title>
-  <meta name="description" content="Alem is a JAX benchmark for open-ended, long-horizon multi-agent coordination, with paired RL/symbolic and LLM/text interfaces. Leaderboard of 13 LLMs and 4 MARL baselines." />
+  <meta name="description" content="Can LLM agents coordinate in long-horizon, open-ended tasks? Alem is a JAX benchmark for testing multi-agent coordination across procedurally generated worlds." />
+  <link rel="canonical" href="https://alem-world.github.io/" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alem" />
+  <meta property="og:url" content="https://alem-world.github.io/" />
   <meta property="og:title" content="Alem: Open-Ended Multi-Agent Coordination" />
-  <meta property="og:description" content="A benchmark and leaderboard for coordination in language agents and MARL systems." />
-  <meta property="og:image" content="assets/video/alem_hero_poster.jpg" />
+  <meta property="og:description" content="Can LLM agents coordinate in long-horizon, open-ended tasks? Alem tests language-agent coordination across procedurally generated worlds." />
+  <meta property="og:image" content="https://alem-world.github.io/assets/img/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alem: Open-Ended Multi-Agent Coordination" />
+  <meta name="twitter:description" content="Can LLM agents coordinate in long-horizon, open-ended tasks? A JAX benchmark for multi-agent coordination in language agents." />
+  <meta name="twitter:image" content="https://alem-world.github.io/assets/img/og-card.png" />
   <link rel="icon" href="assets/img/alem-mark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,7 +50,7 @@
         <div class="eyebrow"><span class="dot"></span> Open-ended multi-agent coordination benchmark</div>
         <h1>Alem</h1>
         <p class="hero-subtitle">Can LLM agents coordinate in long-horizon, open-ended tasks?</p>
-        <p class="hero-lede">Alem is a JAX benchmark for testing <strong>multi-agent coordination</strong> in long-horizon, procedurally generated worlds. Across nine levels with controllable coordination demands, agents must explore, communicate, trade resources, craft tools, build structures, and fight mobs. Alem supports LLMs, VLMs, RL agents, and human play.</p>
+        <p class="hero-lede">Alem is a JAX benchmark for testing <strong>multi-agent coordination</strong> in <strong>long-horizon</strong>, procedurally generated <strong>open-ended</strong> worlds. Across nine levels with controllable coordination demands, agents must explore, communicate, trade resources, craft tools, build structures, and fight mobs. Alem supports LLMs, VLMs, RL agents, and human play.</p>
         <div class="hero-actions">
           <a class="button button-dark" href="https://arxiv.org/abs/2606.08340" target="_blank" rel="noopener">Read paper</a>
           <a class="button button-light" href="https://github.com/alem-world/alem-env" target="_blank" rel="noopener">Code</a>
@@ -50,6 +58,7 @@
           <a class="button button-light" href="#leaderboard">Leaderboard</a>
           <a class="button button-light" href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit</a>
           <a class="button button-light" href="assets/video/alem_hero.mp4" target="_blank" rel="noopener">▶ Watch reel</a>
+          <a class="button button-light" href="mailto:kaleabtessera@gmail.com">Contact</a>
         </div>
         <p class="authors">Kale-ab Abebe Tessera · Andras Szecsenyi · Cameron Barker · Alexander Rutherford · Davide Paglieri · Aidan Scannell · Henry Gouk · Elliot J. Crowley · Tim Rocktäschel · Amos Storkey</p>
       </div>
@@ -294,10 +303,10 @@
 
       <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 13 →</a></p>
 
-      <div class="trace-sample" id="trace-sample" data-sample-src="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1/qwen36-27b.html">
+      <div class="trace-sample" id="trace-sample" data-sample-src="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces_gz/qwen36-27b.html">
         <div class="trace-sample-head">
           <div class="trace-sample-label"><span class="trace-sample-title">Live sample</span><span class="trace-sample-meta">Qwen 3.6 27B · Open-weight · Easy · seed 0</span></div>
-          <a class="trace-sample-open" href="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces/v1/qwen36-27b.html" target="_blank" rel="noopener">Open in new tab ↗</a>
+          <a class="trace-sample-open" href="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces_gz/qwen36-27b.html" target="_blank" rel="noopener">Open in new tab ↗</a>
         </div>
         <div class="trace-sample-frame">
           <div class="trace-sample-loading">Loading a live debug page…</div>

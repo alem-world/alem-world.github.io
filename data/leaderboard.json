@@ -1076,7 +1076,7 @@
     }
   },
   "heterogeneous": {
-    "note": "Heterogeneous teams (Hard). Mixed teams perform near the average of their homogeneous baselines \u2014 they do not collapse to the weakest member nor inherit the strongest.",
+    "note": "Heterogeneous teams (Hard). Mixed teams perform near the average of their homogeneous baselines. They do not collapse to the weakest member nor inherit the strongest.",
     "teams": [
       {
         "id": "gemma-family",

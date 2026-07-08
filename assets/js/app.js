@@ -325,7 +325,7 @@
       "</div>" +
       '<h4 class="md-h">Scores by difficulty <span>· mean [95% CI], normalised per category</span></h4>' +
       '<div class="table-scroll"><table class="md-table"><thead><tr><th>Difficulty</th><th>Base%</th><th>Coord.%</th><th>Total%</th></tr></thead><tbody>' + rows + "</tbody></table></div>" +
-      (!isMarl ? '<p class="md-note">This is the exact run config behind the selected leaderboard score. Reproduce with the standard protocol — see <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">SUBMISSION.md</a>.</p><div id="md-config"></div>' : '<p class="md-note">This row is a reference aggregate from the dedicated MARL comparison table below. Click rows in that MARL table for algorithm-specific run commands.</p>');
+      (!isMarl ? '<p class="md-note">This is the exact run config behind the selected leaderboard score. Reproduce with the standard protocol. See <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">SUBMISSION.md</a>.</p><div id="md-config"></div>' : '<p class="md-note">This row is a reference aggregate from the dedicated MARL comparison table below. Click rows in that MARL table for algorithm-specific run commands.</p>');
     modal.hidden = false; document.body.style.overflow = "hidden";
     if (!isMarl) renderRunConfig(m.id, state.diff);
   }
@@ -355,6 +355,8 @@
   function renderHetero() {
     var wrap = document.getElementById("hetero-grid");
     if (!wrap || !DATA.heterogeneous) return;
+    var noteEl = document.getElementById("hetero-note");
+    if (noteEl && DATA.heterogeneous.note) noteEl.textContent = DATA.heterogeneous.note;
     var MAX = 18;
     wrap.innerHTML = DATA.heterogeneous.teams.map(function (t) {
       var members = Object.keys(t.member_totals).map(function (name) {
@@ -541,7 +543,7 @@
       if (a.obs) {
         var prev = esc(a.obs.split("\n").map(function (x) { return x.trim(); }).filter(Boolean).slice(0, 2).join("  ·  ")).slice(0, 110);
         f += '<details class="trace-field trace-obs"><summary class="trace-obs-sum">' +
-             '<span class="trace-tag">👁 Observation — what the agent saw</span>' +
+             '<span class="trace-tag">👁 Observation: what the agent saw</span>' +
              '<span class="trace-obs-preview">' + prev + '…</span>' +
              '<span class="trace-obs-toggle"></span></summary>' +
              '<pre>' + esc(a.obs) + "</pre></details>";
@@ -549,7 +551,7 @@
       if (a.th) f += '<div class="trace-field trace-think"><span class="trace-tag">Reasoning</span>' + esc(a.th) + "</div>";
       if (a.msg) f += '<div class="trace-field trace-msg"><span class="trace-tag">Broadcast → team</span>' + esc(a.msg) + "</div>";
       if (a.pad) f += '<div class="trace-field trace-pad"><span class="trace-tag">Scratchpad (private)</span>' + esc(a.pad) + "</div>";
-      if (!a.th && !a.msg && !a.pad) f += '<div class="trace-empty">— acting; no message or reasoning this step —</div>';
+      if (!a.th && !a.msg && !a.pad) f += '<div class="trace-empty">acting; no message or reasoning this step</div>';
       return '<div class="trace-agent"><div class="trace-agent-head"><span>Agent ' + a.i + (a.r ? " · " + a.r : "") +
         '</span><span class="trace-act">' + esc(a.act || "—") + "</span></div>" + f + "</div>";
     }).join("");

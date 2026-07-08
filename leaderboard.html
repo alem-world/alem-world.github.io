@@ -3,12 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alem Leaderboard — Open-Ended Multi-Agent Coordination</title>
+  <meta name="color-scheme" content="light" />
+  <title>Alem Leaderboard: Open-Ended Multi-Agent Coordination</title>
   <meta name="description" content="The Alem leaderboard: 13 LLMs in zero-shot 3-agent teams plus trained MARL baselines, scored on Base%, Coord.% and Total% across Easy / Medium / Hard." />
+  <link rel="canonical" href="https://alem-world.github.io/leaderboard.html" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alem" />
+  <meta property="og:url" content="https://alem-world.github.io/leaderboard.html" />
   <meta property="og:title" content="Alem Leaderboard" />
   <meta property="og:description" content="LLM and MARL coordination leaderboard for the Alem benchmark." />
-  <meta property="og:image" content="assets/video/alem_hero_poster.jpg" />
+  <meta property="og:image" content="https://alem-world.github.io/assets/img/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alem Leaderboard" />
+  <meta name="twitter:description" content="LLM and MARL coordination leaderboard for the Alem benchmark." />
+  <meta name="twitter:image" content="https://alem-world.github.io/assets/img/og-card.png" />
   <link rel="icon" href="assets/img/alem-mark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -116,6 +124,13 @@
         </div>
         <p class="note">Trained MARL baselines (IPPO, HyperMARL-IPPO, MAPPO, PQN-VDN), ~25M-parameter recurrent policies. Means with 95% bootstrap CIs across 5 seeds.</p>
       </details>
+
+      <div class="marl-head" style="margin-top: clamp(28px, 4vw, 44px)">
+        <div class="eyebrow">Heterogeneous teams · Hard</div>
+        <p id="hetero-note">Mixed-model teams on Hard, compared against the average of their members' homogeneous-team scores.</p>
+      </div>
+      <div class="hetero-grid" id="hetero-grid"></div>
+      <p class="note">Total% on Hard. Each team's members are the homogeneous-team Total% of that model; the team bar is the mixed team's Total%. Mixed teams land near the average of their homogeneous members. They neither collapse to the weakest nor inherit the strongest.</p>
     </section>
   </main>
 
