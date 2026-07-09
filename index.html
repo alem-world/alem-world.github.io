@@ -47,7 +47,7 @@
   <main>
     <section class="hero">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="dot"></span> Open-ended multi-agent coordination benchmark</div>
+        <div class="eyebrow"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span> Open-ended multi-agent coordination benchmark</div>
         <h1>Alem</h1>
         <p class="hero-subtitle">Can LLM agents coordinate in long-horizon, open-ended tasks?</p>
         <p class="hero-lede">Alem is a JAX benchmark for testing <strong>multi-agent coordination</strong> in <strong>long-horizon</strong>, procedurally generated <strong>open-ended</strong> worlds. Across nine levels with controllable coordination demands, agents must explore, communicate, trade resources, craft tools, build structures, and fight mobs. Alem supports LLMs, VLMs, RL agents, and human play.</p>
@@ -74,6 +74,17 @@
         </div>
       </aside>
     </section>
+
+    <!-- Ambient coordination vignette: three agents converge on a shared
+         target cell, act together, and disperse. Pure CSS, decorative only. -->
+    <div class="worldline" aria-hidden="true">
+      <div class="wl-stage">
+        <i class="wl-target"></i>
+        <i class="wl-agent wl-a"></i>
+        <i class="wl-agent wl-b"></i>
+        <i class="wl-agent wl-c"></i>
+      </div>
+    </div>
 
     <section class="strip" aria-label="Core result summary">
       <div class="strip-item"><span>On Alem · finding 01</span><strong>Coordination is a distinct axis of difficulty, separate from base-task skill.</strong></div>
@@ -317,7 +328,7 @@
     <section class="section showcase" id="showcase">
       <div class="section-head split-head">
         <div>
-          <div class="eyebrow">02 · In action</div>
+          <div class="eyebrow">03 · In action</div>
           <h2>One world, three agents, three interfaces.</h2>
         </div>
         <p>The same underlying open-ended world drives trained MARL teams and zero-shot language agents, but through different interfaces. Watch agents split work, broadcast intent, and synchronize their actions, or <a href="assets/video/alem_hero.mp4" target="_blank" rel="noopener">play the full reel</a>.</p>
@@ -336,7 +347,7 @@
 
     <section class="section environment" id="environment">
       <div class="section-head centered">
-        <div class="eyebrow">03 · Environment</div>
+        <div class="eyebrow">04 · Environment</div>
         <h2>One world, three interfaces, diverse coordination demands.</h2>
         <p>Alem isolates coordination by pairing a rich open-ended Craftax-style world with explicit synchronization, handover, specialization, and construction tasks.</p>
       </div>
@@ -430,7 +441,7 @@ Available: Move North · Do · Rest ·
 
     <section class="section findings" id="findings">
       <div class="section-head centered">
-        <div class="eyebrow">04 · Paper results</div>
+        <div class="eyebrow">05 · Paper results</div>
         <h2>What the benchmark reveals</h2>
         <p>13 LLMs in zero-shot three-agent teams, compared against trained MARL references. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
       </div>

@@ -716,7 +716,98 @@
     }
   }
 
+  /* ---------- motion: scroll reveals, bar draw-in, nav state ----------
+     Progressive enhancement. html.js-anim gates every hidden state in CSS,
+     and it is only set when IntersectionObserver exists and the user has
+     not asked for reduced motion, so content is never hidden otherwise. */
+  var MOTION_OK = false;
+
+  function initMotion() {
+    if (!("IntersectionObserver" in window)) return;
+    var mq = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq && mq.matches) return;
+    MOTION_OK = true;
+    document.documentElement.classList.add("js-anim");
+
+    var SEL = [
+      ".section-head", ".strip-item", ".leaderboard-summary article", ".board-shell",
+      ".note", ".marl-head", ".rl-toggle", ".trace-cta-wrap", ".model-gallery",
+      ".trace-lead", ".trace-sample", ".showcase-figure", ".diff-figure",
+      ".block-title", ".feature-card", ".interface-card", ".coord-hero", ".coord-card",
+      ".gallery-row figure", ".scoring", ".findings-headline", ".result-hint",
+      ".finding-card", ".fig-card", ".ablation-legend", ".hetero-legend",
+      ".cite-box", "#hetero-grid", ".cmp-table"
+    ].join(",");
+    var els = document.querySelectorAll(SEL);
+    if (!els.length) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        io.unobserve(el);
+        // stagger within the newly visible batch by position among siblings
+        var i = 0;
+        if (el.parentElement) {
+          var sibs = el.parentElement.children;
+          for (var k = 0; k < sibs.length && sibs[k] !== el; k++) {
+            if (sibs[k].classList && sibs[k].classList.contains("reveal")) i++;
+          }
+        }
+        var d = Math.min(i, 5) * 70;
+        el.style.transitionDelay = d + "ms";
+        el.classList.add("in");
+        // hand transitions back to the element's own rules once done
+        setTimeout(function () {
+          el.classList.remove("reveal", "in");
+          el.style.transitionDelay = "";
+        }, d + 1500);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+
+    els.forEach(function (el) { el.classList.add("reveal"); io.observe(el); });
+  }
+
+  function initBarsDraw() {
+    if (!MOTION_OK) return;
+    document.querySelectorAll(".board-shell").forEach(function (shell) {
+      if (shell.dataset.barsBound) return;
+      shell.dataset.barsBound = "1";
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { io.disconnect(); shell.classList.add("bars-live"); }
+      }, { threshold: 0.15 });
+      io.observe(shell);
+    });
+  }
+
+  function initNav() {
+    var nav = document.querySelector(".site-nav");
+    if (!nav) return;
+    function onScroll() { nav.classList.toggle("is-scrolled", (window.scrollY || 0) > 4); }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (!("IntersectionObserver" in window)) return;
+    var links = {};
+    var ids = [];
+    nav.querySelectorAll('nav a[href^="#"]').forEach(function (a) {
+      var id = a.getAttribute("href").slice(1);
+      if (id && document.getElementById(id)) { links[id] = a; ids.push(id); }
+    });
+    if (!ids.length) return;
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].classList.remove("is-current"); });
+        links[en.target.id].classList.add("is-current");
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    ids.forEach(function (id) { spy.observe(document.getElementById(id)); });
+  }
+
   /* ---------- boot ---------- */
+  initMotion();
+  initNav();
   renderCmp();
   bindCopy();
   bindTraces();
@@ -736,21 +827,26 @@
       .catch(function () { promptEl.textContent = "See the system prompt in the repository."; });
   }
 
-  // Lazy-load below-the-fold videos: fetch only when scrolled near the viewport.
+  // Lazy-load below-the-fold videos: fetch only when scrolled near the
+  // viewport, and pause looping clips again once they scroll well out of it.
   (function () {
     var vids = document.querySelectorAll("video[data-src]");
     if (!vids.length) return;
     function loadVid(v) {
-      if (!v.dataset.src) return;
-      v.src = v.dataset.src;
-      v.removeAttribute("data-src");
-      v.load();
+      if (v.dataset.src) {
+        v.src = v.dataset.src;
+        v.removeAttribute("data-src");
+        v.load();
+      }
       var p = v.play();
       if (p && p.catch) p.catch(function () {});
     }
     if (!("IntersectionObserver" in window)) { Array.prototype.forEach.call(vids, loadVid); return; }
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { loadVid(e.target); io.unobserve(e.target); } });
+      entries.forEach(function (e) {
+        if (e.isIntersecting) loadVid(e.target);
+        else if (!e.target.dataset.src && !e.target.paused) e.target.pause();
+      });
     }, { rootMargin: "300px 0px" });
     Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
   })();
@@ -763,6 +859,7 @@
       renderBoard();
       renderHetero();
       bindModelDetail();
+      initBarsDraw();
     })
     .catch(function (e) {
       var tb = document.querySelector("#board-table tbody");
@@ -772,6 +869,6 @@
 
   fetch("data/rl_results.json")
     .then(function (r) { return r.json(); })
-    .then(function (d) { RLDATA = d; bindRL(); renderRL(); })
+    .then(function (d) { RLDATA = d; bindRL(); renderRL(); initBarsDraw(); })
     .catch(function (e) { console.error(e); });
 })();
