@@ -65,7 +65,7 @@
   }
 
   function typePill(type) {
-    var label = type === "open-weight" ? "Open-weight" : type === "proprietary" ? "Closed (API)" : "MARL";
+    var label = type === "open-weight" ? "Open-weight" : type === "proprietary" ? "Closed (API)" : type === "mixed" ? "Mixed team" : "MARL";
     return '<span class="type-pill type-' + type + '">' + label + "</span>";
   }
 
@@ -120,9 +120,19 @@
 
   function rowHTML(m, rank, isMarl) {
     var s = m.scores[state.diff];
-    var rankLabel = rank === null ? '<span style="color:var(--faint)">ref</span>' : rank;
+    var isMixed = m.type === "mixed";
+    var rankLabel = rank === null ? '<span style="color:var(--faint)">ref</span>' :
+      rank === "mix" ? '<span style="color:var(--faint)">mix</span>' : rank;
+    var rowCls = isMarl ? "is-marl" : isMixed ? "is-mixed" : "rank-" + rank;
+    var cellTitle = isMixed ? "Click for the member-by-member breakdown" : "Click to inspect the run config";
+    function scoreCell(label, cls, score) {
+      var click = isMixed ? "" : ' onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')"';
+      var body = score ? barHTML(cls, score) :
+        '<div class="num-cell ' + cls + '"><div class="num-val" style="color:var(--faint)">—</div><div class="num-ci">not split</div></div>';
+      return '<td class="score-cell" data-label="' + label + '"' + click + ' title="' + cellTitle + '">' + body + "</td>";
+    }
     return (
-      '<tr class="' + (isMarl ? "is-marl" : "rank-" + rank) + ' is-clickable" data-mid="' + m.id + '" data-marl="' + (isMarl ? 1 : 0) + '" tabindex="0">' +
+      '<tr class="' + rowCls + ' is-clickable" data-mid="' + m.id + '"' + (isMixed ? ' data-hetero="1"' : "") + ' data-marl="' + (isMarl ? 1 : 0) + '" tabindex="0">' +
       '<td class="col-rank" data-label="Rank">' + rankLabel + "</td>" +
       "<td data-label='Model'><div class='model-id'>" + logoHTML(m) +
       "<div class='model-cell'>" +
@@ -131,11 +141,33 @@
       "</div></div></td>" +
       typeRunCell(m) +
       harnessCell(m) +
-      '<td class="score-cell" data-label="Base%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-base", s.base) + "</td>" +
-      '<td class="score-cell" data-label="Coord.%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-coord", s.coord) + "</td>" +
-      '<td class="score-cell" data-label="Total%" onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')" title="Click to inspect the run config">' + barHTML("m-total", s.total) + "</td>" +
+      scoreCell("Base%", "m-base", s.base) +
+      scoreCell("Coord.%", "m-coord", s.coord) +
+      scoreCell("Total%", "m-total", s.total) +
       "</tr>"
     );
+  }
+
+  /* mixed-model teams join the main table on Hard (the only difficulty they
+     were run on); base/coord were not scored separately for these runs. */
+  function heteroBoardRows() {
+    if (state.diff !== "hard" || !DATA.heterogeneous) return [];
+    return (DATA.heterogeneous.teams || []).map(function (t) {
+      var ci = t.team_total_ci || [t.team_total, t.team_total];
+      return {
+        id: "hetero-" + t.id,
+        name: t.name,
+        config: t.members.join(" + "),
+        type: "mixed",
+        family: "Mixed",
+        params: "—",
+        scores: { hard: {
+          base: t.team_base || null,
+          coord: t.team_coord || null,
+          total: t.team_total_full || [t.team_total, ci[0], ci[1]]
+        } }
+      };
+    });
   }
 
   function avgRowHTML() {
@@ -157,7 +189,9 @@
       if (k === "name") return dir * x.name.localeCompare(y.name);
       if (k === "type") return dir * x.type.localeCompare(y.type);
       if (k === "harness") return dir * harnessVersion(x).localeCompare(harnessVersion(y));
-      return dir * (x.scores[state.diff][k][0] - y.scores[state.diff][k][0]);
+      var sx = x.scores[state.diff], sy = y.scores[state.diff];
+      var vx = sx && sx[k] ? sx[k][0] : -1, vy = sy && sy[k] ? sy[k][0] : -1;
+      return dir * (vx - vy);
     });
   }
 
@@ -168,7 +202,14 @@
     var llm = state.view === "marl" ? [] : sortRows(DATA.homogeneous);
     var marl = state.view === "llm" ? [] : sortRows(DATA.marl);
 
-    llm.forEach(function (m, i) { html += rowHTML(m, i + 1, false); });
+    // mixed teams slot in by the current sort but stay unranked, so the
+    // homogeneous ranking (1..N) is unchanged by their presence.
+    var mixed = state.view === "marl" ? [] : heteroBoardRows();
+    var rankOf = {};
+    llm.forEach(function (m, i) { rankOf[m.id] = i + 1; });
+    var llmAll = mixed.length ? sortRows(llm.concat(mixed)) : llm;
+
+    llmAll.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
     if (llm.length) html += avgRowHTML();
     marl.forEach(function (m, i) {
       html += rowHTML(m, state.view === "marl" ? i + 1 : null, true);
@@ -183,7 +224,7 @@
 
     var meta = document.getElementById("board-meta");
     if (meta) {
-      var n = llm.length + marl.length;
+      var n = llmAll.length + marl.length;
       meta.textContent = n + " systems · " + state.diff.charAt(0).toUpperCase() + state.diff.slice(1) + " · " + (DATA.meta.harness_version || "harness") + " · 95% CI";
     }
   }
@@ -332,18 +373,27 @@
   window.AlemOpenModelDetail = openModelDetail;
   function typeLabel(t) { return t === "open-weight" ? "Open-weight" : t === "proprietary" ? "Closed (API)" : "MARL baseline"; }
 
+  function gotoHeteroDetail() {
+    var target = document.getElementById("hetero-grid") || document.getElementById("hetero-teams");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    else window.location.href = "leaderboard.html#hetero-grid";
+  }
+  function activateRow(tr) {
+    if (tr.hasAttribute("data-hetero")) gotoHeteroDetail();
+    else openModelDetail(tr.getAttribute("data-mid"));
+  }
   function bindModelDetail() {
     var tb = document.querySelector("#board-table tbody");
     if (!tb) return;
     tb.addEventListener("click", function (e) {
       if (e.target.closest && e.target.closest("a,button")) return;
       var tr = e.target.closest ? e.target.closest("tr[data-mid]") : null;
-      if (tr) openModelDetail(tr.getAttribute("data-mid"));
+      if (tr) activateRow(tr);
     });
     tb.addEventListener("keydown", function (e) {
       if (e.key !== "Enter") return;
       var tr = e.target.closest ? e.target.closest("tr[data-mid]") : null;
-      if (tr) openModelDetail(tr.getAttribute("data-mid"));
+      if (tr) activateRow(tr);
     });
     document.addEventListener("keydown", function (e) {
       var m = document.getElementById("model-modal");

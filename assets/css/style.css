@@ -207,6 +207,7 @@ button { font: inherit; }
 .board-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .board-table tbody tr:hover { background: #fafaf7; }
 .board-table tbody tr.is-marl { background: rgba(10,114,239,.035); }
+.board-table tbody tr.is-mixed { background: rgba(124,58,237,.035); }
 .col-rank { color: var(--faint); font-family: var(--mono); font-size: 12px; width: 42px; }
 .rank-1 .col-rank, .rank-2 .col-rank, .rank-3 .col-rank { color: var(--orange); font-weight: 600; }
 .model-id { display: flex; align-items: center; gap: 11px; }
@@ -225,6 +226,7 @@ button { font: inherit; }
 .type-proprietary { color: #8a5108; background: rgba(232,137,40,.14); }
 .type-open-weight { color: #126b38; background: rgba(31,157,85,.12); }
 .type-marl { color: #0757b8; background: rgba(10,114,239,.12); }
+.type-mixed { color: #6d28c9; background: rgba(124,58,237,.12); }
 .type-run { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 112px; }
 .run-meta { display: flex; flex-direction: column; gap: 2px; color: var(--faint); font-family: var(--mono); font-size: 10.5px; line-height: 1.15; white-space: nowrap; }
 .col-harness { white-space: nowrap; }
@@ -748,7 +750,8 @@ button { font: inherit; }
 
   #board-table tbody tr:hover,
   #rl-table tbody tr:hover,
-  #board-table tbody tr.is-marl {
+  #board-table tbody tr.is-marl,
+  #board-table tbody tr.is-mixed {
     background: var(--paper);
   }
 

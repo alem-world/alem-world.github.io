@@ -1088,6 +1088,20 @@
           "Gemma 4 31B"
         ],
         "team_total": 6.1,
+        "team_total_ci": [
+          5.0,
+          7.3
+        ],
+        "team_base": [
+          6.3,
+          5.0,
+          7.9
+        ],
+        "team_coord": [
+          5.8,
+          3.8,
+          8.0
+        ],
         "homog_avg": 6.0,
         "delta": 0.1,
         "member_totals": {
@@ -1106,7 +1120,21 @@
           "Gemma 4 31B"
         ],
         "team_total": 10.6,
-        "homog_avg": 10.7,
+        "team_total_ci": [
+          8.3,
+          12.5
+        ],
+        "team_base": [
+          13.0,
+          10.2,
+          15.5
+        ],
+        "team_coord": [
+          7.3,
+          3.7,
+          10.7
+        ],
+        "homog_avg": 10.6,
         "delta": -0.1,
         "member_totals": {
           "Gemini 3.1 Pro": 15.4,

@@ -127,7 +127,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, mixed-model teams (marked <em>mix</em>) join the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
     </section>
 
     <section class="section board secondary-board" id="rl-leaderboard">
@@ -478,7 +478,7 @@ Available: Move North · Do · Rest ·
         </details>
       </div>
 
-      <h3 class="block-title center-title">Heterogeneous teams <span class="muted-label">(Hard)</span></h3>
+      <h3 class="block-title center-title" id="hetero-teams">Heterogeneous teams <span class="muted-label">(Hard)</span></h3>
       <p class="result-hint">Paper figure: mixed teams land close to the average of their homogeneous members.</p>
       <figure class="hetero-legend"><img src="assets/img/paper/hetero_teams_legend_new.png" alt="Legend for heterogeneous team plots"></figure>
       <div class="figures-row two hetero-figures">
