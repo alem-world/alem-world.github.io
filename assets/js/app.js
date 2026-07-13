@@ -390,7 +390,7 @@
   function gotoHeteroDetail() {
     var target = document.getElementById("hetero-grid") || document.getElementById("hetero-teams");
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    else window.location.href = "leaderboard.html#hetero-grid";
+    else window.location.href = "index.html#hetero-teams";
   }
   function activateRow(tr) {
     if (tr.hasAttribute("data-hetero")) gotoHeteroDetail();

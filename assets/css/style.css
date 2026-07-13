@@ -49,7 +49,7 @@ button { font: inherit; }
   position: sticky;
   top: 0;
   z-index: 50;
-  height: 66px;
+  height: 76px;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -59,7 +59,7 @@ button { font: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; margin-right: auto; letter-spacing: -.02em; }
-.brand img { width: 28px; height: 28px; }
+.brand img { width: 52px; height: 52px; }
 .site-nav nav { display: flex; gap: 24px; }
 .site-nav nav a { color: var(--muted); font-size: 14px; font-weight: 500; transition: color .16s; }
 .site-nav nav a:hover { color: var(--ink); }
@@ -392,6 +392,7 @@ button { font: inherit; }
 }
 @media (max-width: 620px) {
   .site-nav { height: auto; min-height: 62px; padding: 10px 16px; }
+  .brand img { width: 48px; height: 48px; }
   .nav-actions a:nth-child(2) { display: none; }
   .hero { padding: 52px 16px 36px; }
   .hero h1 { font-size: clamp(46px, 16vw, 72px); }
