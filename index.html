@@ -87,7 +87,7 @@
     </div>
 
     <section class="strip" aria-label="Core result summary">
-      <div class="strip-item"><span>Finding 1</span><strong>The top LLM is competitive zero-shot with a MARL baseline trained for 1B steps.</strong></div>
+      <div class="strip-item"><span>Finding 1</span><strong>On Hard difficulty, a zero-shot frontier LLM approaches our 1B-step MARL baseline.</strong></div>
       <div class="strip-item"><span>Finding 2</span><strong>Coordination is a distinct axis of difficulty, separate from base-task skill.</strong></div>
       <div class="strip-item"><span>Finding 3</span><strong>Communication has the largest impact on coordination in our harness ablations.</strong></div>
     </section>
@@ -102,9 +102,9 @@
       </div>
 
       <div class="leaderboard-summary">
-        <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Homogeneous LLM teams are evaluated against trained MARL reference systems.</p></article>
+        <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Zero-shot homogeneous LLM teams are baselined against a trained MARL reference policy.</p></article>
         <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
-        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard, close to the 1B-step MARL reference on this metric (different interface, same underlying environment).</p></article>
+        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard difficulty, close to our 1B-step MARL baseline on this metric (different interface, same underlying environment).</p></article>
       </div>
 
       <div class="board-shell">
@@ -445,14 +445,14 @@ Available: Move North · Do · Rest ·
       <div class="section-head centered">
         <div class="eyebrow">05 · Paper results</div>
         <h2>What the benchmark reveals</h2>
-        <p>13 LLMs in zero-shot three-agent teams, compared against trained MARL references. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
+        <p>13 LLMs in zero-shot three-agent teams, compared against trained MARL baselines. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
       </div>
 
       <p class="findings-headline">Current LLM agents remain far from solving Alem, averaging only <span class="fh-num">~6% normalised total return</span>, yet their failures are <span class="fh-emph">not uniform</span>.</p>
 
       <p class="result-hint">Click any result to read the detail.</p>
       <div class="result-grid six">
-        <details class="finding-card" open><summary><span>Q1.1 · zero-shot</span><h3>Alem is unsolved, but separates models</h3></summary><p>Alem remains far from saturated by both zero-shot LLMs and trained MARL, while separating models across a broad range. On Easy, Total% spans 0.8% (Llama-3.1-8B) to 18.1% (Gemini 3.1 Pro); on Hard, LLMs average only 6.2% Total%. The top LLM reaches 17.5% Coord.% on Hard, close to the 17.6% reference point from MARL trained for one billion environment steps. This comparison is metric-specific, since LLMs and MARL use different interfaces onto the same underlying environment.</p></details>
+        <details class="finding-card" open><summary><span>Q1.1 · zero-shot</span><h3>Alem is unsolved, but separates models</h3></summary><p>Alem remains far from saturated by both zero-shot LLMs and trained MARL, while separating models across a broad range. On Easy, Total% spans 0.8% (Llama-3.1-8B) to 18.1% (Gemini 3.1 Pro); on Hard, LLMs average only 6.2% Total%. The top LLM reaches 17.5% Coord.% on Hard difficulty, close to the 17.6% 1B-step MARL baseline. </p></details>
         <details class="finding-card"><summary><span>Q1.2 · decomposition</span><h3>Base competence does not guarantee coordination</h3></summary><p>Decomposing performance reveals failures hidden by aggregate scores. GPT-5.4 achieves the second-highest Base% across difficulties, yet its Coord.% lags behind smaller models such as Gemma-4-26B-A4B on Hard, with non-overlapping 95% CIs. General environment competence does not guarantee coordinated multi-agent behaviour.</p></details>
         <details class="finding-card"><summary><span>Q1.3 · difficulty</span><h3>Most LLM agents do not exploit the difficulty axis</h3></summary><p>Trained MARL degrades as coordination difficulty increases, but aggregate LLM Total% remains nearly flat at ≈6% across Easy, Medium, and Hard. Most LLM agents do not coordinate reliably enough for the difficulty parameter to strongly affect aggregate performance.</p></details>
         <details class="finding-card"><summary><span>Q1.4 · task structure</span><h3>Coordination failures differ across task structure</h3></summary><p>Coordination is not a single axis. Handover tasks are comparatively more accessible because they allow temporal slack. Synchronous-Hard tasks require agents to identify a shared target, navigate to compatible positions, communicate intent, and act in the same timestep. Gemini 3.1 Pro leads LLMs here with only 18% coverage.</p></details>
