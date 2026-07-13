@@ -87,9 +87,9 @@
     </div>
 
     <section class="strip" aria-label="Core result summary">
-      <div class="strip-item"><span>On Alem · finding 01</span><strong>Coordination is a distinct axis of difficulty, separate from base-task skill.</strong></div>
-      <div class="strip-item"><span>On Alem · finding 02</span><strong>On Hard, a frontier LLM approaches a 1B-step MARL baseline on coordination.</strong></div>
-      <div class="strip-item"><span>On Alem · finding 03</span><strong>Communication is the largest driver in our harness ablations.</strong></div>
+      <div class="strip-item"><span>On Alem · finding 1</span><strong>The top LLM is competitive zero-shot with a MARL baseline trained for 1B steps.</strong></div>
+      <div class="strip-item"><span>On Alem · finding 2</span><strong>Coordination is a distinct axis of difficulty, separate from base-task skill.</strong></div>
+      <div class="strip-item"><span>On Alem · finding 3</span><strong>Communication has the largest impact on coordination in our harness ablations.</strong></div>
     </section>
 
     <section class="section board" id="leaderboard">
@@ -98,7 +98,7 @@
           <div class="eyebrow">01 · Leaderboard</div>
           <h2>Model leaderboard</h2>
         </div>
-        <p>The table is the front door for researchers comparing agents. It separates base-task competence from explicit coordination. <a href="leaderboard.html">Open the standalone leaderboard page ↗</a></p>
+        <p><a href="leaderboard.html">Open the standalone leaderboard page ↗</a></p>
       </div>
 
       <div class="leaderboard-summary">
@@ -119,6 +119,7 @@
             <button class="seg-btn" data-view="llm">LLM agents</button>
             <button class="seg-btn" data-view="marl">MARL baselines</button>
           </div>
+          <button class="board-limit-btn" type="button" data-top-only aria-pressed="false"><span aria-hidden="true">✓</span> Top 3</button>
           <div class="board-meta" id="board-meta"></div>
         </div>
         <div class="table-scroll">
@@ -188,9 +189,9 @@
       </div>
       <div class="trace-cta-wrap">
         <button class="trace-cta" data-trace-open="gemini" data-trace-name="Gemini 3.1 Pro">▶&nbsp; Open an interactive reasoning trace</button>
-        <span class="trace-cta-hint">or click any model below · scroll for all 13 →</span>
+        <span class="trace-cta-hint">or click any model below · expand for all 13 ↓</span>
       </div>
-      <div class="model-gallery">
+      <div class="model-gallery is-collapsed" id="model-gallery">
 
         <article class="model-card">
           <video class="lazy-video" data-src="assets/video/play/gemini.mp4" muted loop playsinline preload="none"></video>
@@ -310,6 +311,7 @@
         </article>
 
       </div>
+      <button class="gallery-expand" type="button" data-gallery-expand aria-controls="model-gallery" aria-expanded="false"><span aria-hidden="true">+</span> Show all 13 examples</button>
       <p class="note">Clips are the world view of each model's Easy seed-0 episode, sped up 8×. Messages are unedited agent broadcasts from the same runs (lightly trimmed). Click a card for the synced replay.</p>
 
       <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 13 →</a></p>

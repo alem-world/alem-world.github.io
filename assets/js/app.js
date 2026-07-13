@@ -5,7 +5,7 @@
   "use strict";
 
   var SCALE = 25;            // % axis ceiling for CI bars (max datum ~22)
-  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", rlDiff: "hard", rlBudget: "1B" };
+  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, rlDiff: "hard", rlBudget: "1B" };
   var DATA = null;
   var RLDATA = null;
   var RUN_CONFIGS = null;
@@ -183,6 +183,11 @@
     );
   }
 
+  function moreRowsHTML(count) {
+    var colspan = hasHarnessColumn() ? 7 : 6;
+    return '<tr class="more-results-row"><td colspan="' + colspan + '"><button type="button" data-show-all-results><span aria-hidden="true">•••</span><strong>Show ' + count + ' more LLM result' + (count === 1 ? '' : 's') + '</strong></button></td></tr>';
+  }
+
   function sortRows(rows) {
     var k = state.sortKey, dir = state.sortDir === "desc" ? -1 : 1;
     return rows.slice().sort(function (x, y) {
@@ -209,7 +214,9 @@
     llm.forEach(function (m, i) { rankOf[m.id] = i + 1; });
     var llmAll = mixed.length ? sortRows(llm.concat(mixed)) : llm;
 
-    llmAll.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
+    var shownLLM = state.topOnly && state.view !== "marl" ? llm.slice(0, 3) : llmAll;
+    shownLLM.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
+    if (shownLLM.length < llmAll.length) html += moreRowsHTML(llmAll.length - shownLLM.length);
     if (llm.length) html += avgRowHTML();
     marl.forEach(function (m, i) {
       html += rowHTML(m, state.view === "marl" ? i + 1 : null, true);
@@ -225,7 +232,14 @@
     var meta = document.getElementById("board-meta");
     if (meta) {
       var n = llmAll.length + marl.length;
-      meta.textContent = n + " systems · " + state.diff.charAt(0).toUpperCase() + state.diff.slice(1) + " · " + (DATA.meta.harness_version || "harness") + " · 95% CI";
+      var shown = shownLLM.length + marl.length;
+      meta.textContent = (shown < n ? shown + " of " : "") + n + " systems · " + state.diff.charAt(0).toUpperCase() + state.diff.slice(1) + " · " + (DATA.meta.harness_version || "harness") + " · 95% CI";
+    }
+    var limitButton = document.querySelector("[data-top-only]");
+    if (limitButton) {
+      limitButton.disabled = state.view === "marl";
+      limitButton.classList.toggle("is-active", state.topOnly && state.view !== "marl");
+      limitButton.setAttribute("aria-pressed", state.topOnly && state.view !== "marl" ? "true" : "false");
     }
   }
 
@@ -451,6 +465,22 @@
         renderBoard();
       });
     });
+    var limitButton = document.querySelector("[data-top-only]");
+    if (limitButton) {
+      limitButton.addEventListener("click", function () {
+        state.topOnly = !state.topOnly;
+        renderBoard();
+      });
+    }
+    var tbody = document.querySelector("#board-table tbody");
+    if (tbody) {
+      tbody.addEventListener("click", function (e) {
+        var more = e.target.closest ? e.target.closest("[data-show-all-results]") : null;
+        if (!more) return;
+        state.topOnly = false;
+        renderBoard();
+      });
+    }
     document.querySelectorAll("#board-table th.sortable").forEach(function (th) {
       th.addEventListener("click", function () {
         var k = th.dataset.sort;
@@ -475,6 +505,20 @@
         btn.classList.add("copied");
         setTimeout(function () { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1800);
       });
+    });
+  }
+
+  function bindGalleryExpand() {
+    var button = document.querySelector("[data-gallery-expand]");
+    var gallery = document.getElementById("model-gallery");
+    if (!button || !gallery) return;
+    button.addEventListener("click", function () {
+      var expanded = button.getAttribute("aria-expanded") !== "true";
+      button.setAttribute("aria-expanded", expanded ? "true" : "false");
+      gallery.classList.toggle("is-collapsed", !expanded);
+      button.innerHTML = expanded
+        ? '<span aria-hidden="true">−</span> Show fewer examples'
+        : '<span aria-hidden="true">+</span> Show all 13 examples';
     });
   }
 
@@ -773,9 +817,14 @@
     document.querySelectorAll(".board-shell").forEach(function (shell) {
       if (shell.dataset.barsBound) return;
       shell.dataset.barsBound = "1";
+      var bounds = shell.getBoundingClientRect();
+      if (bounds.top < window.innerHeight && bounds.bottom > 0) {
+        shell.classList.add("bars-live");
+        return;
+      }
       var io = new IntersectionObserver(function (entries) {
         if (entries[0].isIntersecting) { io.disconnect(); shell.classList.add("bars-live"); }
-      }, { threshold: 0.15 });
+      }, { threshold: 0.01 });
       io.observe(shell);
     });
   }
@@ -810,6 +859,7 @@
   initNav();
   renderCmp();
   bindCopy();
+  bindGalleryExpand();
   bindTraces();
   bindSampleTrace();
   bindLightbox();
