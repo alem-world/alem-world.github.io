@@ -711,7 +711,25 @@
     });
   }
 
-  /* ---------- figure lightbox ---------- */
+  /* ---------- linked figure details + lightbox ---------- */
+  function bindLinkedFigureDetails() {
+    document.querySelectorAll(".figures-row").forEach(function (row) {
+      var cards = Array.prototype.slice.call(row.children).filter(function (child) {
+        return child.matches && child.matches("details.fig-card");
+      });
+      if (cards.length < 2) return;
+      cards.forEach(function (card) {
+        var summary = card.querySelector("summary");
+        if (!summary) return;
+        summary.addEventListener("click", function (e) {
+          e.preventDefault();
+          var open = !card.open;
+          cards.forEach(function (other) { other.open = open; });
+        });
+      });
+    });
+  }
+
   function bindLightbox() {
     var lb = document.getElementById("img-lightbox");
     if (!lb) return;
@@ -862,6 +880,7 @@
   bindGalleryExpand();
   bindTraces();
   bindSampleTrace();
+  bindLinkedFigureDetails();
   bindLightbox();
 
   fetch("data/trace_sizes.json")
