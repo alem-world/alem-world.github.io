@@ -5,7 +5,7 @@
   "use strict";
 
   var SCALE = 25;            // % axis ceiling for CI bars (max datum ~22)
-  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, rlDiff: "hard", rlBudget: "1B" };
+  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, showMixed: true, rlDiff: "hard", rlBudget: "1B" };
   var DATA = null;
   var RLDATA = null;
   var RUN_CONFIGS = null;
@@ -151,7 +151,7 @@
   /* mixed-model teams join the main table on Hard (the only difficulty they
      were run on); base/coord were not scored separately for these runs. */
   function heteroBoardRows() {
-    if (state.diff !== "hard" || !DATA.heterogeneous) return [];
+    if (!state.showMixed || state.diff !== "hard" || !DATA.heterogeneous) return [];
     return (DATA.heterogeneous.teams || []).map(function (t) {
       var ci = t.team_total_ci || [t.team_total, t.team_total];
       return {
@@ -214,7 +214,9 @@
     llm.forEach(function (m, i) { rankOf[m.id] = i + 1; });
     var llmAll = mixed.length ? sortRows(llm.concat(mixed)) : llm;
 
-    var shownLLM = state.topOnly && state.view !== "marl" ? llm.slice(0, 3) : llmAll;
+    var shownLLM = state.topOnly && state.view !== "marl"
+      ? sortRows(llm.slice(0, 3).concat(mixed))
+      : llmAll;
     shownLLM.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
     if (shownLLM.length < llmAll.length) html += moreRowsHTML(llmAll.length - shownLLM.length);
     if (llm.length) html += avgRowHTML();
@@ -240,6 +242,13 @@
       limitButton.disabled = state.view === "marl";
       limitButton.classList.toggle("is-active", state.topOnly && state.view !== "marl");
       limitButton.setAttribute("aria-pressed", state.topOnly && state.view !== "marl" ? "true" : "false");
+    }
+    var mixedButton = document.querySelector("[data-mixed-teams]");
+    if (mixedButton) {
+      var mixedAvailable = state.diff === "hard" && state.view !== "marl";
+      mixedButton.disabled = !mixedAvailable;
+      mixedButton.classList.toggle("is-active", state.showMixed && mixedAvailable);
+      mixedButton.setAttribute("aria-pressed", state.showMixed && mixedAvailable ? "true" : "false");
     }
   }
 
@@ -469,6 +478,13 @@
     if (limitButton) {
       limitButton.addEventListener("click", function () {
         state.topOnly = !state.topOnly;
+        renderBoard();
+      });
+    }
+    var mixedButton = document.querySelector("[data-mixed-teams]");
+    if (mixedButton) {
+      mixedButton.addEventListener("click", function () {
+        state.showMixed = !state.showMixed;
         renderBoard();
       });
     }

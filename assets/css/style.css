@@ -193,6 +193,7 @@ button { font: inherit; }
 .board-limit-btn:hover { border-color: rgba(17,17,17,.32); color: var(--ink); }
 .board-limit-btn.is-active { border-color: rgba(31,157,85,.22); background: rgba(31,157,85,.10); color: #126b38; }
 .board-limit-btn.is-active span { display: inline; }
+.board-mixed-btn.is-active { border-color: rgba(124,58,237,.22); background: rgba(124,58,237,.09); color: #6d28c9; }
 .board-limit-btn:disabled { cursor: default; opacity: .4; }
 .board-meta { margin-left: auto; color: var(--faint); font-family: var(--mono); font-size: 12px; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
