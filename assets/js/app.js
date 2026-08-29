@@ -5,7 +5,7 @@
   "use strict";
 
   var SCALE = 25;            // % axis ceiling for CI bars (max datum ~22)
-  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, showMixed: true, rlDiff: "hard", rlBudget: "1B" };
+  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, showMixed: true, openOnly: false, rlDiff: "hard", rlBudget: "1B" };
   var DATA = null;
   var RLDATA = null;
   var RUN_CONFIGS = null;
@@ -124,12 +124,21 @@
      (Google) render as a real image via COLOR_LOGO. */
   var PROVIDER_LOGO = {
     "Gemini": "google", "GPT": "openai", "Gemma": "google",
-    "Qwen": "qwen", "Llama": "meta", "MARL": "marl"
+    "Qwen": "qwen", "Llama": "meta", "MARL": "marl",
+    "Nemotron": "nvidia", "MiniMax": "minimax"
   };
+  // Families with no mark of their own fall back to an initial, rather than the
+  // blank slot that used to leave those rows visually unlabelled.
+  var NO_LOGO = { "Mixed": 1 };
   var COLOR_LOGO = { "google": "google-color.svg" };
   function logoHTML(m) {
     var slug = m && PROVIDER_LOGO[m.family];
-    if (!slug) return '<span class="model-logo model-logo-none" aria-hidden="true"></span>';
+    if (!slug) {
+      var fam = (m && m.family) || "";
+      if (!fam || NO_LOGO[fam]) return '<span class="model-logo model-logo-none" aria-hidden="true"></span>';
+      return '<span class="model-logo model-logo-mono" role="img" aria-label="' + esc(fam) + '">' +
+             esc(fam.charAt(0).toUpperCase()) + '</span>';
+    }
     if (COLOR_LOGO[slug]) {
       return '<img class="model-logo model-logo-img" src="assets/img/logos/' + COLOR_LOGO[slug] +
              '" alt="' + esc(m.family) + '" width="19" height="19" loading="lazy">';
@@ -231,12 +240,17 @@
     // Not every entry is evaluated on every difficulty -- a proprietary model may
     // be scored on Hard only. Such a row simply does not exist on the other tabs.
     function scoredHere(m) { return !!(m.scores && m.scores[state.diff]); }
-    var llm = state.view === "marl" ? [] : sortRows(DATA.homogeneous.filter(scoredHere));
-    var marl = state.view === "llm" ? [] : sortRows(DATA.marl.filter(scoredHere));
+    // The open-weight filter re-ranks within the filtered set, and takes the MARL
+    // baselines and the mixed teams with it: a trained policy is not an open-weight
+    // model, and a mixed team is only as open as its least-open member.
+    var pool = DATA.homogeneous.filter(scoredHere);
+    if (state.openOnly) pool = pool.filter(function (m) { return m.type === "open-weight"; });
+    var llm = state.view === "marl" ? [] : sortRows(pool);
+    var marl = (state.view === "llm" || state.openOnly) ? [] : sortRows(DATA.marl.filter(scoredHere));
 
     // mixed teams slot in by the current sort but stay unranked, so the
     // homogeneous ranking (1..N) is unchanged by their presence.
-    var mixed = state.view === "marl" ? [] : heteroBoardRows();
+    var mixed = (state.view === "marl" || state.openOnly) ? [] : heteroBoardRows();
     var rankOf = {};
     llm.forEach(function (m, i) { rankOf[m.id] = i + 1; });
     var llmAll = mixed.length ? sortRows(llm.concat(mixed)) : llm;
@@ -246,7 +260,7 @@
       : llmAll;
     shownLLM.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
     if (shownLLM.length < llmAll.length) html += moreRowsHTML(llmAll.length - shownLLM.length);
-    if (llm.length) html += avgRowHTML();
+    if (llm.length && !state.openOnly) html += avgRowHTML();
     marl.forEach(function (m, i) {
       html += rowHTML(m, state.view === "marl" ? i + 1 : null, true);
     });
@@ -270,9 +284,16 @@
       limitButton.classList.toggle("is-active", state.topOnly && state.view !== "marl");
       limitButton.setAttribute("aria-pressed", state.topOnly && state.view !== "marl" ? "true" : "false");
     }
+    var openButton = document.querySelector("[data-open-weight]");
+    if (openButton) {
+      var openAvailable = state.view !== "marl";
+      openButton.disabled = !openAvailable;
+      openButton.classList.toggle("is-active", state.openOnly && openAvailable);
+      openButton.setAttribute("aria-pressed", state.openOnly && openAvailable ? "true" : "false");
+    }
     var mixedButton = document.querySelector("[data-mixed-teams]");
     if (mixedButton) {
-      var mixedAvailable = state.diff === "hard" && state.view !== "marl";
+      var mixedAvailable = state.diff === "hard" && state.view !== "marl" && !state.openOnly;
       mixedButton.disabled = !mixedAvailable;
       mixedButton.classList.toggle("is-active", state.showMixed && mixedAvailable);
       mixedButton.setAttribute("aria-pressed", state.showMixed && mixedAvailable ? "true" : "false");
@@ -519,6 +540,13 @@
     if (mixedButton) {
       mixedButton.addEventListener("click", function () {
         state.showMixed = !state.showMixed;
+        renderBoard();
+      });
+    }
+    var openWeightButton = document.querySelector("[data-open-weight]");
+    if (openWeightButton) {
+      openWeightButton.addEventListener("click", function () {
+        state.openOnly = !state.openOnly;
         renderBoard();
       });
     }
