@@ -927,7 +927,7 @@
       "family": "Nemotron",
       "params": "120B (12.7B active)",
       "params_sort": 120.0,
-      "verified": false,
+      "verified": true,
       "scores": {
         "easy": {
           "base": [
@@ -997,7 +997,7 @@
       "family": "MiniMax",
       "params": "230B (10B active)",
       "params_sort": 230.0,
-      "verified": false,
+      "verified": true,
       "scores": {
         "easy": {
           "base": [
@@ -1067,7 +1067,7 @@
       "family": "Laguna",
       "params": "118B (8B active)",
       "params_sort": 118.0,
-      "verified": false,
+      "verified": true,
       "scores": {
         "easy": {
           "base": [
@@ -1137,7 +1137,7 @@
       "family": "Gemini",
       "params": "\u2014",
       "params_sort": 9999,
-      "verified": false,
+      "verified": true,
       "scores": {
         "hard": {
           "base": [
@@ -1170,7 +1170,7 @@
       "family": "Gemini",
       "params": "\u2014",
       "params_sort": 9999,
-      "verified": false,
+      "verified": true,
       "scores": {
         "hard": {
           "base": [
@@ -1203,7 +1203,7 @@
       "family": "Gemini",
       "params": "\u2014",
       "params_sort": 9999,
-      "verified": false,
+      "verified": true,
       "scores": {
         "hard": {
           "base": [
@@ -1451,6 +1451,134 @@
           "Gemini 3.1 Pro": 15.4,
           "GPT-5.4": 8.6,
           "Gemma 4 31B": 8.0
+        }
+      },
+      {
+        "id": "cross-gemini-gpt-qwen36",
+        "name": "Gemini + GPT-5.4 + Qwen 27B",
+        "kind": "cross-family",
+        "members": [
+          "Gemini 3.1 Pro",
+          "GPT-5.4",
+          "Qwen 3.6 27B"
+        ],
+        "team_total": 9.8,
+        "team_total_ci": [
+          8.7,
+          10.8
+        ],
+        "team_base": [
+          11.6,
+          9.5,
+          13.7
+        ],
+        "team_coord": [
+          7.4,
+          3.9,
+          11.0
+        ],
+        "homog_avg": 10.5,
+        "delta": -0.7,
+        "member_totals": {
+          "Gemini 3.1 Pro": 15.4,
+          "GPT-5.4": 8.6,
+          "Qwen 3.6 27B": 7.4
+        }
+      },
+      {
+        "id": "cross-gpt-gemma31-qwen36",
+        "name": "GPT-5.4 + Gemma 31B + Qwen 27B",
+        "kind": "cross-family",
+        "members": [
+          "GPT-5.4",
+          "Gemma 4 31B",
+          "Qwen 3.6 27B"
+        ],
+        "team_total": 7.7,
+        "team_total_ci": [
+          5.5,
+          10.0
+        ],
+        "team_base": [
+          10.6,
+          7.8,
+          13.7
+        ],
+        "team_coord": [
+          3.7,
+          1.8,
+          5.6
+        ],
+        "homog_avg": 8.0,
+        "delta": -0.3,
+        "member_totals": {
+          "GPT-5.4": 8.6,
+          "Gemma 4 31B": 8.0,
+          "Qwen 3.6 27B": 7.4
+        }
+      },
+      {
+        "id": "cross-gemini-warrior-gemma",
+        "name": "Gemini (warrior) + Gemma 26B + 31B",
+        "kind": "cross-family",
+        "members": [
+          "Gemini 3.1 Pro",
+          "Gemma 4 26B-A4B",
+          "Gemma 4 31B"
+        ],
+        "team_total": 7.3,
+        "team_total_ci": [
+          5.2,
+          9.2
+        ],
+        "team_base": [
+          8.9,
+          6.7,
+          11.4
+        ],
+        "team_coord": [
+          5.0,
+          2.7,
+          7.4
+        ],
+        "homog_avg": 10.3,
+        "delta": -3.0,
+        "member_totals": {
+          "Gemini 3.1 Pro": 15.4,
+          "Gemma 4 26B-A4B": 7.4,
+          "Gemma 4 31B": 8.0
+        }
+      },
+      {
+        "id": "cross-gemini-miner-gemma",
+        "name": "Gemma 26B + 31B + Gemini (miner)",
+        "kind": "cross-family",
+        "members": [
+          "Gemma 4 26B-A4B",
+          "Gemma 4 31B",
+          "Gemini 3.1 Pro"
+        ],
+        "team_total": 9.4,
+        "team_total_ci": [
+          8.4,
+          10.6
+        ],
+        "team_base": [
+          10.0,
+          7.9,
+          12.4
+        ],
+        "team_coord": [
+          8.7,
+          6.9,
+          10.5
+        ],
+        "homog_avg": 10.3,
+        "delta": -0.8,
+        "member_totals": {
+          "Gemma 4 26B-A4B": 7.4,
+          "Gemma 4 31B": 8.0,
+          "Gemini 3.1 Pro": 15.4
         }
       }
     ]
