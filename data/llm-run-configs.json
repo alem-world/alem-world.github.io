@@ -7529,6 +7529,350 @@
         "model_id": "gemini-3-flash",
         "run_name": "llm_robust_all_gemini-3-flash-preview_gemini-flash-3-preview-thinking-hard_hard"
       }
+    },
+    "qwen3.8-27b": {
+      "easy": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.8-27B",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "easy",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": "model-generations-coord-easy-qwen38-27b-think",
+            "output_dir": "/workspace/writeable/alem-runs/model-generations-coord-easy",
+            "num_workers": 20,
+            "resume_from": null,
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "model-generations-coord-easy-qwen38-27b-think",
+            "name": "model-generations-coord-easy-qwen38-27b-think",
+            "tags": [
+              "llm-eval",
+              "model-generations",
+              "task-coord-easy",
+              "mode-think",
+              "family-qwen",
+              "rung-qwen-5",
+              "qwen38-27b",
+              "qwen38-27b-think"
+            ],
+            "group": "model-generations-coord-easy",
+            "notes": null,
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8080/v1",
+              "model_id": "Qwen/Qwen3.8-27B",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8080/v1",
+              "model_id": "Qwen/Qwen3.8-27B",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8080/v1",
+              "model_id": "Qwen/Qwen3.8-27B",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.8-27B",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "easy"
+        },
+        "difficulty": "easy",
+        "model_id": "qwen3.8-27b",
+        "run_name": "model-generations-coord-easy-qwen38-27b-think"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_Qwen_Qwen3.8-27B",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": "model-generations-coord-hard-qwen38-27b-think",
+            "output_dir": "/workspace/writeable/alem-runs/model-generations-coord-hard",
+            "num_workers": 20,
+            "resume_from": null,
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "model-generations-coord-hard-qwen38-27b-think",
+            "name": "model-generations-coord-hard-qwen38-27b-think",
+            "tags": [
+              "llm-eval",
+              "model-generations",
+              "task-coord-hard",
+              "mode-think",
+              "family-qwen",
+              "rung-qwen-5",
+              "qwen38-27b",
+              "qwen38-27b-think"
+            ],
+            "group": "model-generations-coord-hard",
+            "notes": null,
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8080/v1",
+              "model_id": "Qwen/Qwen3.8-27B",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8080/v1",
+              "model_id": "Qwen/Qwen3.8-27B",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8080/v1",
+              "model_id": "Qwen/Qwen3.8-27B",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_Qwen_Qwen3.8-27B",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "qwen3.8-27b",
+        "run_name": "model-generations-coord-hard-qwen38-27b-think"
+      }
     }
   },
   "schema": "alem_llm_run_configs_v1",

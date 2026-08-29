@@ -181,6 +181,7 @@
         type: "mixed",
         family: "Mixed",
         params: "—",
+        eval_date: t.eval_date,
         scores: { hard: {
           base: t.team_base || null,
           coord: t.team_coord || null,

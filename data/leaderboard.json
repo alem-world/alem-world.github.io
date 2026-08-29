@@ -1227,6 +1227,57 @@
       "eval_dates": {
         "hard": "2026-08-20"
       }
+    },
+    {
+      "id": "qwen3.8-27b",
+      "name": "Qwen 3.8 27B",
+      "config": "dense",
+      "type": "open-weight",
+      "family": "Qwen",
+      "params": "27B dense",
+      "params_sort": 27.0,
+      "verified": true,
+      "scores": {
+        "easy": {
+          "base": [
+            12.1,
+            10.0,
+            14.4
+          ],
+          "coord": [
+            11.1,
+            8.4,
+            14.1
+          ],
+          "total": [
+            11.7,
+            10.1,
+            13.3
+          ]
+        },
+        "hard": {
+          "base": [
+            11.8,
+            9.5,
+            14.2
+          ],
+          "coord": [
+            10.5,
+            8.4,
+            12.9
+          ],
+          "total": [
+            10.8,
+            9.2,
+            12.3
+          ]
+        }
+      },
+      "harness_version": "robust_all_v0.1",
+      "eval_dates": {
+        "easy": "2026-08-14",
+        "hard": "2026-08-14"
+      }
     }
   ],
   "marl": [
@@ -1371,9 +1422,9 @@
   ],
   "averages": {
     "easy": {
-      "base": 5.7,
-      "coord": 6.8,
-      "total": 6.2
+      "base": 6.1,
+      "coord": 7.1,
+      "total": 6.5
     },
     "medium": {
       "base": 5.5,
@@ -1381,9 +1432,9 @@
       "total": 6.1
     },
     "hard": {
-      "base": 7.0,
-      "coord": 8.2,
-      "total": 7.5
+      "base": 7.2,
+      "coord": 8.3,
+      "total": 7.7
     }
   },
   "heterogeneous": {
@@ -1483,7 +1534,8 @@
           "Gemini 3.1 Pro": 15.4,
           "GPT-5.4": 8.6,
           "Qwen 3.6 27B": 7.4
-        }
+        },
+        "eval_date": "2026-07-26"
       },
       {
         "id": "cross-gpt-gemma31-qwen36",
@@ -1515,7 +1567,8 @@
           "GPT-5.4": 8.6,
           "Gemma 4 31B": 8.0,
           "Qwen 3.6 27B": 7.4
-        }
+        },
+        "eval_date": "2026-07-26"
       },
       {
         "id": "cross-gemini-warrior-gemma",
@@ -1547,7 +1600,8 @@
           "Gemini 3.1 Pro": 15.4,
           "Gemma 4 26B-A4B": 7.4,
           "Gemma 4 31B": 8.0
-        }
+        },
+        "eval_date": "2026-07-25"
       },
       {
         "id": "cross-gemini-miner-gemma",
@@ -1579,7 +1633,8 @@
           "Gemma 4 26B-A4B": 7.4,
           "Gemma 4 31B": 8.0,
           "Gemini 3.1 Pro": 15.4
-        }
+        },
+        "eval_date": "2026-07-26"
       }
     ]
   }
