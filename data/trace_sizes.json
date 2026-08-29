@@ -89,5 +89,26 @@
   "name": "Llama 3.1 8B",
   "type": "Open-weight",
   "mb": 41
+ },
+ {
+  "key": "nemotron-super",
+  "file": "nemotron-super",
+  "name": "Nemotron 3 Super 120B-A12B",
+  "type": "Open-weight",
+  "mb": 35
+ },
+ {
+  "key": "minimax-m2.7",
+  "file": "minimax-m2.7",
+  "name": "MiniMax M2.7",
+  "type": "Open-weight",
+  "mb": 76
+ },
+ {
+  "key": "laguna-s-2-1",
+  "file": "laguna-s-2-1",
+  "name": "Laguna S 2.1",
+  "type": "Open-weight",
+  "mb": 46
  }
 ]

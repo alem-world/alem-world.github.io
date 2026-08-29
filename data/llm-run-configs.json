@@ -5510,6 +5510,2025 @@
         "model_id": "qwen3.6-35b-a3b",
         "run_name": "llm_robust_all_Qwen_Qwen3.6-35B-A3B_2026-04-23_12-36-34_robust_all_Qwen_Qwen3.6-35B-A3B_medium"
       }
+    },
+    "nemotron-3-super-120b-a12b": {
+      "easy": {
+        "alg_name": "llm_robust_all_nvidia_NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "easy",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-easy-p2859101082/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r1587775123",
+            "name": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-easy-p2859101082",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "nemotron-super",
+              "easy",
+              "alem-v0.2.0"
+            ],
+            "group": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+            "notes": "alem v0.2.0 @ 47e9df197950 | nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8 @ 744b1880a379 | vllm 0.28.0 | kit 9d4a48025eb4 | protocol alem-v0.2.0-eval-md-standard p2859101082",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8565/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8565/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8565/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_nvidia_NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "easy"
+        },
+        "difficulty": "easy",
+        "model_id": "nemotron-3-super-120b-a12b",
+        "run_name": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-easy-p2859101082"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_nvidia_NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-hard-p997770763/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r1768537098",
+            "name": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-hard-p997770763",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "nemotron-super",
+              "hard",
+              "alem-v0.2.0"
+            ],
+            "group": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+            "notes": "alem v0.2.0 @ 47e9df197950 | nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8 @ 744b1880a379 | vllm 0.28.0 | kit 9d4a48025eb4 | protocol alem-v0.2.0-eval-md-standard p997770763",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8567/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8567/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8567/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_nvidia_NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "nemotron-3-super-120b-a12b",
+        "run_name": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-hard-p997770763"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_nvidia_NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "medium",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-medium-p3592529355/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r1574347317",
+            "name": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-medium-p3592529355",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "nemotron-super",
+              "medium",
+              "alem-v0.2.0"
+            ],
+            "group": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+            "notes": "alem v0.2.0 @ 47e9df197950 | nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8 @ 744b1880a379 | vllm 0.28.0 | kit 9d4a48025eb4 | protocol alem-v0.2.0-eval-md-standard p3592529355",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8566/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8566/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8566/v1",
+              "model_id": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_nvidia_NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "medium"
+        },
+        "difficulty": "medium",
+        "model_id": "nemotron-3-super-120b-a12b",
+        "run_name": "NVIDIA-Nemotron-3-Super-120B-A12B-FP8-744b1880a379-medium-p3592529355"
+      }
+    },
+    "minimax-m2.7": {
+      "easy": {
+        "alg_name": "llm_robust_all_MiniMaxAI_MiniMax-M2.7",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "easy",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 20,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/MiniMax-M2.7-d494266a4aff-easy-p360003978/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r3776495749",
+            "name": "MiniMax-M2.7-d494266a4aff-easy-p360003978",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "minimax-m2.7",
+              "easy",
+              "alem-v0.2.0"
+            ],
+            "group": "MiniMax-M2.7",
+            "notes": "alem v0.2.0 @ 47e9df197950 | MiniMaxAI/MiniMax-M2.7 @ d494266a4aff | vllm 0.28.0 | kit 9d4a48025eb4 | protocol alem-v0.2.0-eval-md-standard p360003978",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8568/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8568/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8568/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_MiniMaxAI_MiniMax-M2.7",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "easy"
+        },
+        "difficulty": "easy",
+        "model_id": "minimax-m2.7",
+        "run_name": "MiniMax-M2.7-d494266a4aff-easy-p360003978"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_MiniMaxAI_MiniMax-M2.7",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 20,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/MiniMax-M2.7-d494266a4aff-hard-p960385819/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r1186178752",
+            "name": "MiniMax-M2.7-d494266a4aff-hard-p960385819",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "minimax-m2.7",
+              "hard",
+              "alem-v0.2.0"
+            ],
+            "group": "MiniMax-M2.7",
+            "notes": "alem v0.2.0 @ 47e9df197950 | MiniMaxAI/MiniMax-M2.7 @ d494266a4aff | vllm 0.28.0 | kit 9d4a48025eb4 | protocol alem-v0.2.0-eval-md-standard p960385819",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8570/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8570/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8570/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_MiniMaxAI_MiniMax-M2.7",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "minimax-m2.7",
+        "run_name": "MiniMax-M2.7-d494266a4aff-hard-p960385819"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_MiniMaxAI_MiniMax-M2.7",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "medium",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 20,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/MiniMax-M2.7-d494266a4aff-medium-p3606837709/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r2098669586",
+            "name": "MiniMax-M2.7-d494266a4aff-medium-p3606837709",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "minimax-m2.7",
+              "medium",
+              "alem-v0.2.0"
+            ],
+            "group": "MiniMax-M2.7",
+            "notes": "alem v0.2.0 @ 47e9df197950 | MiniMaxAI/MiniMax-M2.7 @ d494266a4aff | vllm 0.28.0 | kit 9d4a48025eb4 | protocol alem-v0.2.0-eval-md-standard p3606837709",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8569/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8569/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8569/v1",
+              "model_id": "MiniMaxAI/MiniMax-M2.7",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_MiniMaxAI_MiniMax-M2.7",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "medium"
+        },
+        "difficulty": "medium",
+        "model_id": "minimax-m2.7",
+        "run_name": "MiniMax-M2.7-d494266a4aff-medium-p3606837709"
+      }
+    },
+    "laguna-s-2.1": {
+      "easy": {
+        "alg_name": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "easy",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-easy-p1506939109/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r2061153852",
+            "name": "Laguna-S-2.1-FP8-06d71e91db70-easy-p1506939109",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "laguna-s-2-1",
+              "easy",
+              "alem-v0.2.0"
+            ],
+            "group": "Laguna-S-2.1-FP8",
+            "notes": "alem v0.2.0 @ 47e9df197950 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit 5cf3476f5c81 | protocol alem-v0.2.0-eval-md-standard p1506939109",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8889/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8889/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8889/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "easy"
+        },
+        "difficulty": "easy",
+        "model_id": "laguna-s-2.1",
+        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-easy-p1506939109"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-hard-p491580055/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r188506306",
+            "name": "Laguna-S-2.1-FP8-06d71e91db70-hard-p491580055",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "laguna-s-2-1",
+              "hard",
+              "alem-v0.2.0"
+            ],
+            "group": "Laguna-S-2.1-FP8",
+            "notes": "alem v0.2.0 @ 47e9df197950 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit 5cf3476f5c81 | protocol alem-v0.2.0-eval-md-standard p491580055",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8891/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8891/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8891/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "laguna-s-2.1",
+        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-hard-p491580055"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "medium",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-medium-p3813579358/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "image_size": null,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r409137130",
+            "name": "Laguna-S-2.1-FP8-06d71e91db70-medium-p3813579358",
+            "tags": [
+              "llm-eval",
+              "isambard-openweight-aug2026",
+              "isambard",
+              "laguna-s-2-1",
+              "medium",
+              "alem-v0.2.0"
+            ],
+            "group": "Laguna-S-2.1-FP8",
+            "notes": "alem v0.2.0 @ 47e9df197950 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit 5cf3476f5c81 | protocol alem-v0.2.0-eval-md-standard p3813579358",
+            "entity": "alem-world",
+            "resume": "allow",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8890/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8890/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 1800,
+              "base_url": "http://127.0.0.1:8890/v1",
+              "model_id": "poolside/Laguna-S-2.1-FP8",
+              "client_name": "vllm",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": null
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "medium"
+        },
+        "difficulty": "medium",
+        "model_id": "laguna-s-2.1",
+        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-medium-p3813579358"
+      }
+    },
+    "gemini-3.7-flash": {
+      "hard": {
+        "alg_name": "llm_robust_all_gemini-3.7-flash",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": "gemini-flash-3.7-v2-thinking-hard",
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 10,
+            "resume_from": null,
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 10
+            },
+            "generate_debriefs": false,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": true,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "name": null,
+            "tags": [
+              "llm-eval",
+              "final-neurips-final",
+              "base-results"
+            ],
+            "group": null,
+            "notes": null,
+            "entity": "alem-world",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3.7-flash",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3.7-flash",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3.7-flash",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_gemini-3.7-flash",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "gemini-3.7-flash",
+        "run_name": "llm_robust_all_gemini-3.7-flash_gemini-flash-3.7-v2-thinking-hard_hard"
+      }
+    },
+    "gemini-3.6-flash": {
+      "hard": {
+        "alg_name": "llm_robust_all_gemini-3.6-flash",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": "gemini-flash-3.6-thinking-hard",
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 10,
+            "resume_from": null,
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 10
+            },
+            "generate_debriefs": false,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": true,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "name": null,
+            "tags": [
+              "llm-eval",
+              "final-neurips-final",
+              "base-results"
+            ],
+            "group": null,
+            "notes": null,
+            "entity": "alem-world",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3.6-flash",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3.6-flash",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3.6-flash",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_gemini-3.6-flash",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "gemini-3.6-flash",
+        "run_name": "llm_robust_all_gemini-3.6-flash_gemini-flash-3.6-thinking-hard_hard"
+      }
+    },
+    "gemini-3-flash": {
+      "hard": {
+        "alg_name": "llm_robust_all_gemini-3-flash-preview",
+        "config": {
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": "gemini-flash-3-preview-thinking-hard",
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 10,
+            "resume_from": null,
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 10
+            },
+            "generate_debriefs": false,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": true,
+            "feedback_on_invalid_action": true
+          },
+          "agent": {
+            "type": "robust_all",
+            "use_cot": true,
+            "cache_icl": false,
+            "reasoning": true,
+            "prompt_mode": "specific_collaborative",
+            "remember_cot": true,
+            "use_scratchpad": true,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "max_text_history": 8,
+            "show_affordances": true,
+            "max_image_history": 0,
+            "max_parse_retries": 0,
+            "use_communication": true,
+            "include_all_actions": false,
+            "max_scratchpad_length": 1000,
+            "structured_scratchpad": false,
+            "max_scratchpad_history": 1,
+            "max_communication_length": 400,
+            "structured_communication": false,
+            "max_communication_history": 4,
+            "instructions_in_system_prompt": true,
+            "progressively_display_game_info": true
+          },
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "name": null,
+            "tags": [
+              "llm-eval",
+              "final-neurips-final",
+              "base-results"
+            ],
+            "group": null,
+            "notes": null,
+            "entity": "alem-world",
+            "project": "alem"
+          },
+          "clients": [
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3-flash-preview",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3-flash-preview",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            },
+            {
+              "delay": 2,
+              "timeout": 420,
+              "base_url": "http://localhost:8000/v1",
+              "model_id": "gemini-3-flash-preview",
+              "client_name": "gemini",
+              "max_retries": 5,
+              "alternate_roles": false,
+              "generate_kwargs": {
+                "seed": 42,
+                "max_tokens": 8192,
+                "temperature": 1,
+                "thinking_level": "high"
+              }
+            }
+          ],
+          "ALG_NAME": "llm_robust_all_gemini-3-flash-preview",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "GOD_MODE": false,
+          "EVAL_SEED": 9999,
+          "NUM_AGENTS": 3,
+          "WANDB_MODE": "online",
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "MAX_TIMESTEPS": 10000,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "llm_interface_version": "v0.125-fix-trading",
+          "COORDINATION_DIFFICULTY": "hard"
+        },
+        "difficulty": "hard",
+        "model_id": "gemini-3-flash",
+        "run_name": "llm_robust_all_gemini-3-flash-preview_gemini-flash-3-preview-thinking-hard_hard"
+      }
     }
   },
   "schema": "alem_llm_run_configs_v1",

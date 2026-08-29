@@ -105,7 +105,7 @@
       <div class="leaderboard-summary">
         <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Zero-shot homogeneous LLM teams are baselined against a trained MARL reference policy.</p></article>
         <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
-        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard difficulty, close to our 1B-step MARL baseline on this metric (different interface, same underlying environment).</p></article>
+        <article><span>Hard Coord.% leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard difficulty, close to our 1B-step MARL baseline on this metric (different interface, same underlying environment).</p></article>
       </div>
 
       <div class="board-shell">
@@ -132,6 +132,7 @@
                 <th class="col-model sortable" data-sort="name">Model</th>
                 <th class="col-type sortable" data-sort="type">Type / date</th>
                 <th class="col-harness sortable" data-sort="harness">Harness</th>
+                <th class="col-alem sortable" data-sort="alem">Alem</th>
                 <th class="col-num sortable" data-sort="base">Base%</th>
                 <th class="col-num sortable" data-sort="coord">Coord.%</th>
                 <th class="col-num sortable is-sorted" data-sort="total">Total%</th>
@@ -141,7 +142,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, mixed-model teams (marked <em>mix</em>) join the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could seal a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, mixed-model teams (marked <em>mix</em>) join the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
     </section>
 
     <section class="section board secondary-board" id="rl-leaderboard">
@@ -221,6 +222,22 @@
             <div class="model-quote-meta">Warning from the dead · Easy · step 148</div>
           </div>
         </article>
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/nemotron-super.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Nemotron 3 Super 120B-A12B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Moving north to face tree. Next turn I'll Do for tree. Agent0, stay at (26,23) facing east and ready to Do next turn. Agent2, move east each turn to reach east of tree (28,23) facing west, then wait for my signal to Do together.”</p>
+            <div class="model-quote-meta">Three-agent sync plan · Easy · step 4</div>
+          </div>
+        </article>
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/minimax-m2.7.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">MiniMax M2.7</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“@Agent1 @Agent2 — I see conflicting sync timing. Agent1 says turn 89, Agent2 says turn 91. I'll stay put this turn (facing remains W). On next turn I'll face N from (26,27) and await your confirmation — please coordinate and tell me the exact sync turn. I'll Build with whoever is ready.”</p>
+            <div class="model-quote-meta">Resolving a sync conflict · Easy · step 89</div>
+          </div>
+        </article>
 
         <article class="model-card">
           <video class="lazy-video" data-src="assets/video/play/gemma-26b.mp4" muted loop playsinline preload="none"></video>
@@ -284,6 +301,14 @@
             <div class="model-quote-meta">Precise positioning · Easy · step 37</div>
           </div>
         </article>
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/laguna-s-2-1.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Laguna S 2.1</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Agent 1: Your drink is at 1 - critical! Stone at (29,26) needs 2-agent sync Do - I'm northwest side ready. Can you move to the south side? We both need water - check around crafting_table at (30,23). I'll stay here and wait for you.”</p>
+            <div class="model-quote-meta">Triage + sync request · Easy · step 161</div>
+          </div>
+        </article>
 
         <article class="model-card">
           <video class="lazy-video" data-src="assets/video/play/gemma-e4b.mp4" muted loop playsinline preload="none"></video>
@@ -313,10 +338,10 @@
         </article>
 
       </div>
-      <button class="gallery-expand" type="button" data-gallery-expand aria-controls="model-gallery" aria-expanded="false"><span aria-hidden="true">+</span> Show all 13 examples</button>
+      <button class="gallery-expand" type="button" data-gallery-expand aria-controls="model-gallery" aria-expanded="false"><span aria-hidden="true">+</span> Show all 16 examples</button>
       <p class="note">Clips are the world view of each model's Easy seed-0 episode, sped up 8×. Messages are unedited agent broadcasts from the same runs (lightly trimmed). Click a card for the synced replay.</p>
 
-      <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 13 →</a></p>
+      <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 16 →</a></p>
 
       <div class="trace-sample" id="trace-sample" data-sample-src="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces_gz/qwen36-27b.html">
         <div class="trace-sample-head">

@@ -91,6 +91,25 @@
     return '<td class="col-harness" data-label="Harness">' + content + '</td>';
   }
 
+  function alemVersion(m) {
+    return m.alem_version || (DATA && DATA.meta && DATA.meta.alem_version) || "\u2014";
+  }
+
+  function hasAlemColumn() {
+    return !!document.querySelector("#board-table th.col-alem");
+  }
+
+  function alemCell(m) {
+    if (!hasAlemColumn()) return "";
+    // MARL rows train against the env rather than being scored through the LLM
+    // harness, but they still run on a version, so they get the same treatment.
+    var av = alemVersion(m);
+    var content = /^\d+\.\d+\.\d+$/.test(av)
+      ? '<a class="harness-link" href="https://github.com/alem-world/alem-env/releases/tag/v' + av + '" target="_blank" rel="noopener">' + av + '</a>'
+      : '<span class="harness-link is-static">' + av + '</span>';
+    return '<td class="col-alem" data-label="Alem">' + content + '</td>';
+  }
+
   function typeRunCell(m) {
     return (
       '<td class="col-type" data-label="Type / date"><div class="type-run">' +
@@ -141,6 +160,7 @@
       "</div></div></td>" +
       typeRunCell(m) +
       harnessCell(m) +
+      alemCell(m) +
       scoreCell("Base%", "m-base", s.base) +
       scoreCell("Coord.%", "m-coord", s.coord) +
       scoreCell("Total%", "m-total", s.total) +
@@ -174,17 +194,19 @@
     var a = DATA.averages[state.diff];
     function cell(v, cls, label) { return "<td data-label='" + label + "'><div class='num-cell " + cls + "'><div class='num-val'>" + num(v) + "</div></div></td>"; }
     var harnessPad = hasHarnessColumn() ? "<td data-label='Harness'></td>" : "";
+    var alemPad = hasAlemColumn() ? "<td data-label='Alem'></td>" : "";
     return (
       "<tr style='background:var(--bg-2)'>" +
       "<td class='col-rank' data-label='Rank'></td>" +
       "<td data-label='Model'><div class='model-id'><span class='model-logo model-logo-none' aria-hidden='true'></span><span class='model-name' style='color:var(--muted);font-style:italic'>Across LLM agents</span></div></td>" +
-      "<td data-label='Type / date'></td>" + harnessPad + cell(a.base, "m-base", "Base%") + cell(a.coord, "m-coord", "Coord.%") + cell(a.total, "m-total", "Total%") +
+      "<td data-label='Type / date'></td>" + harnessPad + alemPad + cell(a.base, "m-base", "Base%") + cell(a.coord, "m-coord", "Coord.%") + cell(a.total, "m-total", "Total%") +
       "</tr>"
     );
   }
 
   function moreRowsHTML(count) {
-    var colspan = hasHarnessColumn() ? 7 : 6;
+    var head = document.querySelectorAll("#board-table thead th");
+    var colspan = head.length || (hasHarnessColumn() ? 7 : 6);
     return '<tr class="more-results-row"><td colspan="' + colspan + '"><button type="button" data-show-all-results><span aria-hidden="true">•••</span><strong>Show ' + count + ' more LLM result' + (count === 1 ? '' : 's') + '</strong></button></td></tr>';
   }
 
@@ -194,6 +216,7 @@
       if (k === "name") return dir * x.name.localeCompare(y.name);
       if (k === "type") return dir * x.type.localeCompare(y.type);
       if (k === "harness") return dir * harnessVersion(x).localeCompare(harnessVersion(y));
+      if (k === "alem") return dir * alemVersion(x).localeCompare(alemVersion(y));
       var sx = x.scores[state.diff], sy = y.scores[state.diff];
       var vx = sx && sx[k] ? sx[k][0] : -1, vy = sy && sy[k] ? sy[k][0] : -1;
       return dir * (vx - vy);
@@ -204,8 +227,11 @@
     var tb = document.querySelector("#board-table tbody");
     var html = "";
 
-    var llm = state.view === "marl" ? [] : sortRows(DATA.homogeneous);
-    var marl = state.view === "llm" ? [] : sortRows(DATA.marl);
+    // Not every entry is evaluated on every difficulty -- a proprietary model may
+    // be scored on Hard only. Such a row simply does not exist on the other tabs.
+    function scoredHere(m) { return !!(m.scores && m.scores[state.diff]); }
+    var llm = state.view === "marl" ? [] : sortRows(DATA.homogeneous.filter(scoredHere));
+    var marl = state.view === "llm" ? [] : sortRows(DATA.marl.filter(scoredHere));
 
     // mixed teams slot in by the current sort but stay unranked, so the
     // homogeneous ranking (1..N) is unchanged by their presence.
@@ -374,6 +400,12 @@
     }).join("");
     function meta(label, val) { return val ? '<div class="md-meta"><span>' + label + "</span><strong>" + val + "</strong></div>" : ""; }
     var ed = m.eval_dates ? Object.keys(m.eval_dates).map(function (k) { return k + " " + m.eval_dates[k]; }).join(" · ") : (m.eval_date || "");
+    function alemVersionLink(x) {
+      var av = alemVersion(x);
+      return /^\d+\.\d+\.\d+$/.test(av)
+        ? '<a href="https://github.com/alem-world/alem-env/releases/tag/v' + av + '" target="_blank" rel="noopener">' + av + " \u2197</a>"
+        : av;
+    }
     var harnessLink = !isMarl && m.harness_version ?
       '<a href="https://github.com/alem-world/alem-env/blob/main/baselines/llm/eval_utils/agents/robust_all.py" target="_blank" rel="noopener">' + m.harness_version + " ↗</a>" :
       (m.harness_version || "—");
@@ -383,6 +415,7 @@
         meta(isMarl ? "Budget" : "Parameters", m.params) +
         meta("Family", m.family) +
         meta(isMarl ? "Algorithm" : "Harness", isMarl ? m.config : harnessLink) +
+        meta("Alem version", alemVersionLink(m)) +
         (!isMarl ? meta("Config", m.config) : "") +
         meta("Eval date", ed) +
         meta("Status", m.verified ? "✓ verified" : "self-reported") +
