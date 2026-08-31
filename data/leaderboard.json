@@ -28,7 +28,7 @@
       "config": "high reasoning",
       "type": "proprietary",
       "family": "Gemini",
-      "params": "\u2014",
+      "params": "—",
       "params_sort": 9999,
       "verified": true,
       "scores": {
@@ -97,7 +97,7 @@
       "config": "high reasoning",
       "type": "proprietary",
       "family": "GPT",
-      "params": "\u2014",
+      "params": "—",
       "params_sort": 9998,
       "verified": true,
       "scores": {
@@ -1135,7 +1135,7 @@
       "config": "thinking",
       "type": "proprietary",
       "family": "Gemini",
-      "params": "\u2014",
+      "params": "—",
       "params_sort": 9999,
       "verified": true,
       "scores": {
@@ -1168,7 +1168,7 @@
       "config": "thinking",
       "type": "proprietary",
       "family": "Gemini",
-      "params": "\u2014",
+      "params": "—",
       "params_sort": 9999,
       "verified": true,
       "scores": {
@@ -1201,7 +1201,7 @@
       "config": "preview, thinking",
       "type": "proprietary",
       "family": "Gemini",
-      "params": "\u2014",
+      "params": "—",
       "params_sort": 9999,
       "verified": true,
       "scores": {
@@ -1277,6 +1277,76 @@
       "eval_dates": {
         "easy": "2026-08-14",
         "hard": "2026-08-14"
+      }
+    },
+    {
+      "id": "qwen3.8-flash-next",
+      "name": "Qwen 3.8 Flash-Next",
+      "config": "MoE, FP8",
+      "type": "open-weight",
+      "family": "Qwen",
+      "params": "125B (6B active)",
+      "params_sort": 125.0,
+      "verified": true,
+      "scores": {
+        "easy": {
+          "base": [
+            12.0,
+            10.3,
+            13.8
+          ],
+          "coord": [
+            12.4,
+            11.3,
+            13.6
+          ],
+          "total": [
+            12.2,
+            11.2,
+            13.2
+          ]
+        },
+        "medium": {
+          "base": [
+            11.6,
+            10.1,
+            13.2
+          ],
+          "coord": [
+            10.4,
+            8.9,
+            12.0
+          ],
+          "total": [
+            11.1,
+            10.1,
+            12.1
+          ]
+        },
+        "hard": {
+          "base": [
+            12.0,
+            10.3,
+            13.8
+          ],
+          "coord": [
+            9.8,
+            8.1,
+            11.5
+          ],
+          "total": [
+            11.1,
+            9.8,
+            12.3
+          ]
+        }
+      },
+      "harness_version": "robust_all_v0.1",
+      "alem_version": "0.2.0",
+      "eval_dates": {
+        "easy": "2026-08-30",
+        "medium": "2026-08-30",
+        "hard": "2026-08-30"
       }
     }
   ],
