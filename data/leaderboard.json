@@ -18,7 +18,7 @@
     },
     "harness_version": "robust_all_v0.1",
     "alem_version": "0.1.0",
-    "alem_version_note": "Alem version the entry was evaluated on. Rows without an explicit version were run on the 0.1 line (2026-03 to 2026-04, before v0.1.0 was tagged). The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision, where a level's up-ladders could overwrite its down-ladders and seal the level; levels that did not collide are bit-identical across the two versions. Comparing results across 0.1 and 0.2 found no statistically significant difference in performance.",
+    "alem_version_note": "Alem version the entry was evaluated on. Rows without an explicit version were run on the 0.1 line (2026-03 to 2026-04, before v0.1.0 was tagged). The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance.",
     "run_metadata_note": "Harness/date columns report the evaluation harness and run date for the selected difficulty."
   },
   "homogeneous": [
