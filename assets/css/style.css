@@ -239,6 +239,10 @@ button { font: inherit; }
 .logo-qwen   { background: #6236ff; -webkit-mask-image: url(../img/logos/qwen.svg);   mask-image: url(../img/logos/qwen.svg); }
 .logo-meta   { background: #0866ff; -webkit-mask-image: url(../img/logos/meta.svg);   mask-image: url(../img/logos/meta.svg); }
 .logo-marl   { background: var(--faint); -webkit-mask-image: url(../img/logos/marl.svg); mask-image: url(../img/logos/marl.svg); }
+.logo-nvidia  { background: #76b900; -webkit-mask-image: url(../img/logos/nvidia.svg);  mask-image: url(../img/logos/nvidia.svg); }
+.logo-minimax { background: #0d0d0d; -webkit-mask-image: url(../img/logos/minimax.svg); mask-image: url(../img/logos/minimax.svg); }
+.logo-zai     { background: #2d2d2d; -webkit-mask-image: url(../img/logos/zai.svg);     mask-image: url(../img/logos/zai.svg); }
+.model-logo-mono { display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; background: var(--bg-2); border: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 700; line-height: 1; letter-spacing: 0; }
 .type-pill { display: inline-flex; border-radius: 999px; padding: 3px 8px; font-size: 11px; font-weight: 600; }
 .type-proprietary { color: #8a5108; background: rgba(232,137,40,.14); }
 .type-open-weight { color: #126b38; background: rgba(31,157,85,.12); }

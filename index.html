@@ -105,7 +105,7 @@
       <div class="leaderboard-summary">
         <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Zero-shot homogeneous LLM teams are baselined against a trained MARL reference policy.</p></article>
         <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
-        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard difficulty, close to our 1B-step MARL baseline on this metric (different interface, same underlying environment).</p></article>
+        <article><span>Hard Coord.% leader</span><strong>GLM 5.3 Flash</strong><p>18.8% Coord.% on Hard difficulty, the first open-weight model to lead this metric. It edges our 1B-step MARL baseline (17.6%), though the intervals overlap and the interface differs.</p></article>
       </div>
 
       <div class="board-shell">
@@ -120,8 +120,8 @@
             <button class="seg-btn" data-view="llm">LLM agents</button>
             <button class="seg-btn" data-view="marl">MARL baselines</button>
           </div>
-          <button class="board-limit-btn" type="button" data-top-only aria-pressed="false"><span aria-hidden="true">✓</span> Top 3</button>
-          <button class="board-limit-btn board-mixed-btn is-active" type="button" data-mixed-teams aria-pressed="true"><span aria-hidden="true">✓</span> Mixed teams</button>
+          <button class="board-limit-btn board-mixed-btn" type="button" data-mixed-teams aria-pressed="false"><span aria-hidden="true">✓</span> Mixed teams</button>
+          <button class="board-limit-btn" type="button" data-open-weight aria-pressed="false"><span aria-hidden="true">✓</span> Open-weight</button>
           <div class="board-meta" id="board-meta"></div>
         </div>
         <div class="table-scroll">
@@ -132,6 +132,7 @@
                 <th class="col-model sortable" data-sort="name">Model</th>
                 <th class="col-type sortable" data-sort="type">Type / date</th>
                 <th class="col-harness sortable" data-sort="harness">Harness</th>
+                <th class="col-alem sortable" data-sort="alem">Alem</th>
                 <th class="col-num sortable" data-sort="base">Base%</th>
                 <th class="col-num sortable" data-sort="coord">Coord.%</th>
                 <th class="col-num sortable is-sorted" data-sort="total">Total%</th>
@@ -141,7 +142,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, mixed-model teams (marked <em>mix</em>) join the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
     </section>
 
     <section class="section board secondary-board" id="rl-leaderboard">
@@ -187,11 +188,11 @@
       <div class="section-head centered">
         <div class="eyebrow">02 · Gameplay</div>
         <h2>Watch each model play, and read what it says</h2>
-        <p>The same world (Easy, seed 0) for all 13 language agents, sped up 8×, paired with the most interesting broadcast that agent sent to its teammates. The messages are verbatim from the logs, so coordination emerges, and breaks down, in the models' own words.</p>
+        <p>The same world (Easy, seed 0) for all 18 language agents, sped up 8×, paired with the most interesting broadcast that agent sent to its teammates. The messages are verbatim from the logs, so coordination emerges, and breaks down, in the models' own words.</p>
       </div>
       <div class="trace-cta-wrap">
         <button class="trace-cta" data-trace-open="gemini" data-trace-name="Gemini 3.1 Pro">▶&nbsp; Open an interactive reasoning trace</button>
-        <span class="trace-cta-hint">or click any model below · expand for all 13 ↓</span>
+        <span class="trace-cta-hint">or click any model below · expand for all 18 ↓</span>
       </div>
       <div class="model-gallery is-collapsed" id="model-gallery">
 
@@ -205,11 +206,38 @@
         </article>
 
         <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/glm-53-flash.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">GLM 5.3 Flash</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A1 ACK COUNTER: sync t144 on stone(41,27). Me: route t136 S(42,25), t137 W(41,25), t138 S(41,26) fS, then hold, DO t144. A0 (41,28) fN, A2 (42,27) fW, all Do t144. A2 your route OK — arrive by t143 to be safe. After sync: A2 give A0 1 iron, A0 iron sword.”</p>
+            <div class="model-quote-meta">Turn-scheduled 3-agent sync · Easy · step 135</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/qwen38-flash-next.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.8 Flash-Next</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A0/A2 plan confirmed. A2: when actions return, only step to (35,23) if clear, face W, Do to revive A1. Then wait—do not approach A0 at (32,23). A0: stay down until A1 reaches (33,23), faces W, and revives you. A1: after being revived, I will send a comms signal and immediately move W to (33,23) to revive A0.”</p>
+            <div class="model-quote-meta">Chained revive plan · Easy · step 268</div>
+          </div>
+        </article>
+
+        <article class="model-card">
           <video class="lazy-video" data-src="assets/video/play/gpt.mp4" muted loop playsinline preload="none"></video>
           <div class="model-card-body">
             <div class="model-card-head"><span class="model-card-name">GPT-5.4</span><span class="type-pill type-proprietary">Closed (API)</span></div>
             <p class="model-quote">“I'm moving east of the 3-agent tree at (27,23). A2 move N to (27,24); A0 if you stay at (27,22) and face south, we can sync Do after setup.”</p>
             <div class="model-quote-meta">Shared intent · Easy · step 5</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/nemotron-super.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Nemotron 3 Super 120B-A12B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Moving north to face tree. Next turn I'll Do for tree. Agent0, stay at (26,23) facing east and ready to Do next turn. Agent2, move east each turn to reach east of tree (28,23) facing west, then wait for my signal to Do together.”</p>
+            <div class="model-quote-meta">Three-agent sync plan · Easy · step 4</div>
           </div>
         </article>
 
@@ -250,11 +278,11 @@
         </article>
 
         <article class="model-card">
-          <video class="lazy-video" data-src="assets/video/play/qwen35-122b.mp4" muted loop playsinline preload="none"></video>
+          <video class="lazy-video" data-src="assets/video/play/minimax-m2.7.mp4" muted loop playsinline preload="none"></video>
           <div class="model-card-body">
-            <div class="model-card-head"><span class="model-card-name">Qwen 3.5 122B-A10B</span><span class="type-pill type-open-weight">Open-weight</span></div>
-            <p class="model-quote">“A1 URGENT: you're blocking my path to the sync position! Move East to (25,32) to clear (24,32). I'm at (23,32) and can't pass through you - we need all 3 in position.”</p>
-            <div class="model-quote-meta">Spatial theory of mind · Easy · step 124</div>
+            <div class="model-card-head"><span class="model-card-name">MiniMax M2.7</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“@Agent1 @Agent2 — I see conflicting sync timing. Agent1 says turn 89, Agent2 says turn 91. I'll stay put this turn (facing remains W). On next turn I'll face N from (26,27) and await your confirmation — please coordinate and tell me the exact sync turn. I'll Build with whoever is ready.”</p>
+            <div class="model-quote-meta">Resolving a sync conflict · Easy · step 89</div>
           </div>
         </article>
 
@@ -264,6 +292,15 @@
             <div class="model-card-head"><span class="model-card-name">Qwen 3.5 27B</span><span class="type-pill type-open-weight">Open-weight</span></div>
             <p class="model-quote">“Heading to the tree at (27,23) - we need 3 agents to Do simultaneously. I'll take the west side. Agent 1 (forager), you're closest, take north or east; Agent 2 (miner), take south.”</p>
             <div class="model-quote-meta">Role-aware allocation · Easy · step 1</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/qwen35-122b.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Qwen 3.5 122B-A10B</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“A1 URGENT: you're blocking my path to the sync position! Move East to (25,32) to clear (24,32). I'm at (23,32) and can't pass through you - we need all 3 in position.”</p>
+            <div class="model-quote-meta">Spatial theory of mind · Easy · step 124</div>
           </div>
         </article>
 
@@ -282,6 +319,15 @@
             <div class="model-card-head"><span class="model-card-name">Qwen 3.5 9B</span><span class="type-pill type-open-weight">Open-weight</span></div>
             <p class="model-quote">“Agent 0, move to (30,26) exactly - one step east, then one south. I need you adjacent to the furnace site from the east. Once there, we sync Do.”</p>
             <div class="model-quote-meta">Precise positioning · Easy · step 37</div>
+          </div>
+        </article>
+
+        <article class="model-card">
+          <video class="lazy-video" data-src="assets/video/play/laguna-s-2-1.mp4" muted loop playsinline preload="none"></video>
+          <div class="model-card-body">
+            <div class="model-card-head"><span class="model-card-name">Laguna S 2.1</span><span class="type-pill type-open-weight">Open-weight</span></div>
+            <p class="model-quote">“Agent 1: Your drink is at 1 - critical! Stone at (29,26) needs 2-agent sync Do - I'm northwest side ready. Can you move to the south side? We both need water - check around crafting_table at (30,23). I'll stay here and wait for you.”</p>
+            <div class="model-quote-meta">Triage + sync request · Easy · step 161</div>
           </div>
         </article>
 
@@ -313,10 +359,10 @@
         </article>
 
       </div>
-      <button class="gallery-expand" type="button" data-gallery-expand aria-controls="model-gallery" aria-expanded="false"><span aria-hidden="true">+</span> Show all 13 examples</button>
+      <button class="gallery-expand" type="button" data-gallery-expand aria-controls="model-gallery" aria-expanded="false"><span aria-hidden="true">+</span> Show all 18 examples</button>
       <p class="note">Clips are the world view of each model's Easy seed-0 episode, sped up 8×. Messages are unedited agent broadcasts from the same runs (lightly trimmed). Click a card for the synced replay.</p>
 
-      <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 13 →</a></p>
+      <p class="trace-lead">Below is a sample of the complete per-step debug log we publish for every model, including observations, reasoning traces, actions, messages and scratchpad memory, every step of the episode. <a href="traces.html">Browse all 18 →</a></p>
 
       <div class="trace-sample" id="trace-sample" data-sample-src="https://pub-74f4d738bad14571bd2d3355cb14acb7.r2.dev/traces_gz/qwen36-27b.html">
         <div class="trace-sample-head">

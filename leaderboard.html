@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light" />
   <title>Alem Leaderboard: Open-Ended Multi-Agent Coordination</title>
-  <meta name="description" content="The Alem leaderboard: 13 LLMs in zero-shot 3-agent teams plus trained MARL baselines, scored on Base%, Coord.% and Total% across Easy / Medium / Hard." />
+  <meta name="description" content="The Alem leaderboard: 22 LLMs in zero-shot 3-agent teams plus trained MARL baselines, scored on Base%, Coord.% and Total% across Easy / Medium / Hard." />
   <link rel="canonical" href="https://alem-world.github.io/leaderboard.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Alem" />
@@ -56,7 +56,7 @@
       <div class="leaderboard-summary">
          <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Zero-shot homogeneous LLM teams are baselined against a trained MARL reference policy.</p></article>
         <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
-        <article><span>Hard leader</span><strong>Gemini 3.1 Pro</strong><p>17.5% Coord.% on Hard difficulty, close to our 1B-step MARL baseline on this metric (different interface, same underlying environment).</p></article>
+        <article><span>Hard Coord.% leader</span><strong>GLM 5.3 Flash</strong><p>18.8% Coord.% on Hard difficulty, the first open-weight model to lead this metric. It edges our 1B-step MARL baseline (17.6%), though the intervals overlap and the interface differs.</p></article>
       </div>
 
       <div class="board-shell">
@@ -71,8 +71,8 @@
             <button class="seg-btn" data-view="llm">LLM agents</button>
             <button class="seg-btn" data-view="marl">MARL baselines</button>
           </div>
-          <button class="board-limit-btn" type="button" data-top-only aria-pressed="false"><span aria-hidden="true">✓</span> Top 3</button>
-          <button class="board-limit-btn board-mixed-btn is-active" type="button" data-mixed-teams aria-pressed="true"><span aria-hidden="true">✓</span> Mixed teams</button>
+          <button class="board-limit-btn board-mixed-btn" type="button" data-mixed-teams aria-pressed="false"><span aria-hidden="true">✓</span> Mixed teams</button>
+          <button class="board-limit-btn" type="button" data-open-weight aria-pressed="false"><span aria-hidden="true">✓</span> Open-weight</button>
           <div class="board-meta" id="board-meta"></div>
         </div>
         <div class="table-scroll">
@@ -83,6 +83,7 @@
                 <th class="col-model sortable" data-sort="name">Model</th>
                 <th class="col-type sortable" data-sort="type">Type / date</th>
                 <th class="col-harness sortable" data-sort="harness">Harness</th>
+                <th class="col-alem sortable" data-sort="alem">Alem</th>
                 <th class="col-num sortable" data-sort="base">Base%</th>
                 <th class="col-num sortable" data-sort="coord">Coord.%</th>
                 <th class="col-num sortable is-sorted" data-sort="total">Total%</th>
@@ -92,7 +93,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Base%, Coord.% and Total% are normalised independently, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, mixed-model teams (marked <em>mix</em>) join the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Alem is the environment version the row was evaluated on: the only change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level, levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised independently, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
 
       <details class="rl-toggle" open>
         <summary>Show the MARL baseline table</summary>

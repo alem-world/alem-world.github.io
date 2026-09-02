@@ -5,7 +5,12 @@
   "use strict";
 
   var SCALE = 25;            // % axis ceiling for CI bars (max datum ~22)
-  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, showMixed: true, rlDiff: "hard", rlBudget: "1B" };
+  // The board opens on the leading BOARD_ROWS models rather than all of them:
+  // on Hard the full table is 30+ rows once MARL references and mixed teams are
+  // counted, which buries the result the page is actually about. `expanded`
+  // lifts the cap.
+  var BOARD_ROWS = 10;
+  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", expanded: false, showMixed: false, openOnly: false, rlDiff: "hard", rlBudget: "1B" };
   var DATA = null;
   var RLDATA = null;
   var RUN_CONFIGS = null;
@@ -91,6 +96,33 @@
     return '<td class="col-harness" data-label="Harness">' + content + '</td>';
   }
 
+  function alemVersion(m) {
+    return m.alem_version || (DATA && DATA.meta && DATA.meta.alem_version) || "\u2014";
+  }
+
+  // Rendered only when an entry sets `episodes`, which it does when a difficulty
+  // ran fewer seeds than meta.protocol advertises. Without the row a short cell
+  // looks the same as a full one.
+  function episodesLabel(m) {
+    if (!m.episodes) return "";
+    return Object.keys(m.episodes).map(function (k) { return k + " " + m.episodes[k]; }).join(" \u00b7 ");
+  }
+
+  function hasAlemColumn() {
+    return !!document.querySelector("#board-table th.col-alem");
+  }
+
+  function alemCell(m) {
+    if (!hasAlemColumn()) return "";
+    // MARL rows train against the env rather than being scored through the LLM
+    // harness, but they still run on a version, so they get the same treatment.
+    var av = alemVersion(m);
+    var content = /^\d+\.\d+\.\d+$/.test(av)
+      ? '<a class="harness-link" href="https://github.com/alem-world/alem-env/releases/tag/v' + av + '" target="_blank" rel="noopener">' + av + '</a>'
+      : '<span class="harness-link is-static">' + av + '</span>';
+    return '<td class="col-alem" data-label="Alem">' + content + '</td>';
+  }
+
   function typeRunCell(m) {
     return (
       '<td class="col-type" data-label="Type / date"><div class="type-run">' +
@@ -105,12 +137,21 @@
      (Google) render as a real image via COLOR_LOGO. */
   var PROVIDER_LOGO = {
     "Gemini": "google", "GPT": "openai", "Gemma": "google",
-    "Qwen": "qwen", "Llama": "meta", "MARL": "marl"
+    "Qwen": "qwen", "Llama": "meta", "MARL": "marl",
+    "Nemotron": "nvidia", "MiniMax": "minimax", "GLM": "zai"
   };
+  // Families with no mark of their own fall back to an initial, rather than the
+  // blank slot that used to leave those rows visually unlabelled.
+  var NO_LOGO = { "Mixed": 1 };
   var COLOR_LOGO = { "google": "google-color.svg" };
   function logoHTML(m) {
     var slug = m && PROVIDER_LOGO[m.family];
-    if (!slug) return '<span class="model-logo model-logo-none" aria-hidden="true"></span>';
+    if (!slug) {
+      var fam = (m && m.family) || "";
+      if (!fam || NO_LOGO[fam]) return '<span class="model-logo model-logo-none" aria-hidden="true"></span>';
+      return '<span class="model-logo model-logo-mono" role="img" aria-label="' + esc(fam) + '">' +
+             esc(fam.charAt(0).toUpperCase()) + '</span>';
+    }
     if (COLOR_LOGO[slug]) {
       return '<img class="model-logo model-logo-img" src="assets/img/logos/' + COLOR_LOGO[slug] +
              '" alt="' + esc(m.family) + '" width="19" height="19" loading="lazy">';
@@ -141,6 +182,7 @@
       "</div></div></td>" +
       typeRunCell(m) +
       harnessCell(m) +
+      alemCell(m) +
       scoreCell("Base%", "m-base", s.base) +
       scoreCell("Coord.%", "m-coord", s.coord) +
       scoreCell("Total%", "m-total", s.total) +
@@ -161,6 +203,7 @@
         type: "mixed",
         family: "Mixed",
         params: "—",
+        eval_date: t.eval_date,
         scores: { hard: {
           base: t.team_base || null,
           coord: t.team_coord || null,
@@ -174,18 +217,27 @@
     var a = DATA.averages[state.diff];
     function cell(v, cls, label) { return "<td data-label='" + label + "'><div class='num-cell " + cls + "'><div class='num-val'>" + num(v) + "</div></div></td>"; }
     var harnessPad = hasHarnessColumn() ? "<td data-label='Harness'></td>" : "";
+    var alemPad = hasAlemColumn() ? "<td data-label='Alem'></td>" : "";
     return (
       "<tr style='background:var(--bg-2)'>" +
       "<td class='col-rank' data-label='Rank'></td>" +
       "<td data-label='Model'><div class='model-id'><span class='model-logo model-logo-none' aria-hidden='true'></span><span class='model-name' style='color:var(--muted);font-style:italic'>Across LLM agents</span></div></td>" +
-      "<td data-label='Type / date'></td>" + harnessPad + cell(a.base, "m-base", "Base%") + cell(a.coord, "m-coord", "Coord.%") + cell(a.total, "m-total", "Total%") +
+      "<td data-label='Type / date'></td>" + harnessPad + alemPad + cell(a.base, "m-base", "Base%") + cell(a.coord, "m-coord", "Coord.%") + cell(a.total, "m-total", "Total%") +
       "</tr>"
     );
   }
 
+  function boardColspan() {
+    var head = document.querySelectorAll("#board-table thead th");
+    return head.length || (hasHarnessColumn() ? 7 : 6);
+  }
+
   function moreRowsHTML(count) {
-    var colspan = hasHarnessColumn() ? 7 : 6;
-    return '<tr class="more-results-row"><td colspan="' + colspan + '"><button type="button" data-show-all-results><span aria-hidden="true">•••</span><strong>Show ' + count + ' more LLM result' + (count === 1 ? '' : 's') + '</strong></button></td></tr>';
+    return '<tr class="more-results-row"><td colspan="' + boardColspan() + '"><button type="button" data-show-all-results><span aria-hidden="true">•••</span><strong>Show ' + count + ' more LLM result' + (count === 1 ? '' : 's') + '</strong></button></td></tr>';
+  }
+
+  function fewerRowsHTML() {
+    return '<tr class="more-results-row"><td colspan="' + boardColspan() + '"><button type="button" data-show-fewer-results><span aria-hidden="true">•••</span><strong>Show top ' + BOARD_ROWS + ' only</strong></button></td></tr>';
   }
 
   function sortRows(rows) {
@@ -194,6 +246,7 @@
       if (k === "name") return dir * x.name.localeCompare(y.name);
       if (k === "type") return dir * x.type.localeCompare(y.type);
       if (k === "harness") return dir * harnessVersion(x).localeCompare(harnessVersion(y));
+      if (k === "alem") return dir * alemVersion(x).localeCompare(alemVersion(y));
       var sx = x.scores[state.diff], sy = y.scores[state.diff];
       var vx = sx && sx[k] ? sx[k][0] : -1, vy = sy && sy[k] ? sy[k][0] : -1;
       return dir * (vx - vy);
@@ -204,22 +257,32 @@
     var tb = document.querySelector("#board-table tbody");
     var html = "";
 
-    var llm = state.view === "marl" ? [] : sortRows(DATA.homogeneous);
-    var marl = state.view === "llm" ? [] : sortRows(DATA.marl);
+    // Not every entry is evaluated on every difficulty -- a proprietary model may
+    // be scored on Hard only. Such a row simply does not exist on the other tabs.
+    function scoredHere(m) { return !!(m.scores && m.scores[state.diff]); }
+    // The open-weight filter re-ranks within the filtered set, and takes the MARL
+    // baselines and the mixed teams with it: a trained policy is not an open-weight
+    // model, and a mixed team is only as open as its least-open member.
+    var pool = DATA.homogeneous.filter(scoredHere);
+    if (state.openOnly) pool = pool.filter(function (m) { return m.type === "open-weight"; });
+    var llm = state.view === "marl" ? [] : sortRows(pool);
+    var marl = (state.view === "llm" || state.openOnly) ? [] : sortRows(DATA.marl.filter(scoredHere));
 
     // mixed teams slot in by the current sort but stay unranked, so the
     // homogeneous ranking (1..N) is unchanged by their presence.
-    var mixed = state.view === "marl" ? [] : heteroBoardRows();
+    var mixed = (state.view === "marl" || state.openOnly) ? [] : heteroBoardRows();
     var rankOf = {};
     llm.forEach(function (m, i) { rankOf[m.id] = i + 1; });
     var llmAll = mixed.length ? sortRows(llm.concat(mixed)) : llm;
 
-    var shownLLM = state.topOnly && state.view !== "marl"
-      ? sortRows(llm.slice(0, 3).concat(mixed))
-      : llmAll;
+    // The cap applies to ranked LLM rows only; mixed teams are unranked and
+    // come along whenever they are switched on.
+    var cap = (state.view === "marl" || state.expanded) ? null : BOARD_ROWS;
+    var shownLLM = cap === null ? llmAll : sortRows(llm.slice(0, cap).concat(mixed));
     shownLLM.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
     if (shownLLM.length < llmAll.length) html += moreRowsHTML(llmAll.length - shownLLM.length);
-    if (llm.length) html += avgRowHTML();
+    else if (state.expanded && llmAll.length > BOARD_ROWS) html += fewerRowsHTML();
+    if (llm.length && !state.openOnly) html += avgRowHTML();
     marl.forEach(function (m, i) {
       html += rowHTML(m, state.view === "marl" ? i + 1 : null, true);
     });
@@ -237,15 +300,16 @@
       var shown = shownLLM.length + marl.length;
       meta.textContent = (shown < n ? shown + " of " : "") + n + " systems · " + state.diff.charAt(0).toUpperCase() + state.diff.slice(1) + " · " + (DATA.meta.harness_version || "harness") + " · 95% CI";
     }
-    var limitButton = document.querySelector("[data-top-only]");
-    if (limitButton) {
-      limitButton.disabled = state.view === "marl";
-      limitButton.classList.toggle("is-active", state.topOnly && state.view !== "marl");
-      limitButton.setAttribute("aria-pressed", state.topOnly && state.view !== "marl" ? "true" : "false");
+    var openButton = document.querySelector("[data-open-weight]");
+    if (openButton) {
+      var openAvailable = state.view !== "marl";
+      openButton.disabled = !openAvailable;
+      openButton.classList.toggle("is-active", state.openOnly && openAvailable);
+      openButton.setAttribute("aria-pressed", state.openOnly && openAvailable ? "true" : "false");
     }
     var mixedButton = document.querySelector("[data-mixed-teams]");
     if (mixedButton) {
-      var mixedAvailable = state.diff === "hard" && state.view !== "marl";
+      var mixedAvailable = state.diff === "hard" && state.view !== "marl" && !state.openOnly;
       mixedButton.disabled = !mixedAvailable;
       mixedButton.classList.toggle("is-active", state.showMixed && mixedAvailable);
       mixedButton.setAttribute("aria-pressed", state.showMixed && mixedAvailable ? "true" : "false");
@@ -374,6 +438,12 @@
     }).join("");
     function meta(label, val) { return val ? '<div class="md-meta"><span>' + label + "</span><strong>" + val + "</strong></div>" : ""; }
     var ed = m.eval_dates ? Object.keys(m.eval_dates).map(function (k) { return k + " " + m.eval_dates[k]; }).join(" · ") : (m.eval_date || "");
+    function alemVersionLink(x) {
+      var av = alemVersion(x);
+      return /^\d+\.\d+\.\d+$/.test(av)
+        ? '<a href="https://github.com/alem-world/alem-env/releases/tag/v' + av + '" target="_blank" rel="noopener">' + av + " \u2197</a>"
+        : av;
+    }
     var harnessLink = !isMarl && m.harness_version ?
       '<a href="https://github.com/alem-world/alem-env/blob/main/baselines/llm/eval_utils/agents/robust_all.py" target="_blank" rel="noopener">' + m.harness_version + " ↗</a>" :
       (m.harness_version || "—");
@@ -383,8 +453,10 @@
         meta(isMarl ? "Budget" : "Parameters", m.params) +
         meta("Family", m.family) +
         meta(isMarl ? "Algorithm" : "Harness", isMarl ? m.config : harnessLink) +
+        meta("Alem version", alemVersionLink(m)) +
         (!isMarl ? meta("Config", m.config) : "") +
         meta("Eval date", ed) +
+        meta("Episodes", episodesLabel(m)) +
         meta("Status", m.verified ? "✓ verified" : "self-reported") +
       "</div>" +
       '<h4 class="md-h">Scores by difficulty <span>· mean [95% CI], normalised per category</span></h4>' +
@@ -474,13 +546,6 @@
         renderBoard();
       });
     });
-    var limitButton = document.querySelector("[data-top-only]");
-    if (limitButton) {
-      limitButton.addEventListener("click", function () {
-        state.topOnly = !state.topOnly;
-        renderBoard();
-      });
-    }
     var mixedButton = document.querySelector("[data-mixed-teams]");
     if (mixedButton) {
       mixedButton.addEventListener("click", function () {
@@ -488,13 +553,24 @@
         renderBoard();
       });
     }
+    var openWeightButton = document.querySelector("[data-open-weight]");
+    if (openWeightButton) {
+      openWeightButton.addEventListener("click", function () {
+        state.openOnly = !state.openOnly;
+        renderBoard();
+      });
+    }
     var tbody = document.querySelector("#board-table tbody");
     if (tbody) {
       tbody.addEventListener("click", function (e) {
-        var more = e.target.closest ? e.target.closest("[data-show-all-results]") : null;
-        if (!more) return;
-        state.topOnly = false;
-        renderBoard();
+        if (!e.target.closest) return;
+        if (e.target.closest("[data-show-all-results]")) {
+          state.expanded = true;
+          renderBoard();
+        } else if (e.target.closest("[data-show-fewer-results]")) {
+          state.expanded = false;
+          renderBoard();
+        }
       });
     }
     document.querySelectorAll("#board-table th.sortable").forEach(function (th) {
@@ -534,7 +610,7 @@
       gallery.classList.toggle("is-collapsed", !expanded);
       button.innerHTML = expanded
         ? '<span aria-hidden="true">−</span> Show fewer examples'
-        : '<span aria-hidden="true">+</span> Show all 13 examples';
+        : '<span aria-hidden="true">+</span> Show all 18 examples';
     });
   }
 

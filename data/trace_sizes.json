@@ -1,93 +1,128 @@
 [
- {
-  "key": "gemini",
-  "file": "gemini-3.1-pro",
-  "name": "Gemini 3.1 Pro",
-  "type": "Closed (API)",
-  "mb": 92
- },
- {
-  "key": "gpt",
-  "file": "gpt-5.4",
-  "name": "GPT-5.4",
-  "type": "Closed (API)",
-  "mb": 49
- },
- {
-  "key": "gemma-31b",
-  "file": "gemma-31b",
-  "name": "Gemma 4 31B",
-  "type": "Open-weight",
-  "mb": 8
- },
- {
-  "key": "gemma-26b",
-  "file": "gemma-26b",
-  "name": "Gemma 4 26B-A4B",
-  "type": "Open-weight",
-  "mb": 32
- },
- {
-  "key": "gemma-e4b",
-  "file": "gemma-e4b",
-  "name": "Gemma 4 E4B",
-  "type": "Open-weight",
-  "mb": 42
- },
- {
-  "key": "qwen36-27b",
-  "file": "qwen36-27b",
-  "name": "Qwen 3.6 27B",
-  "type": "Open-weight",
-  "mb": 6
- },
- {
-  "key": "qwen36-35b",
-  "file": "qwen36-35b",
-  "name": "Qwen 3.6 35B-A3B",
-  "type": "Open-weight",
-  "mb": 11
- },
- {
-  "key": "qwen35-122b",
-  "file": "qwen35-122b",
-  "name": "Qwen 3.5 122B-A10B",
-  "type": "Open-weight",
-  "mb": 7
- },
- {
-  "key": "qwen35-27b",
-  "file": "qwen35-27b",
-  "name": "Qwen 3.5 27B",
-  "type": "Open-weight",
-  "mb": 2
- },
- {
-  "key": "qwen35-35b",
-  "file": "qwen35-35b",
-  "name": "Qwen 3.5 35B-A3B",
-  "type": "Open-weight",
-  "mb": 14
- },
- {
-  "key": "qwen35-9b",
-  "file": "qwen35-9b",
-  "name": "Qwen 3.5 9B",
-  "type": "Open-weight",
-  "mb": 6
- },
- {
-  "key": "llama-70b",
-  "file": "llama-70b",
-  "name": "Llama 3.3 70B",
-  "type": "Open-weight",
-  "mb": 38
- },
- {
-  "key": "llama-8b",
-  "file": "llama-8b",
-  "name": "Llama 3.1 8B",
-  "type": "Open-weight",
-  "mb": 41
- }
+  {
+    "key": "gemini",
+    "file": "gemini-3.1-pro",
+    "name": "Gemini 3.1 Pro",
+    "type": "Closed (API)",
+    "mb": 92
+  },
+  {
+    "key": "gpt",
+    "file": "gpt-5.4",
+    "name": "GPT-5.4",
+    "type": "Closed (API)",
+    "mb": 49
+  },
+  {
+    "key": "gemma-31b",
+    "file": "gemma-31b",
+    "name": "Gemma 4 31B",
+    "type": "Open-weight",
+    "mb": 8
+  },
+  {
+    "key": "gemma-26b",
+    "file": "gemma-26b",
+    "name": "Gemma 4 26B-A4B",
+    "type": "Open-weight",
+    "mb": 32
+  },
+  {
+    "key": "gemma-e4b",
+    "file": "gemma-e4b",
+    "name": "Gemma 4 E4B",
+    "type": "Open-weight",
+    "mb": 42
+  },
+  {
+    "key": "qwen36-27b",
+    "file": "qwen36-27b",
+    "name": "Qwen 3.6 27B",
+    "type": "Open-weight",
+    "mb": 6
+  },
+  {
+    "key": "qwen36-35b",
+    "file": "qwen36-35b",
+    "name": "Qwen 3.6 35B-A3B",
+    "type": "Open-weight",
+    "mb": 11
+  },
+  {
+    "key": "qwen35-122b",
+    "file": "qwen35-122b",
+    "name": "Qwen 3.5 122B-A10B",
+    "type": "Open-weight",
+    "mb": 7
+  },
+  {
+    "key": "qwen35-27b",
+    "file": "qwen35-27b",
+    "name": "Qwen 3.5 27B",
+    "type": "Open-weight",
+    "mb": 2
+  },
+  {
+    "key": "qwen35-35b",
+    "file": "qwen35-35b",
+    "name": "Qwen 3.5 35B-A3B",
+    "type": "Open-weight",
+    "mb": 14
+  },
+  {
+    "key": "qwen35-9b",
+    "file": "qwen35-9b",
+    "name": "Qwen 3.5 9B",
+    "type": "Open-weight",
+    "mb": 6
+  },
+  {
+    "key": "llama-70b",
+    "file": "llama-70b",
+    "name": "Llama 3.3 70B",
+    "type": "Open-weight",
+    "mb": 38
+  },
+  {
+    "key": "llama-8b",
+    "file": "llama-8b",
+    "name": "Llama 3.1 8B",
+    "type": "Open-weight",
+    "mb": 41
+  },
+  {
+    "key": "nemotron-super",
+    "file": "nemotron-super",
+    "name": "Nemotron 3 Super 120B-A12B",
+    "type": "Open-weight",
+    "mb": 35
+  },
+  {
+    "key": "minimax-m2.7",
+    "file": "minimax-m2.7",
+    "name": "MiniMax M2.7",
+    "type": "Open-weight",
+    "mb": 76
+  },
+  {
+    "key": "laguna-s-2-1",
+    "file": "laguna-s-2-1",
+    "name": "Laguna S 2.1",
+    "type": "Open-weight",
+    "mb": 46
+  },
+  {
+    "key": "qwen38-flash-next",
+    "file": "qwen38-flash-next",
+    "name": "Qwen 3.8 Flash-Next",
+    "type": "Open-weight",
+    "mb": 45
+  },
+  {
+    "key": "glm-53-flash",
+    "file": "glm-53-flash",
+    "name": "GLM 5.3 Flash",
+    "type": "Open-weight",
+    "mb": 134
+  }
 ]
