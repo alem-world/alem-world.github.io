@@ -120,8 +120,7 @@
             <button class="seg-btn" data-view="llm">LLM agents</button>
             <button class="seg-btn" data-view="marl">MARL baselines</button>
           </div>
-          <button class="board-limit-btn" type="button" data-top-only aria-pressed="false"><span aria-hidden="true">✓</span> Top 3</button>
-          <button class="board-limit-btn board-mixed-btn is-active" type="button" data-mixed-teams aria-pressed="true"><span aria-hidden="true">✓</span> Mixed teams</button>
+          <button class="board-limit-btn board-mixed-btn" type="button" data-mixed-teams aria-pressed="false"><span aria-hidden="true">✓</span> Mixed teams</button>
           <button class="board-limit-btn" type="button" data-open-weight aria-pressed="false"><span aria-hidden="true">✓</span> Open-weight</button>
           <div class="board-meta" id="board-meta"></div>
         </div>
@@ -143,7 +142,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could seal a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, mixed-model teams (marked <em>mix</em>) join the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could seal a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
     </section>
 
     <section class="section board secondary-board" id="rl-leaderboard">

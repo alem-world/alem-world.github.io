@@ -5,7 +5,12 @@
   "use strict";
 
   var SCALE = 25;            // % axis ceiling for CI bars (max datum ~22)
-  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", topOnly: false, showMixed: true, openOnly: false, rlDiff: "hard", rlBudget: "1B" };
+  // The board opens on the leading BOARD_ROWS models rather than all of them:
+  // on Hard the full table is 30+ rows once MARL references and mixed teams are
+  // counted, which buries the result the page is actually about. `expanded`
+  // lifts the cap.
+  var BOARD_ROWS = 10;
+  var state = { diff: "hard", view: "all", sortKey: "total", sortDir: "desc", expanded: false, showMixed: false, openOnly: false, rlDiff: "hard", rlBudget: "1B" };
   var DATA = null;
   var RLDATA = null;
   var RUN_CONFIGS = null;
@@ -222,10 +227,17 @@
     );
   }
 
-  function moreRowsHTML(count) {
+  function boardColspan() {
     var head = document.querySelectorAll("#board-table thead th");
-    var colspan = head.length || (hasHarnessColumn() ? 7 : 6);
-    return '<tr class="more-results-row"><td colspan="' + colspan + '"><button type="button" data-show-all-results><span aria-hidden="true">•••</span><strong>Show ' + count + ' more LLM result' + (count === 1 ? '' : 's') + '</strong></button></td></tr>';
+    return head.length || (hasHarnessColumn() ? 7 : 6);
+  }
+
+  function moreRowsHTML(count) {
+    return '<tr class="more-results-row"><td colspan="' + boardColspan() + '"><button type="button" data-show-all-results><span aria-hidden="true">•••</span><strong>Show ' + count + ' more LLM result' + (count === 1 ? '' : 's') + '</strong></button></td></tr>';
+  }
+
+  function fewerRowsHTML() {
+    return '<tr class="more-results-row"><td colspan="' + boardColspan() + '"><button type="button" data-show-fewer-results><span aria-hidden="true">•••</span><strong>Show top ' + BOARD_ROWS + ' only</strong></button></td></tr>';
   }
 
   function sortRows(rows) {
@@ -263,11 +275,13 @@
     llm.forEach(function (m, i) { rankOf[m.id] = i + 1; });
     var llmAll = mixed.length ? sortRows(llm.concat(mixed)) : llm;
 
-    var shownLLM = state.topOnly && state.view !== "marl"
-      ? sortRows(llm.slice(0, 3).concat(mixed))
-      : llmAll;
+    // The cap applies to ranked LLM rows only; mixed teams are unranked and
+    // come along whenever they are switched on.
+    var cap = (state.view === "marl" || state.expanded) ? null : BOARD_ROWS;
+    var shownLLM = cap === null ? llmAll : sortRows(llm.slice(0, cap).concat(mixed));
     shownLLM.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
     if (shownLLM.length < llmAll.length) html += moreRowsHTML(llmAll.length - shownLLM.length);
+    else if (state.expanded && llmAll.length > BOARD_ROWS) html += fewerRowsHTML();
     if (llm.length && !state.openOnly) html += avgRowHTML();
     marl.forEach(function (m, i) {
       html += rowHTML(m, state.view === "marl" ? i + 1 : null, true);
@@ -285,12 +299,6 @@
       var n = llmAll.length + marl.length;
       var shown = shownLLM.length + marl.length;
       meta.textContent = (shown < n ? shown + " of " : "") + n + " systems · " + state.diff.charAt(0).toUpperCase() + state.diff.slice(1) + " · " + (DATA.meta.harness_version || "harness") + " · 95% CI";
-    }
-    var limitButton = document.querySelector("[data-top-only]");
-    if (limitButton) {
-      limitButton.disabled = state.view === "marl";
-      limitButton.classList.toggle("is-active", state.topOnly && state.view !== "marl");
-      limitButton.setAttribute("aria-pressed", state.topOnly && state.view !== "marl" ? "true" : "false");
     }
     var openButton = document.querySelector("[data-open-weight]");
     if (openButton) {
@@ -538,13 +546,6 @@
         renderBoard();
       });
     });
-    var limitButton = document.querySelector("[data-top-only]");
-    if (limitButton) {
-      limitButton.addEventListener("click", function () {
-        state.topOnly = !state.topOnly;
-        renderBoard();
-      });
-    }
     var mixedButton = document.querySelector("[data-mixed-teams]");
     if (mixedButton) {
       mixedButton.addEventListener("click", function () {
@@ -562,10 +563,14 @@
     var tbody = document.querySelector("#board-table tbody");
     if (tbody) {
       tbody.addEventListener("click", function (e) {
-        var more = e.target.closest ? e.target.closest("[data-show-all-results]") : null;
-        if (!more) return;
-        state.topOnly = false;
-        renderBoard();
+        if (!e.target.closest) return;
+        if (e.target.closest("[data-show-all-results]")) {
+          state.expanded = true;
+          renderBoard();
+        } else if (e.target.closest("[data-show-fewer-results]")) {
+          state.expanded = false;
+          renderBoard();
+        }
       });
     }
     document.querySelectorAll("#board-table th.sortable").forEach(function (th) {
