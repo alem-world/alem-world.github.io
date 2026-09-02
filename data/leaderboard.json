@@ -1348,6 +1348,81 @@
         "medium": "2026-08-30",
         "hard": "2026-08-30"
       }
+    },
+    {
+      "id": "glm-5.3-flash",
+      "name": "GLM 5.3 Flash",
+      "config": "MoE, FP8",
+      "type": "open-weight",
+      "family": "GLM",
+      "params": "320B (18B active)",
+      "params_sort": 320.0,
+      "verified": true,
+      "scores": {
+        "easy": {
+          "base": [
+            10.6,
+            9.0,
+            12.5
+          ],
+          "coord": [
+            22.1,
+            20.3,
+            23.8
+          ],
+          "total": [
+            15.5,
+            14.2,
+            16.9
+          ]
+        },
+        "medium": {
+          "base": [
+            12.0,
+            10.0,
+            14.3
+          ],
+          "coord": [
+            21.2,
+            18.7,
+            23.6
+          ],
+          "total": [
+            15.9,
+            14.0,
+            18.0
+          ]
+        },
+        "hard": {
+          "base": [
+            10.3,
+            8.9,
+            11.8
+          ],
+          "coord": [
+            18.8,
+            16.2,
+            21.1
+          ],
+          "total": [
+            13.9,
+            12.4,
+            15.4
+          ]
+        }
+      },
+      "harness_version": "robust_all_v0.1",
+      "alem_version": "0.2.0",
+      "episodes": {
+        "easy": 20,
+        "medium": 19,
+        "hard": 19
+      },
+      "eval_dates": {
+        "easy": "2026-09-01",
+        "medium": "2026-08-31",
+        "hard": "2026-09-01"
+      }
     }
   ],
   "marl": [

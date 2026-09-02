@@ -8400,6 +8400,542 @@
         "model_id": "qwen3.8-flash-next",
         "run_name": "Qwen3.8-Flash-Next-FP8-970c569adaca-medium-p3819552394"
       }
+    },
+    "glm-5.3-flash": {
+      "easy": {
+        "alg_name": "llm_robust_all_zai-org_GLM-5.3-Flash",
+        "config": {
+          "ALG_NAME": "llm_robust_all_zai-org_GLM-5.3-Flash",
+          "COORDINATION_DIFFICULTY": "easy",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "type": "robust_all",
+            "prompt_mode": "specific_collaborative",
+            "use_cot": true,
+            "remember_cot": true,
+            "max_text_history": 8,
+            "max_image_history": 0,
+            "image_size": null,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "cache_icl": false,
+            "reasoning": true,
+            "show_affordances": true,
+            "include_all_actions": false,
+            "progressively_display_game_info": true,
+            "instructions_in_system_prompt": true,
+            "use_scratchpad": true,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "use_communication": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "structured_scratchpad": false,
+            "structured_communication": false,
+            "max_parse_retries": 0
+          },
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "easy",
+            "non_specialist_efficiency": 0.2
+          },
+          "clients": [
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            },
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            },
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/GLM-5.3-Flash-04c4e9e95c5d-easy-p3665887895/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r1134025928",
+            "name": "GLM-5.3-Flash-04c4e9e95c5d-easy-p3665887895",
+            "tags": [
+              "alem-coop",
+              "alem-v0.2.0",
+              "easy",
+              "glm-53-flash",
+              "isambard",
+              "isambard-openweight-aug2026",
+              "llm",
+              "llm-eval",
+              "llm_robust_all_zai-org_GLM-5.3-Flash",
+              "multi_agent",
+              "v0.125-fix-trading",
+              "v0.13741-fix-construction-more-metrics"
+            ],
+            "group": "GLM-5.3-Flash",
+            "notes": "alem v0.2.0 @ 47e9df197950 | zai-org/GLM-5.3-Flash @ 04c4e9e95c5d | vllm container | kit 9bc543724da7 | protocol alem-v0.2.0-eval-md-standard p3665887895",
+            "entity": "alem-world",
+            "project": "alem",
+            "resume": "allow"
+          }
+        },
+        "difficulty": "easy",
+        "model_id": "glm-5.3-flash",
+        "run_name": "GLM-5.3-Flash-04c4e9e95c5d-easy-p3665887895"
+      },
+      "hard": {
+        "alg_name": "llm_robust_all_zai-org_GLM-5.3-Flash",
+        "config": {
+          "ALG_NAME": "llm_robust_all_zai-org_GLM-5.3-Flash",
+          "COORDINATION_DIFFICULTY": "hard",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "type": "robust_all",
+            "prompt_mode": "specific_collaborative",
+            "use_cot": true,
+            "remember_cot": true,
+            "max_text_history": 8,
+            "max_image_history": 0,
+            "image_size": null,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "cache_icl": false,
+            "reasoning": true,
+            "show_affordances": true,
+            "include_all_actions": false,
+            "progressively_display_game_info": true,
+            "instructions_in_system_prompt": true,
+            "use_scratchpad": true,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "use_communication": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "structured_scratchpad": false,
+            "structured_communication": false,
+            "max_parse_retries": 0
+          },
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "hard",
+            "non_specialist_efficiency": 0.2
+          },
+          "clients": [
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            },
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            },
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/GLM-5.3-Flash-04c4e9e95c5d-hard-p4183744544/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r88078585",
+            "name": "GLM-5.3-Flash-04c4e9e95c5d-hard-p4183744544",
+            "tags": [
+              "alem-coop",
+              "alem-v0.2.0",
+              "glm-53-flash",
+              "hard",
+              "isambard",
+              "isambard-openweight-aug2026",
+              "llm",
+              "llm-eval",
+              "llm_robust_all_zai-org_GLM-5.3-Flash",
+              "multi_agent",
+              "v0.125-fix-trading",
+              "v0.13741-fix-construction-more-metrics"
+            ],
+            "group": "GLM-5.3-Flash",
+            "notes": "alem v0.2.0 @ 47e9df197950 | zai-org/GLM-5.3-Flash @ 04c4e9e95c5d | vllm container | kit 9bc543724da7 | protocol alem-v0.2.0-eval-md-standard p4183744544",
+            "entity": "alem-world",
+            "project": "alem",
+            "resume": "allow"
+          }
+        },
+        "difficulty": "hard",
+        "model_id": "glm-5.3-flash",
+        "run_name": "GLM-5.3-Flash-04c4e9e95c5d-hard-p4183744544"
+      },
+      "medium": {
+        "alg_name": "llm_robust_all_zai-org_GLM-5.3-Flash",
+        "config": {
+          "ALG_NAME": "llm_robust_all_zai-org_GLM-5.3-Flash",
+          "COORDINATION_DIFFICULTY": "medium",
+          "ENV_NAME": "Alem-Coop-Symbolic",
+          "EVAL_SEED": 9999,
+          "GOD_MODE": false,
+          "MAX_TIMESTEPS": 10000,
+          "NUM_AGENTS": 3,
+          "SHARED_REWARD": false,
+          "SOFT_SPECIALIZATION": true,
+          "WANDB_MODE": "online",
+          "agent": {
+            "type": "robust_all",
+            "prompt_mode": "specific_collaborative",
+            "use_cot": true,
+            "remember_cot": true,
+            "max_text_history": 8,
+            "max_image_history": 0,
+            "image_size": null,
+            "max_cot_history": 1,
+            "max_icl_history": 1000,
+            "cache_icl": false,
+            "reasoning": true,
+            "show_affordances": true,
+            "include_all_actions": false,
+            "progressively_display_game_info": true,
+            "instructions_in_system_prompt": true,
+            "use_scratchpad": true,
+            "max_scratchpad_history": 1,
+            "max_scratchpad_length": 1000,
+            "use_communication": true,
+            "max_communication_history": 4,
+            "max_communication_length": 400,
+            "structured_scratchpad": false,
+            "structured_communication": false,
+            "max_parse_retries": 0
+          },
+          "alem": {
+            "wrapper": {
+              "version": "v0.125-fix-trading",
+              "llm_mode": "easy",
+              "use_ascii": false,
+              "egocentric": false,
+              "skip_items": [
+                "grass",
+                "sand",
+                "path"
+              ],
+              "unique_items": true,
+              "edge_only_items": [
+                "water"
+              ],
+              "use_image_scene": false,
+              "precise_location": true,
+              "render_downscale": 2,
+              "exact_coordinates": true,
+              "render_pixel_size": 64
+            },
+            "god_mode": false,
+            "num_agents": 3,
+            "max_timesteps": 10000,
+            "shared_reward": false,
+            "randomize_alpha": false,
+            "soft_specialization": true,
+            "specialist_efficiency": 1,
+            "coordination_difficulty": "medium",
+            "non_specialist_efficiency": 0.2
+          },
+          "clients": [
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            },
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            },
+            {
+              "client_name": "vllm",
+              "model_id": "zai-org/GLM-5.3-Flash",
+              "base_url": "http://127.0.0.1:8533/v1",
+              "generate_kwargs": {
+                "temperature": 1.0,
+                "max_tokens": 8192,
+                "thinking_level": null,
+                "seed": 42
+              },
+              "timeout": 1800,
+              "max_retries": 5,
+              "delay": 2,
+              "alternate_roles": false,
+              "enable_thinking_resolved": true
+            }
+          ],
+          "env_version": "v0.13741-fix-construction-more-metrics",
+          "envs": {
+            "names": "alem",
+            "env_kwargs": {
+              "seed": null
+            }
+          },
+          "eval": {
+            "debug": true,
+            "run_name": null,
+            "output_dir": "outputs/alem_eval",
+            "num_workers": 16,
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/GLM-5.3-Flash-04c4e9e95c5d-medium-p1073016376/eval",
+            "save_images": true,
+            "upload_only": false,
+            "icl_episodes": 0,
+            "num_episodes": {
+              "alem": 20
+            },
+            "generate_debriefs": true,
+            "max_steps_per_episode": 10000,
+            "save_images_every_episode": false,
+            "feedback_on_invalid_action": true
+          },
+          "llm_interface_version": "v0.125-fix-trading",
+          "tasks": {
+            "alem_tasks": [
+              "default"
+            ]
+          },
+          "wandb": {
+            "id": "r1323512780",
+            "name": "GLM-5.3-Flash-04c4e9e95c5d-medium-p1073016376",
+            "tags": [
+              "alem-coop",
+              "alem-v0.2.0",
+              "glm-53-flash",
+              "isambard",
+              "isambard-openweight-aug2026",
+              "llm",
+              "llm-eval",
+              "llm_robust_all_zai-org_GLM-5.3-Flash",
+              "medium",
+              "multi_agent",
+              "v0.125-fix-trading",
+              "v0.13741-fix-construction-more-metrics"
+            ],
+            "group": "GLM-5.3-Flash",
+            "notes": "alem v0.2.0 @ 47e9df197950 | zai-org/GLM-5.3-Flash @ 04c4e9e95c5d | vllm container | kit 9bc543724da7 | protocol alem-v0.2.0-eval-md-standard p1073016376",
+            "entity": "alem-world",
+            "project": "alem",
+            "resume": "allow"
+          }
+        },
+        "difficulty": "medium",
+        "model_id": "glm-5.3-flash",
+        "run_name": "GLM-5.3-Flash-04c4e9e95c5d-medium-p1073016376"
+      }
     }
   },
   "schema": "alem_llm_run_configs_v1",

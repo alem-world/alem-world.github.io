@@ -117,5 +117,12 @@
     "name": "Qwen 3.8 Flash-Next",
     "type": "Open-weight",
     "mb": 45
+  },
+  {
+    "key": "glm-53-flash",
+    "file": "glm-53-flash",
+    "name": "GLM 5.3 Flash",
+    "type": "Open-weight",
+    "mb": 134
   }
 ]

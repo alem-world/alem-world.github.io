@@ -125,7 +125,7 @@
   var PROVIDER_LOGO = {
     "Gemini": "google", "GPT": "openai", "Gemma": "google",
     "Qwen": "qwen", "Llama": "meta", "MARL": "marl",
-    "Nemotron": "nvidia", "MiniMax": "minimax"
+    "Nemotron": "nvidia", "MiniMax": "minimax", "GLM": "zai"
   };
   // Families with no mark of their own fall back to an initial, rather than the
   // blank slot that used to leave those rows visually unlabelled.
