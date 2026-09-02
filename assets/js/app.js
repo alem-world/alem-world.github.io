@@ -95,6 +95,14 @@
     return m.alem_version || (DATA && DATA.meta && DATA.meta.alem_version) || "\u2014";
   }
 
+  // Rendered only when an entry sets `episodes`, which it does when a difficulty
+  // ran fewer seeds than meta.protocol advertises. Without the row a short cell
+  // looks the same as a full one.
+  function episodesLabel(m) {
+    if (!m.episodes) return "";
+    return Object.keys(m.episodes).map(function (k) { return k + " " + m.episodes[k]; }).join(" \u00b7 ");
+  }
+
   function hasAlemColumn() {
     return !!document.querySelector("#board-table th.col-alem");
   }
@@ -440,6 +448,7 @@
         meta("Alem version", alemVersionLink(m)) +
         (!isMarl ? meta("Config", m.config) : "") +
         meta("Eval date", ed) +
+        meta("Episodes", episodesLabel(m)) +
         meta("Status", m.verified ? "✓ verified" : "self-reported") +
       "</div>" +
       '<h4 class="md-h">Scores by difficulty <span>· mean [95% CI], normalised per category</span></h4>' +
