@@ -605,7 +605,7 @@
       gallery.classList.toggle("is-collapsed", !expanded);
       button.innerHTML = expanded
         ? '<span aria-hidden="true">−</span> Show fewer examples'
-        : '<span aria-hidden="true">+</span> Show all 13 examples';
+        : '<span aria-hidden="true">+</span> Show all 18 examples';
     });
   }
 
