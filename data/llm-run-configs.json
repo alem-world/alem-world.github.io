@@ -6575,7 +6575,7 @@
             "run_name": null,
             "output_dir": "outputs/alem_eval",
             "num_workers": 16,
-            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-easy-p1506939109/eval",
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-easy-p1416389028/eval",
             "save_images": true,
             "upload_only": false,
             "icl_episodes": 0,
@@ -6611,7 +6611,8 @@
             "structured_communication": false,
             "max_communication_history": 4,
             "instructions_in_system_prompt": true,
-            "progressively_display_game_info": true
+            "progressively_display_game_info": true,
+            "reasoning_history_mode": "structured"
           },
           "tasks": {
             "alem_tasks": [
@@ -6619,8 +6620,8 @@
             ]
           },
           "wandb": {
-            "id": "r2061153852",
-            "name": "Laguna-S-2.1-FP8-06d71e91db70-easy-p1506939109",
+            "id": "r471886292",
+            "name": "Laguna-S-2.1-FP8-06d71e91db70-easy-p1416389028",
             "tags": [
               "llm-eval",
               "isambard-openweight-aug2026",
@@ -6630,7 +6631,7 @@
               "alem-v0.2.0"
             ],
             "group": "Laguna-S-2.1-FP8",
-            "notes": "alem v0.2.0 @ 47e9df197950 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit 5cf3476f5c81 | protocol alem-v0.2.0-eval-md-standard p1506939109",
+            "notes": "alem v0.2.0 @ 4a339454ebf6 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit c6ad7e69ec39 | protocol alem-v0.2.0-eval-md-standard p1416389028",
             "entity": "alem-world",
             "resume": "allow",
             "project": "alem"
@@ -6697,7 +6698,7 @@
         },
         "difficulty": "easy",
         "model_id": "laguna-s-2.1",
-        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-easy-p1506939109"
+        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-easy-p1416389028"
       },
       "hard": {
         "alg_name": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
@@ -6744,7 +6745,7 @@
             "run_name": null,
             "output_dir": "outputs/alem_eval",
             "num_workers": 16,
-            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-hard-p491580055/eval",
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-hard-p284335062/eval",
             "save_images": true,
             "upload_only": false,
             "icl_episodes": 0,
@@ -6780,7 +6781,8 @@
             "structured_communication": false,
             "max_communication_history": 4,
             "instructions_in_system_prompt": true,
-            "progressively_display_game_info": true
+            "progressively_display_game_info": true,
+            "reasoning_history_mode": "structured"
           },
           "tasks": {
             "alem_tasks": [
@@ -6788,8 +6790,8 @@
             ]
           },
           "wandb": {
-            "id": "r188506306",
-            "name": "Laguna-S-2.1-FP8-06d71e91db70-hard-p491580055",
+            "id": "r3383681310",
+            "name": "Laguna-S-2.1-FP8-06d71e91db70-hard-p284335062",
             "tags": [
               "llm-eval",
               "isambard-openweight-aug2026",
@@ -6799,7 +6801,7 @@
               "alem-v0.2.0"
             ],
             "group": "Laguna-S-2.1-FP8",
-            "notes": "alem v0.2.0 @ 47e9df197950 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit 5cf3476f5c81 | protocol alem-v0.2.0-eval-md-standard p491580055",
+            "notes": "alem v0.2.0 @ 4a339454ebf6 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit c6ad7e69ec39 | protocol alem-v0.2.0-eval-md-standard p284335062",
             "entity": "alem-world",
             "resume": "allow",
             "project": "alem"
@@ -6866,7 +6868,7 @@
         },
         "difficulty": "hard",
         "model_id": "laguna-s-2.1",
-        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-hard-p491580055"
+        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-hard-p284335062"
       },
       "medium": {
         "alg_name": "llm_robust_all_poolside_Laguna-S-2.1-FP8",
@@ -6913,7 +6915,7 @@
             "run_name": null,
             "output_dir": "outputs/alem_eval",
             "num_workers": 16,
-            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-medium-p3813579358/eval",
+            "resume_from": "/projects/u6ne/ktess.u6ne/runs/alem-exp/Laguna-S-2.1-FP8-06d71e91db70-medium-p3710548376/eval",
             "save_images": true,
             "upload_only": false,
             "icl_episodes": 0,
@@ -6949,7 +6951,8 @@
             "structured_communication": false,
             "max_communication_history": 4,
             "instructions_in_system_prompt": true,
-            "progressively_display_game_info": true
+            "progressively_display_game_info": true,
+            "reasoning_history_mode": "structured"
           },
           "tasks": {
             "alem_tasks": [
@@ -6957,8 +6960,8 @@
             ]
           },
           "wandb": {
-            "id": "r409137130",
-            "name": "Laguna-S-2.1-FP8-06d71e91db70-medium-p3813579358",
+            "id": "r1709927747",
+            "name": "Laguna-S-2.1-FP8-06d71e91db70-medium-p3710548376",
             "tags": [
               "llm-eval",
               "isambard-openweight-aug2026",
@@ -6968,7 +6971,7 @@
               "alem-v0.2.0"
             ],
             "group": "Laguna-S-2.1-FP8",
-            "notes": "alem v0.2.0 @ 47e9df197950 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit 5cf3476f5c81 | protocol alem-v0.2.0-eval-md-standard p3813579358",
+            "notes": "alem v0.2.0 @ 4a339454ebf6 | poolside/Laguna-S-2.1-FP8 @ 06d71e91db70 | vllm 0.28.0 | kit c6ad7e69ec39 | protocol alem-v0.2.0-eval-md-standard p3710548376",
             "entity": "alem-world",
             "resume": "allow",
             "project": "alem"
@@ -7035,7 +7038,7 @@
         },
         "difficulty": "medium",
         "model_id": "laguna-s-2.1",
-        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-medium-p3813579358"
+        "run_name": "Laguna-S-2.1-FP8-06d71e91db70-medium-p3710548376"
       }
     },
     "gemini-3.7-flash": {
