@@ -78,6 +78,11 @@
     return (m.eval_dates && m.eval_dates[state.diff]) || m.eval_date || (DATA && DATA.meta && DATA.meta.evaluation_date) || "—";
   }
 
+  function rowDateValue(m) {
+    var value = Date.parse(rowDate(m));
+    return isNaN(value) ? -Infinity : value;
+  }
+
   function harnessVersion(m) {
     return m.harness_version || (DATA && DATA.meta && (DATA.meta.harness_version || DATA.meta.harness)) || "—";
   }
@@ -244,7 +249,12 @@
     var k = state.sortKey, dir = state.sortDir === "desc" ? -1 : 1;
     return rows.slice().sort(function (x, y) {
       if (k === "name") return dir * x.name.localeCompare(y.name);
-      if (k === "type") return dir * x.type.localeCompare(y.type);
+      if (k === "date") {
+        var dateOrder = rowDateValue(x) - rowDateValue(y);
+        if (dateOrder) return dir * dateOrder;
+        var typeOrder = x.type.localeCompare(y.type);
+        return typeOrder || x.name.localeCompare(y.name);
+      }
       if (k === "harness") return dir * harnessVersion(x).localeCompare(harnessVersion(y));
       if (k === "alem") return dir * alemVersion(x).localeCompare(alemVersion(y));
       var sx = x.scores[state.diff], sy = y.scores[state.diff];
