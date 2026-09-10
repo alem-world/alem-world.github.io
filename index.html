@@ -142,13 +142,13 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B / 10B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
     </section>
 
     <section class="section board secondary-board" id="rl-leaderboard">
       <div class="marl-head">
         <div class="eyebrow">Reference point · MARL baselines</div>
-        <p>Trained multi-agent RL provides a reference point for the LLM table above, using the same underlying environment through a symbolic interface. It improves with compute and <strong>degrades as coordination difficulty rises</strong>, while most LLMs fail before difficulty strongly affects aggregate scores. IPPO, HyperMARL-IPPO, MAPPO and PQN-VDN are shown at their training difficulty; the best 1B run appears as a reference row in the main table.</p>
+        <p>Trained multi-agent RL provides a reference point for the LLM table above, using the same underlying environment through a symbolic interface. It improves with compute and <strong>degrades as coordination difficulty rises</strong>, while most LLMs fail before difficulty strongly affects aggregate scores. IPPO, HyperMARL-IPPO, MAPPO and PQN-VDN are shown at their training difficulty; the best run at each budget appears as a reference row in the main table.</p>
       </div>
       <details class="rl-toggle">
         <summary>Show the MARL baseline table</summary>
@@ -162,6 +162,7 @@
             <div class="seg seg-view" role="tablist" aria-label="Training budget">
               <button class="seg-btn" data-rl-budget="100M">100M steps</button>
               <button class="seg-btn is-active" data-rl-budget="1B">1B steps</button>
+              <button class="seg-btn" data-rl-budget="10B">10B steps</button>
             </div>
             <div class="board-meta" id="rl-board-meta"></div>
           </div>
@@ -180,7 +181,7 @@
             </table>
           </div>
         </div>
-        <p class="note">Environment training steps, not model parameters (~25M-parameter recurrent policies). Means with 95% bootstrap CIs across 5 seeds. The primary leaderboard above includes the best MARL budget as a reference row.</p>
+        <p class="note">Environment training steps, not model parameters (~25M-parameter recurrent policies). Means with 95% bootstrap CIs across 5 seeds. The primary leaderboard above includes the best run at each budget as a reference row.</p>
       </details>
     </section>
 

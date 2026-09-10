@@ -368,17 +368,22 @@
     var moduleName = "baselines.llm.eval";
     return "python -m " + moduleName + " \\\n" + hydraOverrides(cfg);
   }
-  function rlAlgoSpec(id) {
+  function rlAlgoSpec(id, budget) {
+    // HyperMARL is the one algorithm whose hyperparameters were not held across
+    // budgets: 100M ran LR=0.0003/tanh, 1B and 10B ran LR=0.0001/relu. The other
+    // three are budget-invariant.
+    var hyper = budget === "100M" ? "LR=0.0003 CLIP_EPS=0.2 UPDATE_EPOCHS=4 MAX_GRAD_NORM=1 NUM_MINIBATCHES=8 ACTIVATION=tanh GAE_LAMBDA=0.8"
+                                  : "LR=0.0001 CLIP_EPS=0.2 UPDATE_EPOCHS=4 MAX_GRAD_NORM=1 NUM_MINIBATCHES=8 ACTIVATION=relu GAE_LAMBDA=0.8";
     return {
       "ippo-rnn": { script: "baselines/ippo_rnn.py", run: "IPPO", extra: "LR=0.0003 CLIP_EPS=0.2 UPDATE_EPOCHS=4 MAX_GRAD_NORM=1 NUM_MINIBATCHES=8 ACTIVATION=tanh GAE_LAMBDA=0.8" },
-      "hypermarl-rnn": { script: "baselines/ippo_hypermarl_rnn.py", run: "IPPO-HyperMARL", extra: "LR=0.0003 CLIP_EPS=0.2 UPDATE_EPOCHS=4 MAX_GRAD_NORM=1 NUM_MINIBATCHES=8 ACTIVATION=relu GAE_LAMBDA=0.8" },
+      "hypermarl-rnn": { script: "baselines/ippo_hypermarl_rnn.py", run: "IPPO-HyperMARL", extra: hyper },
       "mappo-rnn": { script: "baselines/mappo_rnn.py", run: "MAPPO", extra: "LR=0.0003 CLIP_EPS=0.2 UPDATE_EPOCHS=2 MAX_GRAD_NORM=1 NUM_MINIBATCHES=8 ACTIVATION=tanh GAE_LAMBDA=0.8" },
       "pqn-vdn-rnn": { script: "baselines/pqn_vdn_rnn.py", run: "PQN-VDN", extra: "TOTAL_TIMESTEPS_DECAY={steps}" }
     }[id] || { script: "baselines/ippo_rnn.py", run: id, extra: "NUM_COMM_CHANNELS=4" };
   }
   function rlCommand(algo, diff, budget) {
-    var spec = rlAlgoSpec(algo.id);
-    var steps = budget === "1B" ? "1e9" : "1e8";
+    var spec = rlAlgoSpec(algo.id, budget);
+    var steps = { "100M": "1e8", "1B": "1e9", "10B": "1e10" }[budget] || "1e8";
     var diffTitle = diff.charAt(0).toUpperCase() + diff.slice(1);
     var extra = spec.extra.replace("{steps}", steps);
     return "# Local single-seed run. Change SEED to repeat across seeds.\n" +
@@ -677,7 +682,9 @@
         "<td data-label='Total%'>" + barHTML("m-total", cell.total) + "</td>" +
         "</tr>";
     });
-    tb.innerHTML = html;
+    // A budget need not cover every difficulty -- 10B is Hard only -- and an
+    // empty tbody reads as a loading bug rather than "we did not run this".
+    tb.innerHTML = html || '<tr class="is-empty"><td colspan="5">Not run at this budget.</td></tr>';
     var meta = document.getElementById("rl-board-meta");
     if (meta) meta.textContent = rank + " baselines · " + state.rlBudget + " · " + state.rlDiff.charAt(0).toUpperCase() + state.rlDiff.slice(1);
   }
