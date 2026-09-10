@@ -223,11 +223,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 19,
-        "medium": 20,
-        "hard": 19
-      },
       "eval_dates": {
         "easy": "2026-04-18",
         "medium": "2026-04-20",
@@ -297,11 +292,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 15,
-        "medium": 15,
-        "hard": 20
-      },
       "eval_dates": {
         "easy": "2026-04-21",
         "medium": "2026-04-22",
@@ -371,11 +361,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 15,
-        "medium": 20,
-        "hard": 20
-      },
       "eval_dates": {
         "easy": "2026-04-23",
         "medium": "2026-04-23",
@@ -445,11 +430,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 9,
-        "medium": 19,
-        "hard": 19
-      },
       "eval_dates": {
         "easy": "2026-04-21",
         "medium": "2026-04-23",
@@ -519,11 +499,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 16,
-        "medium": 12,
-        "hard": 17
-      },
       "eval_dates": {
         "medium": "2026-04-19",
         "easy": "2026-04-22",
@@ -593,11 +568,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 19,
-        "medium": 20,
-        "hard": 19
-      },
       "eval_dates": {
         "easy": "2026-04-19",
         "medium": "2026-04-20",
@@ -667,11 +637,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 10,
-        "medium": 12,
-        "hard": 15
-      },
       "eval_dates": {
         "easy": "2026-04-18",
         "medium": "2026-04-19",
@@ -741,11 +706,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 16,
-        "medium": 13,
-        "hard": 13
-      },
       "eval_dates": {
         "easy": "2026-04-18",
         "medium": "2026-04-18",
@@ -1314,10 +1274,6 @@
         }
       },
       "harness_version": "robust_all_v0.1",
-      "episodes": {
-        "easy": 17,
-        "hard": 18
-      },
       "eval_dates": {
         "easy": "2026-08-14",
         "hard": "2026-08-14"
@@ -1457,11 +1413,6 @@
       },
       "harness_version": "robust_all_v0.1",
       "alem_version": "0.2.0",
-      "episodes": {
-        "easy": 20,
-        "medium": 19,
-        "hard": 19
-      },
       "eval_dates": {
         "easy": "2026-09-01",
         "medium": "2026-08-31",
