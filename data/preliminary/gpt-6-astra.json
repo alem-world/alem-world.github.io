@@ -1,0 +1,231 @@
+{
+ "status": "preliminary",
+ "note": "Not ranked. A single hard episode (seed 9999), below the protocol minimum of 10 seeds/difficulty, so there is no confidence interval (the triple is [mean, mean, mean]). The site shows it only as a labelled preliminary card under the board (data/leaderboard.json -> preliminary), never in the ranked table; this file is the full record. To promote it, re-run to >= 10 seeds, rebuild the scores with make_submission.py, and move `entry` into data/leaderboard.json -> homogeneous and delete the matching preliminary entry.",
+ "entry": {
+  "id": "gpt-6-astra-high",
+  "name": "GPT-6 Astra",
+  "config": "high reasoning · preliminary, 1 seed",
+  "type": "proprietary",
+  "family": "GPT",
+  "params": "—",
+  "params_sort": 9998,
+  "verified": false,
+  "scores": {
+   "hard": {
+    "base": [
+     25.3,
+     25.3,
+     25.3
+    ],
+    "coord": [
+     25.2,
+     25.2,
+     25.2
+    ],
+    "total": [
+     25.3,
+     25.3,
+     25.3
+    ]
+   }
+  },
+  "episodes": {
+   "hard": 1
+  },
+  "harness_version": "robust_all_v0.1.1",
+  "alem_version": "0.2.1",
+  "eval_dates": {
+   "hard": "2026-09-14"
+  }
+ },
+ "episodes": [
+  {
+   "seed": 9999,
+   "status": "complete",
+   "steps": 1623,
+   "base_pct": 25.35,
+   "coord_pct": 25.16,
+   "total_pct": 25.27,
+   "wandb_run": "https://wandb.ai/alem-world/alem/runs/e4mpnx1s"
+  },
+  {
+   "seed": 10000,
+   "status": "failed",
+   "failed_at_step": 1350,
+   "reason": "API key budget exceeded (HTTP 429), episode discarded"
+  },
+  {
+   "seed": 10001,
+   "status": "failed",
+   "failed_at_step": 1251,
+   "reason": "API key budget exceeded (HTTP 429), episode discarded"
+  }
+ ],
+ "run_config": {
+  "alg_name": "llm_robust_all_gpt-6-astra",
+  "difficulty": "hard",
+  "model_id": "gpt-6-astra",
+  "run_name": "gpt6-final-hard",
+  "note": "temperature/seed are ignored for this model (reasoning model on the Responses API).",
+  "config": {
+   "ALG_NAME": "llm_robust_all_gpt-6-astra",
+   "COORDINATION_DIFFICULTY": "hard",
+   "ENV_NAME": "Alem-Coop-Symbolic",
+   "EVAL_SEED": 9999,
+   "GOD_MODE": false,
+   "MAX_TIMESTEPS": 10000,
+   "NUM_AGENTS": 3,
+   "SHARED_REWARD": false,
+   "SOFT_SPECIALIZATION": true,
+   "WANDB_MODE": "online",
+   "agent": {
+    "cache_icl": false,
+    "image_size": null,
+    "include_all_actions": false,
+    "instructions_in_system_prompt": true,
+    "max_communication_history": 4,
+    "max_communication_length": 400,
+    "max_cot_history": 1,
+    "max_icl_history": 1000,
+    "max_image_history": 0,
+    "max_parse_retries": 0,
+    "max_scratchpad_history": 1,
+    "max_scratchpad_length": 1000,
+    "max_text_history": 8,
+    "progressively_display_game_info": true,
+    "prompt_mode": "specific_collaborative",
+    "reasoning": true,
+    "reasoning_history_mode": "inline",
+    "remember_cot": true,
+    "show_affordances": true,
+    "structured_communication": false,
+    "structured_scratchpad": false,
+    "type": "robust_all",
+    "use_communication": true,
+    "use_cot": true,
+    "use_scratchpad": true
+   },
+   "alem": {
+    "coordination_difficulty": "hard",
+    "god_mode": false,
+    "max_timesteps": 10000,
+    "non_specialist_efficiency": 0.2,
+    "num_agents": 3,
+    "randomize_alpha": false,
+    "shared_reward": false,
+    "soft_specialization": true,
+    "specialist_efficiency": 1,
+    "wrapper": {
+     "edge_only_items": [
+      "water"
+     ],
+     "egocentric": false,
+     "exact_coordinates": true,
+     "llm_mode": "easy",
+     "precise_location": true,
+     "render_downscale": 2,
+     "render_pixel_size": 64,
+     "skip_items": [
+      "grass",
+      "sand",
+      "path"
+     ],
+     "unique_items": true,
+     "use_ascii": false,
+     "use_image_scene": false
+    }
+   },
+   "clients": [
+    {
+     "alternate_roles": false,
+     "client_name": "openai",
+     "delay": 2,
+     "generate_kwargs": {
+      "max_tokens": 8192,
+      "reasoning_effort": "high",
+      "seed": 42,
+      "temperature": 1,
+      "thinking_level": null
+     },
+     "max_retries": 5,
+     "model_id": "gpt-6-astra",
+     "timeout": 420
+    },
+    {
+     "alternate_roles": false,
+     "client_name": "openai",
+     "delay": 2,
+     "generate_kwargs": {
+      "max_tokens": 8192,
+      "reasoning_effort": "high",
+      "seed": 42,
+      "temperature": 1,
+      "thinking_level": null
+     },
+     "max_retries": 5,
+     "model_id": "gpt-6-astra",
+     "timeout": 420
+    },
+    {
+     "alternate_roles": false,
+     "client_name": "openai",
+     "delay": 2,
+     "generate_kwargs": {
+      "max_tokens": 8192,
+      "reasoning_effort": "high",
+      "seed": 42,
+      "temperature": 1,
+      "thinking_level": null
+     },
+     "max_retries": 5,
+     "model_id": "gpt-6-astra",
+     "timeout": 420
+    }
+   ],
+   "env_version": "v0.2.1",
+   "envs": {
+    "env_kwargs": {
+     "seed": null
+    },
+    "names": "alem"
+   },
+   "eval": {
+    "debug": true,
+    "feedback_on_invalid_action": true,
+    "generate_debriefs": false,
+    "icl_episodes": 0,
+    "max_steps_per_episode": 10000,
+    "num_episodes": {
+     "alem": 1
+    },
+    "num_workers": 5,
+    "output_dir": "/home/ktes/code/alem-env-prelease/outputs/alem_eval_v0.2.1",
+    "resume_from": null,
+    "run_name": "gpt6-final-hard",
+    "save_images": true,
+    "save_images_every_episode": true,
+    "upload_only": false
+   },
+   "llm_interface_version": "v0.1.1",
+   "tasks": {
+    "alem_tasks": [
+     "default"
+    ]
+   },
+   "wandb": {
+    "entity": "alem-world",
+    "group": null,
+    "id": null,
+    "name": null,
+    "notes": null,
+    "project": "alem",
+    "resume": null,
+    "tags": [
+     "llm-eval",
+     "final-neurips-final",
+     "base-results"
+    ]
+   }
+  }
+ }
+}

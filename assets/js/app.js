@@ -53,26 +53,37 @@
   function num(v) { return v.toFixed(1); }
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>\"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;"}[c]; }); }
 
-  function barHTML(metricClass, score) {
+  // `single`: the score is one episode, so it is drawn as a hollow dot with no
+  // CI bar and labelled as such -- a [m, m, m] triple must not read as a mean
+  // with a zero-width interval.
+  function barHTML(metricClass, score, single) {
     var mean = score[0], lo = score[1], hi = score[2];
-    var left = (lo / SCALE) * 100;
-    var width = Math.max(((hi - lo) / SCALE) * 100, 0.5);
-    var dot = (mean / SCALE) * 100;
+    // Reference rows can run past the axis (privileged heuristic, Easy Coord.%
+    // ~36%). Pin their marks to the end of the track and flag the overflow
+    // rather than squash every other row onto a wider axis.
+    function pos(v) { return (Math.min(Math.max(v, 0), SCALE) / SCALE) * 100; }
+    var clipped = (single ? mean : hi) > SCALE;
+    var ci = single ? "" :
+      '<div class="bar-ci" style="left:' + pos(lo) + "%;width:" + Math.max(pos(hi) - pos(lo), 0.5) + '%"></div>';
     return (
-      '<div class="num-cell ' + metricClass + '">' +
+      '<div class="num-cell ' + metricClass + (single ? " is-single" : "") + '">' +
       '<div class="num-val">' + num(mean) + "</div>" +
-      '<div class="num-ci">[' + num(lo) + ", " + num(hi) + "]</div>" +
-      '<div class="bar-track">' +
-      '<div class="bar-ci" style="left:' + left + "%;width:" + width + '%"></div>' +
-      '<div class="bar-dot" style="left:' + dot + '%"></div>' +
+      '<div class="num-ci">' + (single ? "1 episode" : "[" + num(lo) + ", " + num(hi) + "]") + "</div>" +
+      '<div class="bar-track' + (clipped ? " is-clipped" : "") + '">' + ci +
+      '<div class="bar-dot" style="left:' + pos(mean) + '%"></div>' +
       "</div></div>"
     );
   }
 
+  var TYPE_PILL = { "open-weight": "Open-weight", "proprietary": "Closed (API)", "mixed": "Mixed team", "marl": "MARL", "human": "Human", "heuristic": "Scripted" };
   function typePill(type) {
-    var label = type === "open-weight" ? "Open-weight" : type === "proprietary" ? "Closed (API)" : type === "mixed" ? "Mixed team" : "MARL";
-    return '<span class="type-pill type-' + type + '">' + label + "</span>";
+    return '<span class="type-pill type-' + type + '">' + (TYPE_PILL[type] || type) + "</span>";
   }
+
+  // Non-LLM reference points (privileged heuristic, human pilot) sit unranked
+  // with the MARL rows; they have no LLM run config to show.
+  function isReference(m) { return m.type === "human" || m.type === "heuristic"; }
+  function isSingle(m, diff) { return !!(m.episodes && m.episodes[diff] === 1); }
 
   function rowDate(m) {
     return (m.eval_dates && m.eval_dates[state.diff]) || m.eval_date || (DATA && DATA.meta && DATA.meta.evaluation_date) || "—";
@@ -169,11 +180,13 @@
     var isMixed = m.type === "mixed";
     var rankLabel = rank === null ? '<span style="color:var(--faint)">ref</span>' :
       rank === "mix" ? '<span style="color:var(--faint)">mix</span>' : rank;
-    var rowCls = isMarl ? "is-marl" : isMixed ? "is-mixed" : "rank-" + rank;
-    var cellTitle = isMixed ? "Click for the member-by-member breakdown" : "Click to inspect the run config";
+    var isRef = isReference(m);
+    var single = isSingle(m, state.diff);
+    var rowCls = isRef ? "is-ref" : isMarl ? "is-marl" : isMixed ? "is-mixed" : "rank-" + rank;
+    var cellTitle = isMixed ? "Click to see the team" : isRef ? "Click for details" : "Click to inspect the run config";
     function scoreCell(label, cls, score) {
       var click = isMixed ? "" : ' onclick="window.AlemOpenModelDetail && window.AlemOpenModelDetail(\'' + m.id + '\')"';
-      var body = score ? barHTML(cls, score) :
+      var body = score ? barHTML(cls, score, single) :
         '<div class="num-cell ' + cls + '"><div class="num-val" style="color:var(--faint)">—</div><div class="num-ci">not split</div></div>';
       return '<td class="score-cell" data-label="' + label + '"' + click + ' title="' + cellTitle + '">' + body + "</td>";
     }
@@ -195,16 +208,23 @@
     );
   }
 
+  // members are listed in role order (warrior, forager, miner); roles matter
+  // for these teams, so they are named wherever a team is shown.
+  function teamRoles() {
+    return (DATA.heterogeneous && DATA.heterogeneous.member_roles) || ["warrior", "forager", "miner"];
+  }
+
   /* mixed-model teams join the main table on Hard (the only difficulty they
-     were run on); base/coord were not scored separately for these runs. */
+     were run on), unranked. */
   function heteroBoardRows() {
     if (!state.showMixed || state.diff !== "hard" || !DATA.heterogeneous) return [];
+    var roles = teamRoles();
     return (DATA.heterogeneous.teams || []).map(function (t) {
       var ci = t.team_total_ci || [t.team_total, t.team_total];
       return {
         id: "hetero-" + t.id,
         name: t.name,
-        config: t.members.join(" + "),
+        config: t.members.map(function (name, i) { return name + " (" + (roles[i] || "") + ")"; }).join(" · "),
         type: "mixed",
         family: "Mixed",
         params: "—",
@@ -276,7 +296,11 @@
     var pool = DATA.homogeneous.filter(scoredHere);
     if (state.openOnly) pool = pool.filter(function (m) { return m.type === "open-weight"; });
     var llm = state.view === "marl" ? [] : sortRows(pool);
-    var marl = (state.view === "llm" || state.openOnly) ? [] : sortRows(DATA.marl.filter(scoredHere));
+    // Reference rows: MARL baselines, plus (on "All" only) the privileged
+    // heuristic and the human pilot. All unranked except in the MARL view.
+    var marl = (state.view === "llm" || state.openOnly) ? [] : DATA.marl.filter(scoredHere);
+    if (state.view === "all" && !state.openOnly) marl = marl.concat((DATA.references || []).filter(scoredHere));
+    marl = sortRows(marl);
 
     // mixed teams slot in by the current sort but stay unranked, so the
     // homogeneous ranking (1..N) is unchanged by their presence.
@@ -292,6 +316,7 @@
     shownLLM.forEach(function (m) { html += rowHTML(m, m.type === "mixed" ? "mix" : rankOf[m.id], false); });
     if (shownLLM.length < llmAll.length) html += moreRowsHTML(llmAll.length - shownLLM.length);
     else if (state.expanded && llmAll.length > BOARD_ROWS) html += fewerRowsHTML();
+    html += prelimRowsHTML();
     if (llm.length && !state.openOnly) html += avgRowHTML();
     marl.forEach(function (m, i) {
       html += rowHTML(m, state.view === "marl" ? i + 1 : null, true);
@@ -326,13 +351,44 @@
     }
   }
 
+  /* ---------- preliminary runs (below the seed minimum: shown, never ranked) ----------
+     A full-width strip straight after the ranked LLM rows: with the other LLMs,
+     but outside the sort and without a rank. */
+  function prelimRowsHTML() {
+    var diff = state.diff;
+    var items = state.view === "marl" ? [] : (DATA.preliminary || []).filter(function (p) {
+      return p.scores && p.scores[diff] && (!state.openOnly || p.type === "open-weight");
+    });
+    return items.map(function (p) {
+      var s = p.scores[diff];
+      var n = (p.episodes && p.episodes[diff]) || 1;
+      var diffName = diff.charAt(0).toUpperCase() + diff.slice(1);
+      function stat(label, cls, t) {
+        return '<div class="prelim-stat ' + cls + '"><span>' + label + "</span><strong>" + num(t[0]) + "</strong></div>";
+      }
+      return (
+        '<tr class="prelim-row"><td colspan="' + boardColspan() + '"><div class="prelim-card">' +
+        '<div class="prelim-head">' + logoHTML(p) +
+        '<div><div class="prelim-tag">Not ranked · ' + diffName + "</div>" +
+        "<h4>" + esc(p.name) + " <span>" + esc(p.config) + "</span></h4></div></div>" +
+        "<p>" + (n === 1 ? "Single seed, so it isn't ranked." :
+          n + " seeds, short of the " + p.seeds_required + " needed for a rank.") + "</p>" +
+        '<div class="prelim-stats">' + stat("Base%", "m-base", s.base) + stat("Coord.%", "m-coord", s.coord) + stat("Total%", "m-total", s.total) + "</div>" +
+        "</div></td></tr>"
+      );
+    }).join("");
+  }
+
   /* ---------- model detail (click a row → full config) ---------- */
   function findModel(id) {
-    var all = (DATA.homogeneous || []).concat(DATA.marl || []);
+    var all = (DATA.homogeneous || []).concat(DATA.marl || [], DATA.references || []);
     for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
     return null;
   }
-  function fmtScore(t) { return t ? num(t[0]) + ' <span class="md-ci">[' + num(t[1]) + ", " + num(t[2]) + "]</span>" : "—"; }
+  function fmtScore(t, single) {
+    if (!t) return "—";
+    return num(t[0]) + ' <span class="md-ci">' + (single ? "1 episode" : "[" + num(t[1]) + ", " + num(t[2]) + "]") + "</span>";
+  }
   function loadRunConfigs() {
     if (RUN_CONFIGS) return Promise.resolve(RUN_CONFIGS);
     if (!RUN_CONFIGS_PROMISE) {
@@ -443,14 +499,28 @@
     var m = findModel(id); if (!m) return;
     var modal = ensureModelModal();
     var isMarl = m.type === "marl";
+    var isRef = isReference(m);
+    var isLLM = !isMarl && !isRef;
     document.getElementById("md-name").textContent = m.name;
     document.getElementById("md-sub").textContent = typeLabel(m.type) + (m.params && m.params !== "—" ? " · " + m.params : "");
     var diffs = ["easy", "medium", "hard"];
     var rows = diffs.map(function (d) {
       var s = m.scores[d]; if (!s) return "";
+      var one = isSingle(m, d);
       return "<tr><td>" + d.charAt(0).toUpperCase() + d.slice(1) + "</td>" +
-        "<td>" + fmtScore(s.base) + "</td><td>" + fmtScore(s.coord) + "</td><td class='md-total'>" + fmtScore(s.total) + "</td></tr>";
+        "<td>" + fmtScore(s.base, one) + "</td><td>" + fmtScore(s.coord, one) + "</td><td class='md-total'>" + fmtScore(s.total, one) + "</td></tr>";
     }).join("");
+    var refBody = "";
+    if (isRef) {
+      var sessions = m.sessions ? diffs.filter(function (d) { return m.sessions[d]; }).map(function (d) {
+        return "<li><strong>" + d.charAt(0).toUpperCase() + d.slice(1) + "</strong> " + esc(m.sessions[d]) + "</li>";
+      }).join("") : "";
+      refBody =
+        (sessions ? '<ul class="md-sessions">' + sessions + "</ul>" : "") +
+        (m.note ? '<p class="md-note">' + esc(m.note) + "</p>" : "") +
+        (m.image ? '<figure class="md-figure"><img src="' + m.image.src + '" alt="' + esc(m.image.alt) + '" loading="lazy" /><figcaption>' + esc(m.image.caption) + "</figcaption></figure>" : "") +
+        (m.harness_url ? '<p class="md-note"><a href="' + m.harness_url + '" target="_blank" rel="noopener">How to run it ↗</a></p>' : "");
+    }
     function meta(label, val) { return val ? '<div class="md-meta"><span>' + label + "</span><strong>" + val + "</strong></div>" : ""; }
     var ed = m.eval_dates ? Object.keys(m.eval_dates).map(function (k) { return k + " " + m.eval_dates[k]; }).join(" · ") : (m.eval_date || "");
     function alemVersionLink(x) {
@@ -459,8 +529,9 @@
         ? '<a href="https://github.com/alem-world/alem-env/releases/tag/v' + av + '" target="_blank" rel="noopener">' + av + " \u2197</a>"
         : av;
     }
-    var harnessLink = !isMarl && m.harness_version ?
-      '<a href="https://github.com/alem-world/alem-env/blob/main/baselines/llm/eval_utils/agents/robust_all.py" target="_blank" rel="noopener">' + m.harness_version + " ↗</a>" :
+    var harnessHref = m.harness_url || (isLLM && m.harness_version ? "https://github.com/alem-world/alem-env/blob/main/baselines/llm/eval_utils/agents/robust_all.py" : "");
+    var harnessLink = harnessHref ?
+      '<a href="' + harnessHref + '" target="_blank" rel="noopener">' + m.harness_version + " ↗</a>" :
       (m.harness_version || "—");
     document.getElementById("md-body").innerHTML =
       '<div class="md-metas">' +
@@ -474,17 +545,22 @@
         meta("Episodes", episodesLabel(m)) +
         meta("Status", m.verified ? "✓ verified" : "self-reported") +
       "</div>" +
-      '<h4 class="md-h">Scores by difficulty <span>· mean [95% CI], normalised per category</span></h4>' +
+      '<h4 class="md-h">Scores by difficulty <span>· ' +
+        (diffs.every(function (d) { return !m.scores[d] || isSingle(m, d); }) ? "one episode each, no CI" : "mean [95% CI]") +
+        ", normalised per category</span></h4>" +
       '<div class="table-scroll"><table class="md-table"><thead><tr><th>Difficulty</th><th>Base%</th><th>Coord.%</th><th>Total%</th></tr></thead><tbody>' + rows + "</tbody></table></div>" +
-      (!isMarl ? '<p class="md-note">This is the exact run config behind the selected leaderboard score. Reproduce with the standard protocol. See <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">SUBMISSION.md</a>.</p><div id="md-config"></div>' : '<p class="md-note">This row is a reference aggregate from the dedicated MARL comparison table below. Click rows in that MARL table for algorithm-specific run commands.</p>');
+      (isLLM ? '<p class="md-note">This is the exact run config behind the selected leaderboard score. Reproduce with the standard protocol. See <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">SUBMISSION.md</a>.</p><div id="md-config"></div>' :
+        isRef ? refBody :
+        '<p class="md-note">This row is a reference aggregate from the dedicated MARL comparison table below. Click rows in that MARL table for algorithm-specific run commands.</p>');
     modal.hidden = false; document.body.style.overflow = "hidden";
-    if (!isMarl) renderRunConfig(m.id, state.diff);
+    if (isLLM) renderRunConfig(m.id, state.diff);
   }
   window.AlemOpenModelDetail = openModelDetail;
-  function typeLabel(t) { return t === "open-weight" ? "Open-weight" : t === "proprietary" ? "Closed (API)" : "MARL baseline"; }
+  var TYPE_LABEL = { "open-weight": "Open-weight", "proprietary": "Closed (API)", "marl": "MARL baseline", "human": "Human team", "heuristic": "Scripted reference" };
+  function typeLabel(t) { return TYPE_LABEL[t] || t; }
 
   function gotoHeteroDetail() {
-    var target = document.getElementById("hetero-grid") || document.getElementById("hetero-teams");
+    var target = document.getElementById("hetero-teams") || document.getElementById("hetero-grid");
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     else window.location.href = "index.html#hetero-teams";
   }
@@ -512,36 +588,42 @@
   }
 
   /* ---------- heterogeneous teams ---------- */
+  // A diverging table of each mixed team's change against the mean of its
+  // members' homogeneous teams: the paper's Table 2, with the sign carried by
+  // bar direction and the printed value as well as by colour.
   function renderHetero() {
     var wrap = document.getElementById("hetero-grid");
     if (!wrap || !DATA.heterogeneous) return;
-    var noteEl = document.getElementById("hetero-note");
-    if (noteEl && DATA.heterogeneous.note) noteEl.textContent = DATA.heterogeneous.note;
-    var MAX = 18;
-    wrap.innerHTML = DATA.heterogeneous.teams.map(function (t) {
-      var members = Object.keys(t.member_totals).map(function (name) {
-        var v = t.member_totals[name];
-        return (
-          '<div class="hbar"><div class="hbar-top"><span>' + name + '</span><span class="hbar-val">' + num(v) + '%</span></div>' +
-          '<div class="hbar-track"><div class="hbar-fill" style="width:' + (v / MAX * 100) + '%"></div></div></div>'
-        );
+    var H = DATA.heterogeneous, roles = teamRoles();
+    var DMAX = 7;  // largest |delta| is 6.9 pp
+    function signed(v) { return (v > 0 ? "+" : v < 0 ? "−" : "±") + num(Math.abs(v)); }
+    function dcell(v, label) {
+      var w = Math.min(Math.abs(v), DMAX) / DMAX * 50;
+      var cls = v > 0 ? "is-pos" : v < 0 ? "is-neg" : "";
+      return '<td data-label="' + label + '"><div class="dcell ' + cls + '"><span class="dval">' + signed(v) + "</span>" +
+        '<div class="dtrack"><i class="dzero"></i><i class="dbar" style="left:' + (v < 0 ? 50 - w : 50) + "%;width:" + w + '%"></i></div></div></td>';
+    }
+    function deltaCells(d) { return dcell(d.base, "Δ Base%") + dcell(d.coord, "Δ Coord.%") + dcell(d.total, "Δ Total%"); }
+    var lastGroup = null;
+    var body = H.teams.map(function (t) {
+      var head = "";
+      if ((t.group || null) !== lastGroup && t.group === "roles") {
+        head = '<tr class="ht-group"><td colspan="4">Same three models, different roles</td></tr>';
+      }
+      lastGroup = t.group || null;
+      var members = t.members.map(function (name, i) {
+        var r = roles[i] || "";
+        return '<li><span class="ht-role r-' + r + '">' + r + "</span>" + esc(name) + "</li>";
       }).join("");
-      var teamBar =
-        '<div class="hbar is-team"><div class="hbar-top"><span><b>' + t.name + '</b></span><span class="hbar-val">' + num(t.team_total) + '%</span></div>' +
-        '<div class="hbar-track"><div class="hbar-fill" style="width:' + (t.team_total / MAX * 100) + '%"></div></div></div>';
-      var dcls = t.delta >= 0 ? "delta-pos" : "delta-neg";
-      var dsign = t.delta >= 0 ? "+" : "";
-      return (
-        '<div class="hetero-card">' +
-        "<h4>" + t.name + "</h4>" +
-        '<div class="hetero-kind">' + t.kind.replace("-", " ") + " team</div>" +
-        members +
-        '<hr style="border:none;border-top:1px solid var(--border);margin:14px 0">' +
-        teamBar +
-        '<div class="hetero-delta ' + dcls + '">' + dsign + num(t.delta) + " vs homogeneous average (" + num(t.homog_avg) + "%)</div>" +
-        "</div>"
-      );
+      return head +
+        '<tr><td data-label="Team"><ul class="ht-members">' + members + "</ul>" +
+        '<div class="ht-meta">' + (t.seeds ? t.seeds + " seeds · " : "") + "team Coord.% " + num(t.team_coord[0]) + " · Total% " + num(t.team_total) + "</div></td>" +
+        deltaCells(t.delta) + "</tr>";
     }).join("");
+    var mean = H.mean_delta ? '<tr class="ht-mean"><td data-label="Team">Average</td>' + deltaCells(H.mean_delta) + "</tr>" : "";
+    wrap.innerHTML =
+      '<table class="hetero-table"><thead><tr><th>Team <span>role · model</span></th><th>Δ Base%</th><th>Δ Coord.%</th><th>Δ Total%</th></tr></thead>' +
+      "<tbody>" + body + mean + "</tbody></table>";
   }
 
   /* ---------- events ---------- */

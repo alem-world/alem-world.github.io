@@ -103,7 +103,7 @@
       </div>
 
       <div class="leaderboard-summary">
-        <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Zero-shot homogeneous LLM teams are baselined against a trained MARL reference policy.</p></article>
+        <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Each team is three copies of one LLM, playing zero-shot. MARL agents, a scripted agent and a human team are shown for comparison but not ranked.</p></article>
         <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
         <article><span>Hard Coord.% leader</span><strong>GLM 5.3 Flash</strong><p>18.8% Coord.% on Hard difficulty, the first open-weight model to lead this metric. It edges our 1B-step MARL baseline (17.6%), though the intervals overlap and the interface differs.</p></article>
       </div>
@@ -142,7 +142,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B / 10B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Type / date reports the selected difficulty's evaluation date; Harness links to the evaluation harness implementation; Alem is the environment version the row was evaluated on. The only environment change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised separately, so Total% is not the sum of the other columns. MARL 100M / 1B / 10B are environment training steps, not model parameters. Rows marked <em>ref</em> are there for comparison and aren't ranked: MARL agents, a scripted agent that can see the whole game, and three of us playing by hand. A hollow dot means the score comes from a single episode, so it has no error bar. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one to see who played which role. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
     </section>
 
     <section class="section board secondary-board" id="rl-leaderboard">
@@ -433,6 +433,7 @@
           <figure class="iface-shot"><img src="assets/img/paper/agent_view.png" alt="Pixel render of an agent's egocentric view" loading="lazy" /></figure>
           <ul>
             <li>An egocentric rendered view of the same world state, including map, HUD, inventory and teammates.</li>
+            <li>Three people can also play together on one keyboard (<a href="https://github.com/alem-world/alem-env/blob/main/PLAY_WITH_HUMAN_INTERFACE.md" target="_blank" rel="noopener">guide ↗</a>).</li>
           </ul>
         </article>
         <article class="interface-card">
@@ -485,7 +486,7 @@ Available: Move North · Do · Rest ·
         <div class="scoring-cols">
           <div><span>Base</span><strong>66</strong><small>individual progress achievements derived from single-agent Craftax</small></div>
           <div><span>Coordination</span><strong>27</strong><small>explicit multi-agent achievements</small></div>
-          <div><span>Total</span><strong>93</strong><small>normalised episode return, scored per category</small></div>
+          <div><span>Total</span><strong>93</strong><small>normalised team achievement reward, scored per category</small></div>
         </div>
       </div>
     </section>
@@ -494,19 +495,19 @@ Available: Move North · Do · Rest ·
       <div class="section-head centered">
         <div class="eyebrow">05 · Paper results</div>
         <h2>What the benchmark reveals</h2>
-        <p>13 LLMs in zero-shot three-agent teams, compared against trained MARL baselines. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
+        <p>13 LLMs in zero-shot three-agent teams, compared with trained MARL, a scripted agent and a human team. All comparisons use 95% bootstrap confidence intervals; Base%, Coord.% and Total% are normalised independently.</p>
       </div>
 
-      <p class="findings-headline">Current LLM agents remain far from solving Alem, averaging only <span class="fh-num">~6% normalised total return</span>, yet their failures are <span class="fh-emph">not uniform</span>.</p>
+      <p class="findings-headline">Current LLM agents remain far from solving Alem, averaging only <span class="fh-num">~6% of the maximum reward</span>, yet their failures are <span class="fh-emph">not uniform</span>.</p>
 
       <p class="result-hint">Click any result to read the detail.</p>
       <div class="result-grid six">
-        <details class="finding-card" open><summary><span>Q1.1 · zero-shot</span><h3>Alem is unsolved, but separates models</h3></summary><p>Alem remains far from saturated by both zero-shot LLMs and trained MARL, while separating models across a broad range. On Easy, Total% spans 0.8% (Llama-3.1-8B) to 18.1% (Gemini 3.1 Pro); on Hard, LLMs average only 6.2% Total%. The top LLM reaches 17.5% Coord.% on Hard difficulty, close to the 17.6% 1B-step MARL baseline. </p></details>
+        <details class="finding-card" open><summary><span>Q1.1 · zero-shot</span><h3>Alem is unsolved, but separates models</h3></summary><p>Alem remains far from saturated by both zero-shot LLMs and trained MARL, while separating models across a broad range. On Easy, Total% spans 0.8% (Llama-3.1-8B) to 18.1% (Gemini 3.1 Pro); on Hard, LLMs average only 6.2% Total%. The top LLM reaches 17.5% Coord.% on Hard difficulty, close to the 17.6% 1B-step MARL baseline. Three of us played Hard once and reached 22.1% Total% in 455 of 10,000 steps, with no deaths. It's one game, so treat it as a rough guide, but it beats every agent in the paper.</p></details>
         <details class="finding-card"><summary><span>Q1.2 · decomposition</span><h3>Base competence does not guarantee coordination</h3></summary><p>Decomposing performance reveals failures hidden by aggregate scores. GPT-5.4 achieves the second-highest Base% across difficulties, yet its Coord.% lags behind smaller models such as Gemma-4-26B-A4B on Hard, with non-overlapping 95% CIs. General environment competence does not guarantee coordinated multi-agent behaviour.</p></details>
         <details class="finding-card"><summary><span>Q1.3 · difficulty</span><h3>Most LLM agents do not exploit the difficulty axis</h3></summary><p>Trained MARL degrades as coordination difficulty increases, but aggregate LLM Total% remains nearly flat at ≈6% across Easy, Medium, and Hard. Most LLM agents do not coordinate reliably enough for the difficulty parameter to strongly affect aggregate performance.</p></details>
         <details class="finding-card"><summary><span>Q1.4 · task structure</span><h3>Coordination failures differ across task structure</h3></summary><p>Coordination is not a single axis. Handover tasks are comparatively more accessible because they allow temporal slack. Synchronous-Hard tasks require agents to identify a shared target, navigate to compatible positions, communicate intent, and act in the same timestep. Gemini 3.1 Pro leads LLMs here with only 18% coverage.</p></details>
         <details class="finding-card"><summary><span>Q2 · ablations</span><h3>Communication is critical for coordination</h3></summary><p>Removing communication produces the largest drop in coordination for both models tested: Gemini 3.1 Pro falls from 17.5 to 5.3 Coord.%, and Gemma-4-31B from 8.8 to 3.8. Reasoning supports both base and coordination reward; scratchpad memory helps mainly when used to plan ahead.</p></details>
-        <details class="finding-card"><summary><span>Q3 · composition</span><h3>Heterogeneous teams perform near the homogeneous-team average</h3></summary><p>Mixed teams land close to the average of their corresponding homogeneous teams: the same-family Gemma team is slightly above (+0.1 Total%), the cross-family team slightly below (−0.1 Total%). Adding a stronger model is not sufficient to lift team performance.</p></details>
+        <details class="finding-card"><summary><span>Q3 · composition</span><h3>Mixed teams lose coordination</h3></summary><p>We put different models in the same team and compared each team with how its models do in their own teams. All six mixed teams coordinated worse, by 3.3 points of Coord.% on average. Five of six did a little better on base tasks, so Total% barely moved. Roles matter too. Gemini 3.1 Pro with two Gemma models scored 5.0 Coord.% with Gemini as the warrior and 8.7 with Gemini as the miner. Both are below the 11.9 you'd expect. <a href="#hetero-teams">See all six teams ↓</a></p></details>
       </div>
 
       <h3 class="block-title center-title">Diagnostics</h3>
@@ -541,32 +542,24 @@ Available: Move North · Do · Rest ·
       </div>
 
       <h3 class="block-title center-title" id="hetero-teams">Heterogeneous teams <span class="muted-label">(Hard)</span></h3>
-      <p class="result-hint">Paper figure: mixed teams land close to the average of their homogeneous members.</p>
-      <figure class="hetero-legend"><img src="assets/img/paper/hetero_teams_legend_new.png" alt="Legend for heterogeneous team plots"></figure>
-      <div class="figures-row two hetero-figures">
-        <figure class="fig-card static-fig">
-          <img src="assets/img/paper/hetero_teams_g1_new.png" alt="Gemma-family heterogeneous team results">
-          <figcaption>Gemma-family team: heterogeneous performance is near the homogeneous-team average.</figcaption>
-        </figure>
-        <figure class="fig-card static-fig">
-          <img src="assets/img/paper/hetero_teams_g2_new.png" alt="Cross-family heterogeneous team results">
-          <figcaption>Cross-family team: adding a stronger model does not directly transfer its performance to the whole team.</figcaption>
-        </figure>
-      </div>
+      <p class="result-hint">Every mixed team coordinated worse than its models do in their own teams. Most did a little better on base tasks, so Total% barely moved.</p>
+      <div class="hetero-table-wrap" id="hetero-grid"></div>
+      <p class="hetero-foot">Δ is the mixed team's score minus the average of its three models in their own teams, in percentage points (paper, Table 2). Each team ran 10 seeds, or 20 for the all-Gemma team. To see each team's actual scores, turn on <strong>Mixed teams</strong> in the <a href="#leaderboard">leaderboard</a>.</p>
     </section>
 
     <section class="section cite" id="cite">
       <div class="section-head split-head"><div><h2>Citation</h2></div></div>
       <div class="cite-box">
         <button class="copy-btn" id="copy-bib" aria-label="Copy BibTeX">Copy</button>
-        <pre><code id="bibtex">@article{tessera2026alem,
-  title   = {Benchmarking Open-Ended Multi-Agent Coordination in Language Agents},
-  author  = {Tessera, {Kale-ab} Abebe and Szecsenyi, Andras and Barker, Cameron and
-             Rutherford, Alexander and Paglieri, Davide and Scannell, Aidan and
-             Gouk, Henry and Crowley, Elliot J. and Rockt\"{a}schel, Tim and
-             Storkey, Amos},
-  year    = {2026},
-  url     = {https://arxiv.org/abs/2606.08340}
+        <pre><code id="bibtex">@inproceedings{tessera2026alem,
+  title     = {Benchmarking Open-Ended Multi-Agent Coordination in Language Agents},
+  author    = {Tessera, {Kale-ab} Abebe and Szecsenyi, Andras and Barker, Cameron and
+               Rutherford, Alexander and Paglieri, Davide and Scannell, Aidan and
+               Gouk, Henry and Crowley, Elliot J. and Rockt\"{a}schel, Tim and
+               Storkey, Amos},
+  booktitle = {The Fortieth Annual Conference on Neural Information Processing Systems Evaluations and Datasets Track},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2606.08340}
 }</code></pre>
       </div>
     </section>
