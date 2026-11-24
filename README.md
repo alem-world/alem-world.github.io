@@ -35,6 +35,7 @@ data/rl_results.json    # MARL baseline table
 data/llm-run-configs.json  # real wandb run configs shown when a leaderboard score is clicked
 data/traces/*.json      # compact per-model step traces for the in-page viewer
 data/trace_sizes.json   # index for traces.html
+data/preliminary/*.json # partial runs below the seed minimum; NOT loaded by the site
 ```
 
 ## Updating the leaderboard
@@ -43,6 +44,12 @@ Edit [`data/leaderboard.json`](data/leaderboard.json). Each entry holds `[mean, 
 for Base / Coord / Total at each difficulty. Add a model under `homogeneous` (LLMs) or `marl`
 (baselines); the table, sorting, ranks and CI bars update automatically. Submissions follow
 [`SUBMISSION.md`](https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md) in the main repo.
+
+## Preliminary results
+
+[`data/preliminary/`](data/preliminary/) holds runs that don't meet the protocol yet (e.g. a
+single seed). The site does not read them. Each file carries a leaderboard-shaped `entry` that
+can be moved into `data/leaderboard.json` once the run reaches the seed minimum.
 
 ## Full reasoning traces
 
