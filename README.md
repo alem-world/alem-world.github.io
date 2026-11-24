@@ -35,7 +35,7 @@ data/rl_results.json    # MARL baseline table
 data/llm-run-configs.json  # real wandb run configs shown when a leaderboard score is clicked
 data/traces/*.json      # compact per-model step traces for the in-page viewer
 data/trace_sizes.json   # index for traces.html
-data/preliminary/*.json # partial runs below the seed minimum; NOT loaded by the site
+data/preliminary/*.json # full records of partial runs below the seed minimum (not ranked)
 ```
 
 ## Updating the leaderboard
@@ -45,11 +45,25 @@ for Base / Coord / Total at each difficulty. Add a model under `homogeneous` (LL
 (baselines); the table, sorting, ranks and CI bars update automatically. Submissions follow
 [`SUBMISSION.md`](https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md) in the main repo.
 
+The other sections of `leaderboard.json`:
+
+- `references`: non-LLM reference rows shown unranked under the MARL rows (`ref`): the
+  privileged heuristic and the human pilot. An entry whose `episodes[difficulty]` is `1` is drawn
+  as a single episode (hollow dot, no CI bar), so a single run never looks like a mean.
+- `heterogeneous`: mixed-model teams on Hard. `members` are listed warrior, forager, miner;
+  `delta` is the paper's Table 2 value (mixed-team score minus the mean of the members'
+  homogeneous teams). Drawn as the Δ table under *Heterogeneous teams* and as unranked `mix`
+  rows when *Mixed teams* is switched on.
+- `preliminary`: LLM runs below the seed minimum. Each shows as an unranked "Preliminary" strip
+  right after the ranked LLM rows on its difficulty, outside the sort.
+
 ## Preliminary results
 
-[`data/preliminary/`](data/preliminary/) holds runs that don't meet the protocol yet (e.g. a
-single seed). The site does not read them. Each file carries a leaderboard-shaped `entry` that
-can be moved into `data/leaderboard.json` once the run reaches the seed minimum.
+[`data/preliminary/`](data/preliminary/) holds the full record of runs that don't meet the
+protocol yet (e.g. a single seed): per-episode status and the run config. The strip in the board
+comes from the matching `preliminary` entry in `data/leaderboard.json`. Once the run reaches the
+seed minimum, rebuild the scores with `make_submission.py`, move the record's `entry` into
+`homogeneous`, and delete the `preliminary` entry.
 
 ## Full reasoning traces
 

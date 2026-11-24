@@ -54,7 +54,7 @@
       </div>
 
       <div class="leaderboard-summary">
-         <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Zero-shot homogeneous LLM teams are baselined against a trained MARL reference policy.</p></article>
+         <article><span>Protocol</span><strong>3-agent zero-shot teams</strong><p>Each team is three copies of one LLM, playing zero-shot. MARL agents, a scripted agent and a human team are shown for comparison but not ranked.</p></article>
         <article><span>Key score</span><strong>Coord.%</strong><p>Coordination reward is reported independently from base reward and total return.</p></article>
         <article><span>Hard Coord.% leader</span><strong>GLM 5.3 Flash</strong><p>18.8% Coord.% on Hard difficulty, the first open-weight model to lead this metric. It edges our 1B-step MARL baseline (17.6%), though the intervals overlap and the interface differs.</p></article>
       </div>
@@ -93,7 +93,7 @@
           </table>
         </div>
       </div>
-      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Alem is the environment version the row was evaluated on: the only change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised independently, so Total% is not the sum of the other columns. MARL 100M / 1B / 10B are environment training steps, not model parameters. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one for the member breakdown. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
+      <p class="note"><strong>Click any LLM score</strong> for the run config and how-to-run command. Bars show 95% bootstrap confidence intervals; dots show means. Alem is the environment version the row was evaluated on: the only change between 0.1 and 0.2 is a fix to a rare ladder-generation collision that could block one of the three ladders on a level; levels that did not collide are bit-identical, and comparing results across the two versions found no statistically significant difference in performance. Base%, Coord.% and Total% are normalised independently, so Total% is not the sum of the other columns. MARL 100M / 1B / 10B are environment training steps, not model parameters. Rows marked <em>ref</em> are there for comparison and aren't ranked: MARL agents, a scripted agent that can see the whole game, and three of us playing by hand. A hollow dot means the score comes from a single episode, so it has no error bar. On Hard, switch on <strong>Mixed teams</strong> to add mixed-model teams (marked <em>mix</em>) to the table unranked; click one to see who played which role. <a href="https://github.com/alem-world/alem-env/blob/main/SUBMISSION.md" target="_blank" rel="noopener">Submit a result →</a></p>
 
       <details class="rl-toggle" open>
         <summary>Show the MARL baseline table</summary>

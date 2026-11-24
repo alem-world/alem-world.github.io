@@ -1,6 +1,6 @@
 {
  "status": "preliminary",
- "note": "Not on the leaderboard. A single hard episode (seed 9999), below the protocol minimum of 10 seeds/difficulty, so there is no confidence interval (the triple is [mean, mean, mean]). The site does not load this file. To promote it, re-run to >= 10 seeds, rebuild the scores with make_submission.py, and move `entry` into data/leaderboard.json -> homogeneous.",
+ "note": "Not ranked. A single hard episode (seed 9999), below the protocol minimum of 10 seeds/difficulty, so there is no confidence interval (the triple is [mean, mean, mean]). The site shows it only as a labelled preliminary card under the board (data/leaderboard.json -> preliminary), never in the ranked table; this file is the full record. To promote it, re-run to >= 10 seeds, rebuild the scores with make_submission.py, and move `entry` into data/leaderboard.json -> homogeneous and delete the matching preliminary entry.",
  "entry": {
   "id": "gpt-6-astra-high",
   "name": "GPT-6 Astra",
