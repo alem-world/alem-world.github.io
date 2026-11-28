@@ -23,6 +23,82 @@
   },
   "homogeneous": [
     {
+      "id": "next-local-qwen25-7b",
+      "name": "Next local · Qwen2.5-7B-Instruct",
+      "config": "Next lane controller, local Ollama, 10 episodes per difficulty",
+      "type": "open-weight",
+      "family": "Qwen",
+      "params": "7.6B",
+      "params_sort": 7.6,
+      "harness_version": "next-local-lanes-plan-v1",
+      "verified": false,
+      "scores": {
+        "easy": {
+          "base": [
+            3.2,
+            2.6,
+            3.8
+          ],
+          "coord": [
+            1.3,
+            0.0,
+            3.1
+          ],
+          "total": [
+            2.4,
+            1.7,
+            3.2
+          ]
+        },
+        "medium": {
+          "base": [
+            2.5,
+            2.0,
+            3.2
+          ],
+          "coord": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": [
+            1.5,
+            1.1,
+            1.8
+          ]
+        },
+        "hard": {
+          "base": [
+            2.9,
+            2.3,
+            3.5
+          ],
+          "coord": [
+            0.6,
+            0.0,
+            1.9
+          ],
+          "total": [
+            1.9,
+            1.4,
+            2.7
+          ]
+        }
+      },
+      "eval_dates": {
+        "easy": "2026-11-27",
+        "medium": "2026-11-27",
+        "hard": "2026-11-27"
+      },
+      "alem_version": "0.2.2",
+      "harness_url": "https://github.com/Chenyueqiao1029/alem-world.github.io/releases/tag/next-local-qwen25-7b-f343f1c8a897",
+      "episodes": {
+        "easy": 10,
+        "medium": 10,
+        "hard": 10
+      }
+    },
+    {
       "id": "gemini-3.1-pro-high",
       "name": "Gemini 3.1 Pro",
       "config": "high reasoning",
